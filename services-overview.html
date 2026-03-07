@@ -1,1 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services Overview | Energizing Solutions</title>
+  <meta name="description" content="Innovative information systems solutions for your business. Executive leadership, digital evolution, operational DevOps, and PMO services.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Page-specific styles */
+    .page-hero {
+      padding: 160px 0 80px;
+      background: var(--bg-mid);
+      border-bottom: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(200, 168, 75, 0.05) 0%, transparent 60%);
+    }
+    .page-hero-inner { position: relative; z-index: 1; }
+    .page-hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      max-width: 700px;
+      margin-bottom: 16px;
+    }
+    .page-hero p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+    .breadcrumb {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .breadcrumb a { color: var(--gold); }
+    .breadcrumb span { margin: 0 8px; opacity: 0.4; }
 
+    /* Services Grid */
+    .services-detail-section { background: var(--bg-dark); }
+    .services-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .service-detail-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 44px 40px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .service-detail-card:hover {
+      border-color: var(--border);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    .service-detail-card.featured {
+      border-color: var(--border);
+      background: linear-gradient(145deg, var(--bg-card), rgba(200,168,75,0.03));
+    }
+    .card-number {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .service-detail-card h3 {
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .service-detail-card .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+    .service-bullets {
+      margin-bottom: 32px;
+    }
+    .service-bullets li {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      gap: 10px;
+    }
+    .service-bullets li:last-child { border-bottom: none; }
+    .service-bullets li::before {
+      content: '›';
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .service-bullets li strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: var(--transition);
+      margin-top: auto;
+    }
+    .card-link:hover { color: var(--gold-light); gap: 12px; }
+    .card-link::after { content: '→'; }
+
+    /* Digital Evolution tags */
+    .evo-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .evo-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+      padding: 5px 12px;
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .evo-tag:hover { color: var(--gold); border-color: var(--border); }
+
+    @media (max-width: 900px) {
+      .services-detail-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/profile.jpeg" alt="Paul Esteves" class="logo-img">
+        <span class="logo-text">Energizing<span class="logo-accent">Solutions</span></span>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services-overview.html" style="color:var(--gold)">Services</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        Services Overview
+      </div>
+      <p class="section-label">What We Do</p>
+      <h1>Innovative Information Systems Solutions<br><span class="headline-accent">For Your Business</span></h1>
+      <p>From executive program leadership to cloud transformation — four core service pillars designed to drive operational excellence and measurable outcomes.</p>
+    </div>
+  </section>
+
+  <!-- SERVICES DETAIL -->
+  <section class="section services-detail-section">
+    <div class="container">
+      <div class="services-detail-grid">
+
+        <!-- CARD 1: Executive Leadership -->
+        <div class="service-detail-card featured">
+          <div class="card-number">01</div>
+          <h3>Executive Leadership</h3>
+          <p class="card-desc">Strategic and operational leadership that bridges C-suite vision with ground-level execution — keeping organizations agile, compliant, and ahead of disruption.</p>
+          <ul class="service-bullets">
+            <li><span><strong>Dynamic Capabilities &amp; Strategic Leadership:</strong> Stay ahead of emerging opportunities and disruptions, accelerate time-to-value, and maintain operational agility and innovation resilience.</span></li>
+            <li><span><strong>Technology Operations Leadership:</strong> Led and optimized IT&amp;S operations including enterprise environments, platforms, and hybrid infrastructures to drive performance, reliability, and cost-efficiency.</span></li>
+            <li><span><strong>Business Systems Transformation:</strong> Modernized legacy systems and integrated platforms like SAP, ITSM ServiceNow, and Jira XaaS, aligning technology with evolving business needs.</span></li>
+            <li><span><strong>Governance, Risk &amp; Compliance (GRC):</strong> Embedded GRC into all aspects of program and operational leadership, aligned with cybersecurity and global compliance frameworks.</span></li>
+            <li><span><strong>Change &amp; Stakeholder Management:</strong> Drove successful change using structured communication, design thinking, and collaborative approaches to improve adoption and alignment.</span></li>
+            <li><span><strong>Process &amp; Service Optimization:</strong> Applied Lean, ITIL, and operational excellence principles to streamline processes, reduce escalations, and strengthen SLA performance.</span></li>
+          </ul>
+          <a href="index.html#contact" class="card-link">Discuss This Service</a>
+        </div>
+
+        <!-- CARD 2: Digital Evolution -->
+        <div class="service-detail-card">
+          <div class="card-number">02</div>
+          <h3>Digital Evolution Solutions</h3>
+          <p class="card-desc">A comprehensive suite of next-generation technology capabilities — from AI and cloud to enterprise transformation frameworks that keep your organization digitally competitive.</p>
+          <div class="evo-tags">
+            <span class="evo-tag">Applied Observability</span>
+            <span class="evo-tag">Digital Immune System</span>
+            <span class="evo-tag">AI TRiSM</span>
+            <span class="evo-tag">Industry Cloud Platforms</span>
+            <span class="evo-tag">Cloud Platform Engineering</span>
+            <span class="evo-tag">Wireless-Value Realization</span>
+            <span class="evo-tag">SuperApps</span>
+            <span class="evo-tag">Adaptive AI</span>
+            <span class="evo-tag">Metaverse</span>
+            <span class="evo-tag">Sustainable Technology</span>
+            <span class="evo-tag">DevOps</span>
+            <span class="evo-tag">Experience Economy</span>
+            <span class="evo-tag">Intelligent Enterprise</span>
+            <span class="evo-tag">Digital Change</span>
+            <span class="evo-tag">Digital to the Core</span>
+          </div>
+          <a href="index.html#contact" class="card-link">Discuss This Service</a>
+        </div>
+
+        <!-- CARD 3: Operational DevOps -->
+        <div class="service-detail-card">
+          <div class="card-number">03</div>
+          <h3>Operational DevOps</h3>
+          <p class="card-desc">Transforming development and operations into a seamless, resilient ecosystem that meets client goals with high efficiency and long-term operational excellence.</p>
+          <ul class="service-bullets">
+            <li><span>CI/CD pipeline design optimized for deployment workflows — ensuring faster time-to-market, minimizing downtime, and reinforced with automated testing and real-time monitoring.</span></li>
+            <li><span>Infrastructure as Code (IaC) and operational automation using Terraform or Ansible — enabling rapid scaling while maintaining consistency, security, and compliance across environments.</span></li>
+            <li><span>Cross-functional team collaboration with knowledge transfer and mentorship — embedding DevOps practices for continuous improvement, reliability, and streamlined IT operations.</span></li>
+          </ul>
+          <a href="index.html#contact" class="card-link">Discuss This Service</a>
+        </div>
+
+        <!-- CARD 4: PMO -->
+        <div class="service-detail-card">
+          <div class="card-number">04</div>
+          <h3>Project Management Office</h3>
+          <p class="card-desc">Governance-first PMO architecture that builds the structural foundations preventing program failure — not just playbooks that react to it. End-to-end program oversight with accountability built in from day one.</p>
+          <ul class="service-bullets">
+            <li><span><strong>Portfolio Prioritization</strong> — Strategic alignment of initiatives to organizational objectives and available capacity.</span></li>
+            <li><span><strong>Program Roadmap Scheduling &amp; Resourcing</strong> — Structured planning that accounts for dependencies, risks, and resource constraints.</span></li>
+            <li><span><strong>Project Planning &amp; Management</strong> — Hands-on oversight from initiation through delivery, with governance checkpoints that keep programs on track.</span></li>
+          </ul>
+          <a href="index.html#contact" class="card-link">Discuss This Service</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section contact-section">
+    <div class="container contact-inner">
+      <p class="section-label">Ready to Start</p>
+      <h2 class="section-title">Let's Find the Right Fit</h2>
+      <p class="contact-sub">Whether you need a governance overhaul, a cloud transformation lead, or a steady hand on a program at risk — let's talk.</p>
+      <a href="mailto:paesteves21@outlook.com" class="btn-primary btn-large">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="images/profile.jpeg" alt="Paul Esteves" class="logo-img">
+        <span class="logo-text">Energizing<span class="logo-accent">Solutions</span></span>
+      </div>
+      <p class="footer-copy">&copy; 2026 Energizing Solutions LLC. All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="services-overview.html">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
