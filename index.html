@@ -70,7 +70,7 @@
     .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 0 48px; overflow: hidden; }
     .hero::before { content: ''; position: absolute; top: -200px; right: -100px; width: 800px; height: 800px; background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 65%); pointer-events: none; }
     .hero::after { content: ''; position: absolute; bottom: -100px; left: -150px; width: 600px; height: 600px; background: radial-gradient(ellipse, rgba(201,168,76,0.03) 0%, transparent 70%); pointer-events: none; }
-    .hero-inner { max-width: 1160px; margin: 0 auto; width: 100%; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding-top: var(--nav-height); }
+    .hero-inner { max-width: 1160px; margin: 0 auto; width: 100%; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding-top: calc(var(--nav-height) + 80px); }
     .hero-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 24px; }
     .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold-400); }
     .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 5.5vw, 6rem); font-weight: 300; line-height: 1.04; letter-spacing: -0.02em; color: var(--white); margin-bottom: 28px; }
@@ -179,7 +179,7 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 48px; padding-top: calc(var(--nav-height) + 40px); }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; padding-top: calc(var(--nav-height) + 56px); }
       .hero-right { display: grid; grid-template-columns: repeat(3, 1fr); }
       .services-grid { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -465,9 +465,9 @@
         <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:20px;">Start a <em>Conversation</em></h2>
         <p class="contact-sub reveal reveal-delay-2">Whether you're navigating a program at risk, standing up a PMO, or need an experienced operator to lead a complex transformation — let's find out if we're a fit.</p>
         <div class="contact-links reveal reveal-delay-3">
-          <a href="mailto:paesteves21@outlook.com" class="contact-link">
+          <a href="/cdn-cgi/l/email-protection#562637332522332033256467163923223a39393d7835393b" class="contact-link">
             <span class="contact-icon">✉</span>
-            <span>paesteves21@outlook.com</span>
+            <span><span class="__cf_email__" data-cfemail="fb8b9a9e888f9e8d9e88c9cabb948e8f97949490d5989496">[email&#160;protected]</span></span>
           </a>
           <a href="https://github.com/PauloE-droid" target="_blank" rel="noopener" class="contact-link">
             <span class="contact-icon">⌥</span>
@@ -475,7 +475,7 @@
           </a>
         </div>
         <div class="reveal reveal-delay-4">
-          <a href="mailto:paesteves21@outlook.com" class="btn-gold">Get In Touch</a>
+          <a href="/cdn-cgi/l/email-protection#4f3f2e2a3c3b2a392a3c7d7e0f203a3b23202024612c2022" class="btn-gold">Get In Touch</a>
         </div>
       </div>
     </div>
@@ -496,7 +496,7 @@
     <p class="footer-copy">© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
 
@@ -507,13 +507,4 @@
     mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
 
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-      });
-    }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
-  </script>
-
-</body>
-</html>
+    const observer = new IntersectionObserver((entries) =>
