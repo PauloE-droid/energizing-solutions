@@ -18,8 +18,12 @@ toggle?.addEventListener('click', () => {
 });
 
 // Close mobile nav on link click
-document.querySelectorAll('.main-nav ul a').forEach(link => {
-  link.addEventListener('click', () => navUl.classList.remove('open'));
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    const menu = toggle.nextElementSibling;
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  });
 });
 
 // Scroll reveal — simple intersection observer
