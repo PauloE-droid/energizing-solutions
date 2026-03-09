@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project &amp; Program Management — Energizing Solutions</title>
+  <meta name="description" content="Enterprise project and program management services by Energizing Solutions — strategic alignment, governance, risk management, and program delivery excellence." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================
+       DESIGN TOKENS
+    ============================= */
+    :root {
+      --charcoal-900: #0d0d0d;
+      --charcoal-800: #141414;
+      --charcoal-700: #1c1c1c;
+      --charcoal-600: #242424;
+      --charcoal-500: #2e2e2e;
+      --gold-400:     #c9a84c;
+      --gold-300:     #dfc06a;
+      --gold-200:     #ecdfa0;
+      --gold-100:     #f7f0d8;
+      --white:        #f5f4f0;
+      --muted:        #8a8a8a;
+      --border:       rgba(201, 168, 76, 0.18);
+      --nav-height:   72px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Montserrat', sans-serif;
+      --transition:   0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =============================
+       RESET & BASE
+    ============================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--charcoal-900);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* =============================
+       NOISE OVERLAY
+    ============================= */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* =============================
+       NAV
+    ============================= */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      transition: background var(--transition), backdrop-filter var(--transition), border-bottom var(--transition);
+    }
+    nav.scrolled {
+      background: rgba(13, 13, 13, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--gold-300);
+      white-space: nowrap;
+    }
+    .nav-logo span { color: var(--white); font-weight: 300; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold-400);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--white); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--gold-300); }
+
+    /* dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+    .nav-dropdown > a svg { width: 10px; height: 10px; fill: currentColor; transition: transform var(--transition); }
+    .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 16px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 220px;
+      background: var(--charcoal-700);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+      transform: translateX(-50%) translateY(-6px);
+    }
+    .nav-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      transition: color var(--transition), background var(--transition);
+    }
+    .dropdown-menu a:hover { color: var(--gold-300); background: rgba(201,168,76,0.06); }
+    .dropdown-menu a.active { color: var(--gold-400); }
+
+    /* hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 1.5px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+
+    /* mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--charcoal-800);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px;
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--gold-300); }
+    .mobile-close {
+      position: absolute;
+      top: 24px; right: 24px;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    /* =============================
+       PAGE HERO
+    ============================= */
+    .page-hero {
+      position: relative;
+      padding: calc(var(--nav-height) + 80px) 48px 80px;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -80px;
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+    .hero-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 20px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--gold-400);
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .page-hero h1 em {
+      font-style: italic;
+      color: var(--gold-300);
+    }
+    .hero-desc {
+      max-width: 620px;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* =============================
+       SECTION UTILITIES
+    ============================= */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 96px 48px;
+    }
+    .section-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .section-header {
+      margin-bottom: 56px;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--gold-400);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 56px;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--gold-300);
+    }
+
+    /* =============================
+       SERVICE CARDS GRID
+    ============================= */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .service-card {
+      background: var(--charcoal-800);
+      padding: 40px 36px;
+      transition: background var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold-400), var(--gold-200));
+      transition: width var(--transition);
+    }
+    .service-card:hover { background: var(--charcoal-700); }
+    .service-card:hover::before { width: 100%; }
+
+    .card-icon {
+      width: 40px; height: 40px;
+      margin-bottom: 20px;
+      color: var(--gold-400);
+      opacity: 0.8;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--white);
+      margin-bottom: 14px;
+      letter-spacing: 0.01em;
+    }
+    .card-body {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .card-body ul {
+      padding-left: 0;
+      margin-top: 8px;
+    }
+    .card-body ul li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 8px;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+    .card-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold-400);
+      font-size: 0.7rem;
+    }
+
+    /* =============================
+       CREDENTIALS STRIP
+    ============================= */
+    .creds-section {
+      background: var(--charcoal-800);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .creds-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .creds-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      white-space: nowrap;
+    }
+    .creds-divider {
+      width: 1px; height: 32px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .creds-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cred-tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--charcoal-600);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 2px;
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .cred-tag:hover {
+      border-color: var(--gold-400);
+      color: var(--gold-300);
+    }
+
+    /* =============================
+       STATS BAND
+    ============================= */
+    .stats-band {
+      padding: 72px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+    .stat-cell {
+      background: var(--charcoal-800);
+      padding: 36px 32px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold-300);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* =============================
+       CTA SECTION
+    ============================= */
+    .cta-section {
+      padding: 96px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-inner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .cta-inner h2 em {
+      font-style: italic;
+      color: var(--gold-300);
+    }
+    .cta-inner p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      background: transparent;
+      border: 1px solid var(--gold-400);
+      color: var(--gold-300);
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+    }
+    .btn-gold:hover {
+      background: var(--gold-400);
+      color: var(--charcoal-900);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold-400);
+      color: var(--white);
+    }
+
+    /* =============================
+       FOOTER
+    ============================= */
+    footer {
+      background: var(--charcoal-900);
+      border-top: 1px solid var(--border);
+      padding: 48px;
+    }
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold-300);
+    }
+    .footer-logo span { color: var(--white); font-weight: 300; }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--gold-300); }
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(138,138,138,0.5);
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+      max-width: 1160px;
+      margin: 24px auto 0;
+    }
+
+    /* =============================
+       SCROLL REVEAL
+    ============================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.18s; }
+    .reveal-delay-3 { transition-delay: 0.26s; }
+    .reveal-delay-4 { transition-delay: 0.34s; }
+    .reveal-delay-5 { transition-delay: 0.42s; }
+    .reveal-delay-6 { transition-delay: 0.5s; }
+
+    /* =============================
+       RESPONSIVE
+    ============================= */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .page-hero { padding: calc(var(--nav-height) + 48px) 24px 56px; }
+      .section { padding: 64px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .creds-inner { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+      .creds-divider { display: none; }
+      .stats-band { padding: 48px 24px; }
+      .cta-section { padding: 64px 24px; }
+      footer { padding: 32px 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .stats-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================
+       NAV
+  ============================= -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Energizing <span>Solutions</span></a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a class="active">
+          Services
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="services-overview.html">Services Overview</a></li>
+          <li><a href="project-management.html" class="active">Project Management</a></li>
+          <li><a href="operational-devops.html">Operational DevOps</a></li>
+          <li><a href="digital-evolution.html">Digital Evolution</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a>
+          Solutions
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="solutions-overview.html">Solutions Overview</a></li>
+          <li><a href="digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="experience-economy.html">Experience Economy</a></li>
+          <li><a href="digital-to-the-core.html">Digital to the Core</a></li>
+          <li><a href="devops-for-sap.html">DevOps for SAP</a></li>
+          <li><a href="intelligent-enterprise.html">Intelligent Enterprise</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a>
+          Products
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="applied-observability.html">Applied Observability</a></li>
+          <li><a href="system-understanding.html">System Understanding</a></li>
+          <li><a href="datadriven-decisionmaking.html">DataDriven DecisionMaking</a></li>
+          <li><a href="okr-kpi-management.html">OKR &amp; KPI Management</a></li>
+          <li><a href="capacity-plan-and-scaling.html">Capacity Plan &amp; Scaling</a></li>
+          <li><a href="improved-user-experience.html">Improved User Experience</a></li>
+          <li><a href="cost-optimization.html">Cost Optimization</a></li>
+          <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
+        </ul>
+      </li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+
+    <div class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <span class="mobile-close" id="mobile-close">✕</span>
+    <a href="index.html">Home</a>
+    <a href="services-overview.html">Services Overview</a>
+    <a href="project-management.html">Project Management</a>
+    <a href="operational-devops.html">Operational DevOps</a>
+    <a href="digital-evolution.html">Digital Evolution</a>
+    <a href="solutions-overview.html">Solutions Overview</a>
+    <a href="portfolio.html">Portfolio</a>
+  </div>
+
+  <!-- =============================
+       PAGE HERO
+  ============================= -->
+  <section class="page-hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow reveal">Services</div>
+      <h1 class="reveal reveal-delay-1">Project &amp; Program<br /><em>Management Services</em></h1>
+      <p class="hero-desc reveal reveal-delay-2">
+        Strategic program governance, enterprise delivery, and stakeholder alignment — 
+        built on 20 years of leading complex, high-stakes initiatives across regulated 
+        industries and large enterprise clients.
+      </p>
+    </div>
+  </section>
+
+  <!-- =============================
+       CORE DISCIPLINES
+  ============================= -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label reveal">Core Disciplines</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          End-to-End Program<br /><em>Delivery Excellence</em>
+        </h2>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Card 1 -->
+        <div class="service-card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            <line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>
+          </svg>
+          <div class="card-title">Strategic Project Management</div>
+          <div class="card-body">
+            Led the strategic alignment of enterprise systems project goals with the client's overarching strategic vision, crafting comprehensive program plans that encompass scope, schedule, budget, resources, and risk management.
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+          <div class="card-title">Client Engagement &amp; Trust-Building</div>
+          <div class="card-body">
+            Cultivate robust, trust-based relationships with key stakeholders, positioning as the principal advisor on enterprise solutions and ensuring services align with client business objectives.
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <div class="card-title">Business Development &amp; Growth</div>
+          <div class="card-body">
+            Drive the Go-To-Market strategy for enterprise solutions, identifying new opportunities and securing contracts to expand client footprint in the enterprise solutions domain.
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="card-title">Industry Thought Leadership</div>
+          <div class="card-body">
+            Serve as the enterprise solutions thought leader, keeping abreast of industry trends and technological advancements to inform strategy and offerings across regulated and complex environments.
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="service-card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <div class="card-title">Digital Strategy &amp; Innovation</div>
+          <div class="card-body">
+            Collaborate with Digital Enterprise Architects to develop and execute digital strategies that leverage enterprise solutions to transform client businesses and create competitive advantage.
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="service-card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <div class="card-title">Team Leadership &amp; Collaboration</div>
+          <div class="card-body">
+            Lead and motivate multi-functional teams, ensuring seamless execution of enterprise projects and fostering a culture of innovation and excellence across distributed organizations.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+       TECHNICAL EXCELLENCE
+  ============================= -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label reveal">Execution Framework</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          Technical &amp; Governance<br /><em>Mastery</em>
+        </h2>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Card 7 — Technical Excellence -->
+        <div class="service-card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+          </svg>
+          <div class="card-title">Technical &amp; PM Excellence</div>
+          <div class="card-body">
+            <ul>
+              <li>Manage multiple enterprise implementation and integration projects from inception to successful delivery</li>
+              <li>Extensive business and technical acumen across enterprise architecture, data analysis, and business modeling</li>
+              <li>Demonstrate mastery over end-to-end solutions, aligning configurations with project and business objectives</li>
+              <li>Employ leadership skills to influence outcomes and coordinate cross-functional team activities</li>
+              <li>Orchestrate steering committee and stakeholder management aligned with business outcomes</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 8 — Governance -->
+        <div class="service-card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <line x1="9" y1="9" x2="15" y2="9"/>
+            <line x1="9" y1="12" x2="15" y2="12"/>
+            <line x1="9" y1="15" x2="11" y2="15"/>
+          </svg>
+          <div class="card-title">Governance, Risk &amp; QA</div>
+          <div class="card-body">
+            <ul>
+              <li>Proactively identify and mitigate risks, ensuring the integrity of the enterprise programs</li>
+              <li>Uphold quality standards across all project outputs, aligning with program objectives</li>
+              <li>Establish governance frameworks that provide structured oversight and clear decision pathways</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 9 — Change Management -->
+        <div class="service-card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polyline points="23 4 23 10 17 10"/>
+            <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+          </svg>
+          <div class="card-title">Change Management &amp; Program Closure</div>
+          <div class="card-body">
+            <ul>
+              <li>Navigate project scope, schedule, and resource changes with judicious assessment and approval processes</li>
+              <li>Conclude programs effectively, capturing lessons learned and communicating successes to stakeholders and the broader organization</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+       ADVISORY SERVICES
+  ============================= -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label reveal">Advisory &amp; Consulting</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          Strategic Intelligence<br /><em>Services</em>
+        </h2>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Card 10 — Data Analytics -->
+        <div class="service-card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <div class="card-title">Data Analytics</div>
+          <div class="card-body">
+            Harness the power of data to gain insights and make informed decisions. Collect, analyze, and visualize data to uncover trends, patterns, and opportunities that drive strategic program outcomes.
+          </div>
+        </div>
+
+        <!-- Card 11 — Software Development -->
+        <div class="service-card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+          <div class="card-title">Software Development</div>
+          <div class="card-body">
+            Custom software development services to build scalable and reliable applications. Design, develop, test, and deploy solutions tailored to your specific enterprise needs.
+          </div>
+        </div>
+
+        <!-- Card 12 — IT Strategy -->
+        <div class="service-card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
+          </svg>
+          <div class="card-title">IT Strategy Consulting</div>
+          <div class="card-body">
+            Align technology investments with business goals. Develop a roadmap for digital transformation, optimize IT operations, and identify new opportunities for enterprise growth and efficiency.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+       CREDENTIALS STRIP
+  ============================= -->
+  <div class="creds-section">
+    <div class="creds-inner reveal">
+      <div class="creds-label">Credentials</div>
+      <div class="creds-divider"></div>
+      <div class="creds-tags">
+        <span class="cred-tag">PRINCE2</span>
+        <span class="cred-tag">PMP</span>
+        <span class="cred-tag">CSM</span>
+        <span class="cred-tag">CSPO</span>
+        <span class="cred-tag">Lean Six Sigma</span>
+        <span class="cred-tag">Azure Fundamentals</span>
+        <span class="cred-tag">Gen AI Prompt Engineering</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================
+       STATS BAND
+  ============================= -->
+  <div class="stats-band">
+    <div class="stats-inner">
+      <div class="stat-cell reveal reveal-delay-1">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Years Enterprise PMO Leadership</div>
+      </div>
+      <div class="stat-cell reveal reveal-delay-2">
+        <div class="stat-number">$50M</div>
+        <div class="stat-label">ROI Delivered</div>
+      </div>
+      <div class="stat-cell reveal reveal-delay-3">
+        <div class="stat-number">$160B</div>
+        <div class="stat-label">Total Addressable Market</div>
+      </div>
+      <div class="stat-cell reveal reveal-delay-4">
+        <div class="stat-number">6+</div>
+        <div class="stat-label">Major Enterprise Clients</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================
+       CTA
+  ============================= -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="reveal">Ready to <em>Energize</em><br />Your Next Program?</h2>
+      <p class="reveal reveal-delay-1">
+        Let's discuss how governance-first PMO leadership can prevent failure 
+        before it starts — and deliver outcomes that actually move the needle.
+      </p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
+        <a href="index.html#contact" class="btn-gold">Get in Touch</a>
+        <a href="services-overview.html" class="btn-ghost">All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+       FOOTER
+  ============================= -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Energizing <span>Solutions</span></div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services-overview.html">Services</a>
+        <a href="solutions-overview.html">Solutions</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+  </footer>
+
+  <!-- =============================
+       SCRIPTS
+  ============================= -->
+  <script>
+    // Sticky nav
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
