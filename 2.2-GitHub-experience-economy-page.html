@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Experience Economy &mdash; Energizing Solutions</title>
+  <meta name="description" content="Energizing Solutions Experience Economy — delivering memorable, personalized customer experiences that build loyalty and differentiate through quality of engagement."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --charcoal-900:#0d0d0d;--charcoal-800:#141414;--charcoal-700:#1c1c1c;
+      --charcoal-600:#242424;--gold-400:#c9a84c;--gold-300:#dfc06a;
+      --gold-200:#ecdfa0;--white:#f5f4f0;--muted:#8a8a8a;
+      --border:rgba(201,168,76,0.18);--nav-height:72px;
+      --font-display:'Cormorant Garamond',Georgia,serif;
+      --font-body:'Montserrat',sans-serif;
+      --transition:0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--charcoal-900);color:var(--white);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden;}
+    a{color:inherit;text-decoration:none;} ul{list-style:none;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+    section[id],div[id]{scroll-margin-top:calc(var(--nav-height) + 16px);}
+    nav{position:fixed;top:0;left:0;right:0;height:var(--nav-height);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;transition:background var(--transition),border-bottom var(--transition);}
+    nav.scrolled{background:rgba(13,13,13,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:0.04em;color:var(--gold-300);white-space:nowrap;}
+    .nav-logo span{color:var(--white);font-weight:300;}
+    .nav-links{display:flex;gap:36px;align-items:center;}
+    .nav-links>li>a{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);position:relative;cursor:pointer;}
+    .nav-links>li>a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold-400);transition:width var(--transition);}
+    .nav-links>li>a:hover,.nav-links>li>a.active{color:var(--white);}
+    .nav-links>li>a:hover::after,.nav-links>li>a.active::after{width:100%;}
+    .nav-links>li>a.active{color:var(--gold-300);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a{display:flex;align-items:center;gap:5px;}
+    .nav-dropdown>a svg{width:10px;height:10px;fill:currentColor;transition:transform var(--transition);}
+    .nav-dropdown:hover>a svg{transform:rotate(180deg);}
+    .dropdown-menu{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:220px;background:var(--charcoal-700);border:1px solid var(--border);border-radius:4px;padding:8px 0;opacity:0;pointer-events:none;transition:opacity var(--transition),transform var(--transition);}
+    .nav-dropdown:hover .dropdown-menu{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .dropdown-menu a{display:block;padding:10px 20px;font-size:0.68rem;letter-spacing:0.1em;color:var(--muted);transition:color var(--transition),background var(--transition);}
+    .dropdown-menu a:hover{color:var(--gold-300);background:rgba(201,168,76,0.06);}
+    .dropdown-menu a.active{color:var(--gold-400);}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+    .nav-hamburger span{display:block;width:24px;height:1.5px;background:var(--white);}
+    .mobile-menu{display:none;position:fixed;inset:0;background:var(--charcoal-800);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:10px;transition:color var(--transition);}
+    .mobile-menu a:hover{color:var(--gold-300);}
+    .mobile-close{position:absolute;top:24px;right:24px;font-size:1.6rem;cursor:pointer;color:var(--muted);}
+    .page-hero{position:relative;padding:calc(var(--nav-height) + 80px) 48px 80px;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;top:-120px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
+    .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
+    .hero-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:1;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:0.68rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;}
+    .hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold-400);}
+    .page-hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,4.5vw,5rem);font-weight:300;line-height:1.08;letter-spacing:-0.01em;color:var(--white);margin-bottom:24px;}
+    .page-hero h1 em{font-style:italic;color:var(--gold-300);}
+    .hero-desc{font-size:0.92rem;color:var(--muted);line-height:1.85;margin-bottom:32px;}
+    .hero-def{background:var(--charcoal-800);border:1px solid var(--border);padding:40px;position:relative;overflow:hidden;}
+    .hero-def::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));}
+    .hero-def-label{font-size:0.62rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:14px;}
+    .hero-def-body{font-size:0.84rem;color:var(--muted);line-height:1.9;}
+    .section{position:relative;z-index:1;padding:96px 48px;}
+    .section-alt{background:var(--charcoal-800);}
+    .section-inner{max-width:1160px;margin:0 auto;}
+    .section-label{display:inline-flex;align-items:center;gap:12px;font-size:0.65rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:16px;}
+    .section-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold-400);}
+    .section-title{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:var(--white);letter-spacing:-0.01em;margin-bottom:56px;}
+    .section-title em{font-style:italic;color:var(--gold-300);}
+    .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+    .card{background:var(--charcoal-800);padding:40px 36px;position:relative;overflow:hidden;transition:background var(--transition);}
+    .card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));transition:width .5s ease;}
+    .card:hover{background:var(--charcoal-700);} .card:hover::before{width:100%;}
+    .card-icon{width:36px;height:36px;color:var(--gold-400);margin-bottom:18px;opacity:0.85;}
+    .card-tag{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;}
+    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:12px;}
+    .card-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
+    .outcomes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .outcome{background:var(--charcoal-800);padding:36px 40px;display:flex;gap:20px;align-items:flex-start;}
+    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(201,168,76,0.2);line-height:1;flex-shrink:0;width:48px;}
+    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:8px;}
+    .outcome-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
+    .sol-nav{background:var(--charcoal-800);border-bottom:1px solid var(--border);padding:0 48px;position:sticky;top:var(--nav-height);z-index:900;}
+    .sol-nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;}
+    .sol-nav-inner::-webkit-scrollbar{display:none;}
+    .sol-nav-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);white-space:nowrap;padding-right:24px;border-right:1px solid var(--border);margin-right:24px;flex-shrink:0;}
+    .sol-link{font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:16px 16px;white-space:nowrap;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition);flex-shrink:0;}
+    .sol-link:hover{color:var(--white);}
+    .sol-link.active{color:var(--gold-300);border-bottom-color:var(--gold-400);}
+    .stats-band{padding:72px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);}
+    .stat-cell{background:var(--charcoal-800);padding:40px 32px;text-align:center;}
+    .stat-number{font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:10px;}
+    .stat-label{font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);}
+    .cta-section{padding:96px 48px;text-align:center;position:relative;overflow:hidden;}
+    .cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:350px;background:radial-gradient(ellipse,rgba(201,168,76,0.05) 0%,transparent 70%);pointer-events:none;}
+    .cta-inner{max-width:640px;margin:0 auto;position:relative;z-index:1;}
+    .cta-inner h2{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.2;margin-bottom:20px;}
+    .cta-inner h2 em{font-style:italic;color:var(--gold-300);}
+    .cta-inner p{font-size:0.9rem;color:var(--muted);margin-bottom:40px;line-height:1.8;}
+    .btn-gold{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:transparent;border:1px solid var(--gold-400);color:var(--gold-300);font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background var(--transition),color var(--transition);}
+    .btn-gold:hover{background:var(--gold-400);color:var(--charcoal-900);}
+    .btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--muted);font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:border-color var(--transition),color var(--transition);}
+    .btn-ghost:hover{border-color:var(--gold-400);color:var(--white);}
+    footer{background:var(--charcoal-900);border-top:1px solid var(--border);padding:48px;}
+    .footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+    .footer-logo{font-family:var(--font-display);font-size:1.2rem;font-weight:600;color:var(--gold-300);}
+    .footer-logo span{color:var(--white);font-weight:300;}
+    .footer-links{display:flex;gap:28px;flex-wrap:wrap;}
+    .footer-links a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);}
+    .footer-links a:hover{color:var(--gold-300);}
+    .footer-copy{font-size:0.7rem;color:rgba(138,138,138,0.5);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:.1s;} .reveal-delay-2{transition-delay:.18s;}
+    .reveal-delay-3{transition-delay:.26s;} .reveal-delay-4{transition-delay:.34s;}
+    @media(max-width:1024px){.hero-inner{grid-template-columns:1fr;gap:40px;}.cards-grid{grid-template-columns:repeat(2,1fr);}.outcomes-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.page-hero{padding:calc(var(--nav-height)+48px) 24px 56px;}.section{padding:64px 24px;}.sol-nav{padding:0 24px;}.stats-band{padding:48px 24px;}.cta-section{padding:64px 24px;}footer{padding:32px 24px;}.footer-inner{flex-direction:column;align-items:flex-start;}}
+    @media(max-width:580px){.cards-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:1fr;}}</style>
+</head>
+<body>
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Energizing <span>Solutions</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a>Services <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="services-overview.html">Services Overview</a></li>
+          <li><a href="project-management.html">Project Management</a></li>
+          <li><a href="operational-devops.html">Operational DevOps</a></li>
+          <li><a href="digital-evolution.html">Digital Evolution</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a class="active">Solutions <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="solutions-overview.html">Overview</a></li>
+          <li><a href="digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="experience-economy.html" class="active">Experience Economy</a></li>
+          <li><a href="digital-to-the-core.html">Digital to the Core</a></li>
+          <li><a href="devops-for-sap.html">DevOps for SAP</a></li>
+          <li><a href="intelligent-enterprise.html">Intelligent Enterprise</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a>Products <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="applied-observability.html">Applied Observability</a></li>
+          <li><a href="system-understanding.html">System Understanding</a></li>
+          <li><a href="datadriven-decisionmaking.html">DataDriven DecisionMaking</a></li>
+          <li><a href="okr-kpi-management.html">OKR &amp; KPI Management</a></li>
+          <li><a href="capacity-plan-and-scaling.html">Capacity Plan &amp; Scaling</a></li>
+          <li><a href="improved-user-experience.html">Improved User Experience</a></li>
+          <li><a href="cost-optimization.html">Cost Optimization</a></li>
+          <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
+        </ul>
+      </li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <span class="mobile-close" id="mobile-close">&#x2715;</span>
+    <a href="index.html">Home</a>
+    <a href="solutions-overview.html">Solutions Overview</a>
+    <a href="digital-transformation.html">Digital Transformation</a>
+    <a href="experience-economy.html">Experience Economy</a>
+    <a href="digital-to-the-core.html">Digital to the Core</a>
+    <a href="devops-for-sap.html">DevOps for SAP</a>
+    <a href="intelligent-enterprise.html">Intelligent Enterprise</a>
+    <a href="portfolio.html">Portfolio</a>
+  </div>
+  <div class="sol-nav">
+    <div class="sol-nav-inner">
+      <span class="sol-nav-label">Solutions</span>
+      <a href="solutions-overview.html" class="sol-link">Overview</a>
+      <a href="digital-transformation.html" class="sol-link">Digital Transformation</a>
+      <a href="experience-economy.html" class="sol-link active">Experience Economy</a>
+      <a href="digital-to-the-core.html" class="sol-link">Digital to the Core</a>
+      <a href="devops-for-sap.html" class="sol-link">DevOps for SAP</a>
+      <a href="intelligent-enterprise.html" class="sol-link">Intelligent Enterprise</a>
+    </div>
+  </div>
+  <section class="page-hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow reveal">Solutions</div>
+        <h1 class="reveal reveal-delay-1">Experience<br><em>Economy</em></h1>
+        <p class="hero-desc reveal reveal-delay-2">Delivering memorable and meaningful experiences to customers — emotional connections, personalized interactions, and added value beyond products and services. In the Experience Economy, the quality of engagement is the product.</p>
+        <div class="reveal reveal-delay-3">
+          <a href="index.html#contact" class="btn-gold">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-def reveal reveal-delay-2">
+        <div class="hero-def-label">About This Solution</div>
+        <p class="hero-def-body">The Experience Economy focuses on delivering memorable and meaningful experiences to customers. It emphasizes emotional connections, personalized interactions, and added value beyond products and services — fostering loyalty and differentiating businesses by the quality of experiences they provide.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">The Paradigm Shift</div>
+      <h2 class="section-title reveal reveal-delay-1">From Transactions<br><em>to Memorable Moments</em></h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;" class="reveal reveal-delay-2">
+        <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;">The Experience Economy represents the shift from selling products and services to curating moments that resonate. Customers don't just buy what you offer &mdash; they buy how you make them feel. Organizations that master this shift build loyalty that pricing alone can never manufacture.</p>
+        <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;">At Energizing Solutions, this means bringing personalized, tailored solutions to each engagement. Every business is unique &mdash; so we work closely with clients to understand their requirements and provide solutions that fit their needs, their customers, and their growth stage.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">Core Disciplines</div>
+      <h2 class="section-title reveal reveal-delay-1">The Experience<br><em>Architecture</em></h2>
+      <div class="cards-grid">
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          <div class="card-tag">Emotional Design</div>
+          <div class="card-title">Emotional Connection</div>
+          <p class="card-body">Designing interactions that move beyond functional to emotionally resonant. Customers who feel understood return &mdash; and refer. Emotional connection is the highest-retention strategy available.</p>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <div class="card-tag">Personalization</div>
+          <div class="card-title">Personalized Interactions</div>
+          <p class="card-body">Mass personalization at scale &mdash; using data, observability, and intelligent systems to treat each customer as an individual without the overhead of manual customization.</p>
+        </div>
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div class="card-tag">Value Creation</div>
+          <div class="card-title">Value Beyond the Product</div>
+          <p class="card-body">Adding layers of experience &mdash; community, education, service excellence &mdash; that make your offering impossible to replicate through price competition alone.</p>
+        </div>
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <div class="card-tag">Observability</div>
+          <div class="card-title">Experience Observability</div>
+          <p class="card-body">Using Applied Observability&trade; to instrument and measure experience quality &mdash; from page load to checkout flow to support interactions &mdash; so improvement is data-driven, not assumed.</p>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div class="card-tag">Loyalty</div>
+          <div class="card-title">Loyalty by Design</div>
+          <p class="card-body">Architecting the moments and touchpoints that drive repeat engagement, advocacy, and long-term customer lifetime value &mdash; because retention is more profitable than acquisition.</p>
+        </div>
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <div class="card-tag">Differentiation</div>
+          <div class="card-title">Competitive Differentiation</div>
+          <p class="card-body">In markets where features and price converge, experience is the last defensible moat. Organizations that lead in experience consistently outperform on NPS, churn, and revenue growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">Our Approach</div>
+      <h2 class="section-title reveal reveal-delay-1">Personalized Solutions<br><em>for Every Client</em></h2>
+      <div class="outcomes-grid">
+        <div class="outcome reveal reveal-delay-1"><div class="outcome-num">01</div><div class="outcome-content"><div class="outcome-title">Client-Centric Discovery</div><p class="outcome-body">We work closely with clients to understand their requirements, their customers, and their competitive context. No templated engagements &mdash; every solution is built around your specific experience goals.</p></div></div>
+        <div class="outcome reveal reveal-delay-2"><div class="outcome-num">02</div><div class="outcome-content"><div class="outcome-title">Tailored IT Solutions</div><p class="outcome-body">From cloud computing and network management to cybersecurity and data recovery &mdash; IT solutions calibrated to your experience delivery requirements and budget realities.</p></div></div>
+        <div class="outcome reveal reveal-delay-3"><div class="outcome-num">03</div><div class="outcome-content"><div class="outcome-title">Flexible Engagement Models</div><p class="outcome-body">Flexible pricing and engagement models ensure that experience-economy capabilities are accessible &mdash; not just to large enterprises but to growth-stage organizations competing for the same customers.</p></div></div>
+        <div class="outcome reveal reveal-delay-4"><div class="outcome-num">04</div><div class="outcome-content"><div class="outcome-title">Continuous Improvement</div><p class="outcome-body">Experience is never finished. We build the instrumentation and feedback loops that ensure your experience delivery improves continuously &mdash; staying ahead of rising customer expectations.</p></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="stats-band"><div class="stats-inner"><div class="stat-cell reveal"><div class="stat-number">$160B</div><div class="stat-label">Total Addressable Market</div></div><div class="stat-cell reveal"><div class="stat-number">20+</div><div class="stat-label">Years Enterprise Leadership</div></div><div class="stat-cell reveal"><div class="stat-number">6+</div><div class="stat-label">Major Enterprise Clients</div></div><div class="stat-cell reveal"><div class="stat-number">$50M</div><div class="stat-label">ROI Delivered</div></div></div></div>
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="reveal">Ready to Compete on<br><em>Experience?</em></h2>
+      <p class="reveal reveal-delay-1">Let's design the experience architecture that turns your customers into advocates and your interactions into a competitive advantage.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
+        <a href="index.html#contact" class="btn-gold">Get in Touch</a>
+        <a href="solutions-overview.html" class="btn-ghost">All Solutions</a>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Energizing <span>Solutions</span></div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services-overview.html">Services</a>
+        <a href="solutions-overview.html">Solutions</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </nav>
+    </div>
+    <p class="footer-copy">&copy; 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+  </footer>
+  <script>
+    const nav=document.getElementById("main-nav");
+    window.addEventListener("scroll",()=>nav.classList.toggle("scrolled",window.scrollY>40));
+    document.getElementById("hamburger").addEventListener("click",()=>document.getElementById("mobile-menu").classList.add("open"));
+    document.getElementById("mobile-close").addEventListener("click",()=>document.getElementById("mobile-menu").classList.remove("open"));
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}}),{threshold:0.07,rootMargin:"0px 0px -40px 0px"});
+    document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>
