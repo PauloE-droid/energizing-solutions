@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Energizing Solutions — Enterprise PMO &amp; Technology Leadership</title>
+  <meta name="description" content="Enterprise program leadership, PMO governance, and technology transformation consulting. 20+ years delivering results across regulated industries, defense-adjacent environments, and global enterprise clients." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --charcoal-900: #0d0d0d;
+      --charcoal-800: #141414;
+      --charcoal-700: #1c1c1c;
+      --charcoal-600: #242424;
+      --gold-400:     #c9a84c;
+      --gold-300:     #dfc06a;
+      --gold-200:     #ecdfa0;
+      --white:        #f5f4f0;
+      --muted:        #8a8a8a;
+      --border:       rgba(201, 168, 76, 0.18);
+      --nav-height:   72px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Montserrat', sans-serif;
+      --transition:   0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--charcoal-900); color: var(--white); font-family: var(--font-body); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ===== SCROLL ANCHOR OFFSET ===== */
+    section[id], div[id] { scroll-margin-top: calc(var(--nav-height) + 16px); }
+
+    /* ===== NAV ===== */
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
+    nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-300); white-space: nowrap; }
+    .nav-logo span { color: var(--white); font-weight: 300; }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links > li > a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); position: relative; cursor: pointer; }
+    .nav-links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold-400); transition: width var(--transition); }
+    .nav-links > li > a:hover { color: var(--white); }
+    .nav-links > li > a:hover::after { width: 100%; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 5px; }
+    .nav-dropdown > a svg { width: 10px; height: 10px; fill: currentColor; transition: transform var(--transition); }
+    .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+    .dropdown-menu { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-6px); min-width: 220px; background: var(--charcoal-700); border: 1px solid var(--border); border-radius: 4px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity var(--transition), transform var(--transition); }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu a { display: block; padding: 10px 20px; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); transition: color var(--transition), background var(--transition); }
+    .dropdown-menu a:hover { color: var(--gold-300); background: rgba(201,168,76,0.06); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal-800); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 10px; transition: color var(--transition); }
+    .mobile-menu a:hover { color: var(--gold-300); }
+    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--muted); }
+
+    /* ===== HERO ===== */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 0 48px; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -200px; right: -100px; width: 800px; height: 800px; background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 65%); pointer-events: none; }
+    .hero::after { content: ''; position: absolute; bottom: -100px; left: -150px; width: 600px; height: 600px; background: radial-gradient(ellipse, rgba(201,168,76,0.03) 0%, transparent 70%); pointer-events: none; }
+    .hero-inner { max-width: 1160px; margin: 0 auto; width: 100%; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding-top: calc(var(--nav-height) + 80px); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 24px; }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold-400); }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 5.5vw, 6rem); font-weight: 300; line-height: 1.04; letter-spacing: -0.02em; color: var(--white); margin-bottom: 28px; }
+    .hero h1 em { font-style: italic; color: var(--gold-300); }
+    .hero-sub { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.85; max-width: 480px; margin-bottom: 40px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; background: transparent; border: 1px solid var(--gold-400); color: var(--gold-300); font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background var(--transition), color var(--transition); }
+    .btn-gold:hover { background: var(--gold-400); color: var(--charcoal-900); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; background: transparent; border: 1px solid rgba(255,255,255,0.12); color: var(--muted); font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: border-color var(--transition), color var(--transition); }
+    .btn-ghost:hover { border-color: var(--gold-400); color: var(--white); }
+    .hero-creds { display: flex; gap: 10px; flex-wrap: wrap; }
+    .hero-cred { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.12em; padding: 4px 12px; border: 1px solid var(--border); color: var(--muted); }
+    .hero-right { display: flex; flex-direction: column; gap: 2px; background: var(--border); }
+    .hero-stat-card { background: var(--charcoal-800); padding: 36px 40px; position: relative; overflow: hidden; transition: background var(--transition); }
+    .hero-stat-card:hover { background: var(--charcoal-700); }
+    .hero-stat-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--gold-400); transition: width 0.4s ease; }
+    .hero-stat-card:hover::before { width: 2px; }
+    .hero-stat-num { font-family: var(--font-display); font-size: 2.8rem; font-weight: 300; color: var(--gold-300); line-height: 1; margin-bottom: 6px; }
+    .hero-stat-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .scroll-hint { position: absolute; bottom: 40px; left: 48px; display: flex; align-items: center; gap: 12px; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); z-index: 1; }
+    .scroll-hint::after { content: ''; display: block; width: 40px; height: 1px; background: var(--muted); }
+
+    /* ===== CLIENTS STRIP ===== */
+    .clients-strip { background: var(--charcoal-800); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 48px; }
+    .clients-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .clients-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-400); white-space: nowrap; }
+    .clients-list { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .clients-list span { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em; color: var(--muted); white-space: nowrap; }
+    .clients-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+
+    /* ===== SECTIONS ===== */
+    .section { position: relative; z-index: 1; padding: 96px 48px; }
+    .section-alt { background: var(--charcoal-800); }
+    .section-inner { max-width: 1160px; margin: 0 auto; }
+    .section-label { display: inline-flex; align-items: center; gap: 12px; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 14px; }
+    .section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold-400); }
+    .section-title { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.15; color: var(--white); letter-spacing: -0.01em; margin-bottom: 56px; }
+    .section-title em { font-style: italic; color: var(--gold-300); }
+
+    /* ===== SERVICES ===== */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+    .service-card { background: var(--charcoal-800); padding: 48px 40px; position: relative; overflow: hidden; transition: background var(--transition); display: flex; flex-direction: column; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--gold-400), var(--gold-200)); transition: width 0.5s ease; }
+    .service-card:hover { background: var(--charcoal-700); }
+    .service-card:hover::before { width: 100%; }
+    .service-card--featured { background: var(--charcoal-700); }
+    .service-card--featured::before { width: 100%; }
+    .featured-badge { display: inline-block; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--charcoal-900); background: var(--gold-400); padding: 3px 10px; margin-bottom: 14px; align-self: flex-start; }
+    .service-icon { width: 40px; height: 40px; color: var(--gold-400); margin-bottom: 20px; opacity: 0.8; }
+    .service-card h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--white); line-height: 1.2; margin-bottom: 14px; }
+    .service-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.85; flex: 1; margin-bottom: 24px; }
+    .service-tags { display: flex; flex-direction: column; gap: 7px; }
+    .service-tags li { font-size: 0.72rem; color: var(--muted); padding-left: 16px; position: relative; }
+    .service-tags li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border: 1px solid var(--gold-400); border-radius: 50%; }
+
+    /* ===== ABOUT ===== */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); margin-top: 32px; }
+    .about-stat { background: var(--charcoal-700); padding: 24px 20px; text-align: center; }
+    .about-stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--gold-300); line-height: 1; margin-bottom: 6px; }
+    .about-stat-label { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .about-placeholder { width: 100%; aspect-ratio: 4/5; background: var(--charcoal-700); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .about-placeholder::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.06) 0%, transparent 70%); }
+    .about-placeholder-inner { text-align: center; position: relative; z-index: 1; }
+    .about-initials { font-family: var(--font-display); font-size: 5rem; font-weight: 300; color: rgba(201,168,76,0.3); line-height: 1; }
+    .about-initials-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+    .about-role { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; color: var(--gold-400); margin-bottom: 24px; text-transform: uppercase; }
+    .about-bio { font-size: 0.88rem; color: var(--muted); line-height: 1.9; margin-bottom: 18px; }
+    .creds-grid { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 36px; }
+    .cred-tag { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; padding: 5px 12px; border: 1px solid var(--border); color: var(--muted); }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+    .testimonial-card { background: var(--charcoal-800); padding: 44px 36px; position: relative; }
+    .t-quote-mark { font-family: var(--font-display); font-size: 4rem; line-height: 0.8; color: var(--gold-400); opacity: 0.3; margin-bottom: 16px; }
+    .t-text { font-size: 0.85rem; color: var(--muted); line-height: 1.85; margin-bottom: 28px; font-style: italic; }
+    .t-author-name { font-size: 0.78rem; font-weight: 600; color: var(--white); letter-spacing: 0.06em; margin-bottom: 4px; }
+    .t-author-title { font-size: 0.68rem; color: var(--muted); }
+    .t-placeholder { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--charcoal-600); border: 1px solid var(--border); font-size: 0.7rem; color: var(--muted); margin-bottom: 12px; }
+
+    /* ===== CONTACT ===== */
+    .contact-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .contact-sub { font-size: 0.9rem; color: var(--muted); line-height: 1.85; max-width: 520px; margin: 0 auto 48px; }
+    .contact-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .contact-link { display: flex; align-items: center; gap: 10px; font-size: 0.78rem; color: var(--muted); padding: 12px 24px; border: 1px solid var(--border); transition: border-color var(--transition), color var(--transition); }
+    .contact-link:hover { border-color: var(--gold-400); color: var(--gold-300); }
+    .contact-icon { font-size: 1rem; color: var(--gold-400); }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--charcoal-900); border-top: 1px solid var(--border); padding: 48px; }
+    .footer-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+    .footer-logo { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--gold-300); }
+    .footer-logo span { color: var(--white); font-weight: 300; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--gold-300); }
+    .footer-copy { font-size: 0.7rem; color: rgba(138,138,138,0.5); text-align: center; padding-top: 24px; border-top: 1px solid var(--border); max-width: 1160px; margin: 24px auto 0; }
+
+    /* ===== REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.18s; }
+    .reveal-delay-3 { transition-delay: 0.26s; }
+    .reveal-delay-4 { transition-delay: 0.34s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; padding-top: calc(var(--nav-height) + 56px); }
+      .hero-right { display: grid; grid-template-columns: repeat(3, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero { padding: 0 24px; min-height: auto; padding-bottom: 64px; }
+      .hero-inner { padding-top: calc(var(--nav-height) + 48px); }
+      .hero-right { grid-template-columns: 1fr; }
+      .section { padding: 64px 24px; }
+      .clients-strip { padding: 16px 24px; }
+      footer { padding: 32px 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .scroll-hint { display: none; }
+    }
+    @media (max-width: 480px) {
+      .about-stats { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Energizing <span>Solutions</span></a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li class="nav-dropdown">
+        <a>Services <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="services-overview.html">Services Overview</a></li>
+          <li><a href="project-management.html">Project Management</a></li>
+          <li><a href="operational-devops.html">Operational DevOps</a></li>
+          <li><a href="digital-evolution.html">Digital Evolution</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a>Solutions <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="solutions-overview.html">Solutions Overview</a></li>
+          <li><a href="digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="experience-economy.html">Experience Economy</a></li>
+          <li><a href="digital-to-the-core.html">Digital to the Core</a></li>
+          <li><a href="devops-for-sap.html">DevOps for SAP</a></li>
+          <li><a href="intelligent-enterprise.html">Intelligent Enterprise</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a>Products <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="applied-observability.html">Applied Observability</a></li>
+          <li><a href="system-understanding.html">System Understanding</a></li>
+          <li><a href="datadriven-decisionmaking.html">DataDriven DecisionMaking</a></li>
+          <li><a href="okr-kpi-management.html">OKR &amp; KPI Management</a></li>
+          <li><a href="capacity-plan-and-scaling.html">Capacity Plan &amp; Scaling</a></li>
+          <li><a href="improved-user-experience.html">Improved User Experience</a></li>
+          <li><a href="cost-optimization.html">Cost Optimization</a></li>
+          <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
+        </ul>
+      </li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <span class="mobile-close" id="mobile-close">✕</span>
+    <a href="#home" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
+    <a href="services-overview.html">Services Overview</a>
+    <a href="solutions-overview.html">Solutions Overview</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow reveal">Enterprise PMO &amp; Technology Leadership</div>
+        <h1 class="reveal reveal-delay-1">
+          Turning Complex<br />
+          Programs Into<br />
+          <em>Measurable Results</em>
+        </h1>
+        <p class="hero-sub reveal reveal-delay-2">
+          20+ years of enterprise program leadership, governance architecture, 
+          and technology transformation across regulated industries, 
+          defense-adjacent environments, and global enterprise clients.
+        </p>
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="services-overview.html" class="btn-gold">View Services</a>
+          <a href="#about" class="btn-ghost">About Paul</a>
+        </div>
+        <div class="hero-creds reveal reveal-delay-4">
+          <span class="hero-cred">PRINCE2 PMP</span>
+          <span class="hero-cred">CSM · CSPO</span>
+          <span class="hero-cred">Lean Six Sigma</span>
+          <span class="hero-cred">Azure Fundamentals</span>
+        </div>
+      </div>
+      <div class="hero-right reveal reveal-delay-2">
+        <div class="hero-stat-card">
+          <div class="hero-stat-num">20+</div>
+          <div class="hero-stat-label">Years Enterprise PMO Leadership</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-num">$50M</div>
+          <div class="hero-stat-label">Program ROI Delivered</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-num">$160B</div>
+          <div class="hero-stat-label">Total Addressable Market</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-num">6+</div>
+          <div class="hero-stat-label">Major Enterprise Clients</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+  </section>
+
+  <!-- CLIENTS STRIP -->
+  <div class="clients-strip reveal">
+    <div class="clients-inner">
+      <span class="clients-label">Notable Engagements</span>
+      <div class="clients-list">
+        <span>Alaska Airlines</span>
+        <div class="clients-dot"></div>
+        <span>British Gas / Centrica</span>
+        <div class="clients-dot"></div>
+        <span>Honda Manufacturing</span>
+        <div class="clients-dot"></div>
+        <span>VMware</span>
+        <div class="clients-dot"></div>
+        <span>NetApp</span>
+        <div class="clients-dot"></div>
+        <span>Cisco</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">What I Deliver</div>
+      <h2 class="section-title reveal reveal-delay-1">Core <em>Services</em></h2>
+      <div class="services-grid">
+
+        <div class="service-card reveal reveal-delay-1">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <h3>Program &amp; PMO Leadership</h3>
+          <p>End-to-end enterprise program governance, EPMO architecture, and strategic roadmap delivery. eCommerce platform programs with ROI exceeding $50M. Governance frameworks that prevent program failure before it starts.</p>
+          <ul class="service-tags">
+            <li>EPMO Governance</li>
+            <li>Roadmap Architecture</li>
+            <li>Risk Mitigation</li>
+          </ul>
+        </div>
+
+        <div class="service-card service-card--featured reveal reveal-delay-2">
+          <div class="featured-badge">Core Expertise</div>
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <h3>Strategic Facilitation &amp; OKR Leadership</h3>
+          <p>Facilitated client program OKR and KPI milestone realization for partner incentives vision with a total addressable market of $160B. Translating C-suite vision into executable operational outcomes.</p>
+          <ul class="service-tags">
+            <li>OKR / KPI Alignment</li>
+            <li>Executive Facilitation</li>
+            <li>Partner Strategy</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <h3>Cloud &amp; Technology Transformation</h3>
+          <p>Azure cloud platform implementation, agile engineering team leadership, and partner data insights enablement. Bridging technical teams with business outcomes from architecture through execution.</p>
+          <ul class="service-tags">
+            <li>Azure Cloud</li>
+            <li>Agile Leadership</li>
+            <li>Data Insights</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section section-alt">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-left reveal">
+          <div class="about-placeholder">
+            <div class="about-placeholder-inner">
+              <div class="about-initials">PE</div>
+              <div class="about-initials-label">Paul Esteves</div>
+            </div>
+          </div>
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="about-stat-num">20+</div>
+              <div class="about-stat-label">Years Experience</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">$50M</div>
+              <div class="about-stat-label">ROI Delivered</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">$160B</div>
+              <div class="about-stat-label">TAM Addressed</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-right reveal reveal-delay-1">
+          <div class="section-label">About</div>
+          <h2 class="section-title" style="margin-bottom:8px;">Paul <em>Esteves</em></h2>
+          <div class="about-role">Founder, Energizing Solutions LLC</div>
+          <p class="about-bio">International technology professional with over 20 years of experience managing transformative operations and programs across diverse industries. Energizing Solutions specializes in building seamless, scalable governance structures that drive operational success and efficiency.</p>
+          <p class="about-bio">Known for a governance-first, strategic-yet-hands-on approach — dedicated to empowering organizations with the structural foundations that prevent program failure, not just the playbooks that react to it.</p>
+          <div class="creds-grid">
+            <span class="cred-tag">PRINCE2</span>
+            <span class="cred-tag">PMP</span>
+            <span class="cred-tag">CSM</span>
+            <span class="cred-tag">CSPO</span>
+            <span class="cred-tag">Lean Six Sigma</span>
+            <span class="cred-tag">Azure Fundamentals</span>
+            <span class="cred-tag">Gen AI Prompt Engineering</span>
+          </div>
+          <a href="#contact" class="btn-gold">Work With Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">Client Voices</div>
+      <h2 class="section-title reveal reveal-delay-1"><em>Testimonials</em></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="t-quote-mark">"</div>
+          <p class="t-text">Coming soon — reach out if you'd like to provide a testimonial.</p>
+          <div class="t-placeholder">?</div>
+          <div class="t-author-name">Client Name</div>
+          <div class="t-author-title">Title, Organization</div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="t-quote-mark">"</div>
+          <p class="t-text">Coming soon — reach out if you'd like to provide a testimonial.</p>
+          <div class="t-placeholder">?</div>
+          <div class="t-author-name">Client Name</div>
+          <div class="t-author-title">Title, Organization</div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="t-quote-mark">"</div>
+          <p class="t-text">Coming soon — reach out if you'd like to provide a testimonial.</p>
+          <div class="t-placeholder">?</div>
+          <div class="t-author-name">Client Name</div>
+          <div class="t-author-title">Title, Organization</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
+    <div class="section-inner">
+      <div class="contact-inner">
+        <div class="section-label reveal" style="justify-content:center;">Let's Talk</div>
+        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:20px;">Start a <em>Conversation</em></h2>
+        <p class="contact-sub reveal reveal-delay-2">Whether you're navigating a program at risk, standing up a PMO, or need an experienced operator to lead a complex transformation — let's find out if we're a fit.</p>
+        <div class="contact-links reveal reveal-delay-3">
+          <a href="/cdn-cgi/l/email-protection#562637332522332033256467163923223a39393d7835393b" class="contact-link">
+            <span class="contact-icon">✉</span>
+            <span><span class="__cf_email__" data-cfemail="fb8b9a9e888f9e8d9e88c9cabb948e8f97949490d5989496">[email&#160;protected]</span></span>
+          </a>
+          <a href="https://github.com/PauloE-droid" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-icon">⌥</span>
+            <span>github.com/PauloE-droid</span>
+          </a>
+        </div>
+        <div class="reveal reveal-delay-4">
+          <a href="/cdn-cgi/l/email-protection#4f3f2e2a3c3b2a392a3c7d7e0f203a3b23202024612c2022" class="btn-gold">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Energizing <span>Solutions</span></div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services-overview.html">Services</a>
+        <a href="solutions-overview.html">Solutions</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) =>
