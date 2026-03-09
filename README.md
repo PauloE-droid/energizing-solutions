@@ -37,4 +37,4 @@ To point a custom domain (e.g. `energizingsolutions.com`):
 
 ## Contact
 
-Paul Esteves · [paesteves21@outlook.com](mailto:paesteves21@outlook.com) · [GitHub](https://github.com/PauloE-droid)
+Paul Esteves · [paul.esteves@energizing-solutions.com](mailto:paul.esteves@energizing-solutions.com) · [GitHub](https://github.com/PauloE-droid)
