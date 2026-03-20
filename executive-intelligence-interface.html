@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Intelligence Interface | Energizing Solutions</title>
+    <meta name="description" content="The Post-Dashboard Era — Why executive decision-making is moving beyond the dashboard and what replaces it. Part of the Applied Observability Playmaker's Framework.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════
+           RESET & BASE
+           ═══════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --charcoal: #1a1a2e;
+            --charcoal-deep: #12121f;
+            --charcoal-light: #252542;
+            --gold: #c8a951;
+            --gold-light: #e0c872;
+            --gold-dim: #9a803d;
+            --ivory: #f5f0e8;
+            --ivory-soft: #ede7db;
+            --slate: #8a8aa0;
+            --white: #ffffff;
+            --blue-accent: #4a6cf7;
+            --blue-deep: #1e2d5f;
+            --red-accent: #e74c3c;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Montserrat', 'Helvetica Neue', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--charcoal);
+            color: var(--ivory);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--gold-light); }
+
+        /* ═══════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════ */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(18, 18, 31, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(200, 169, 81, 0.15);
+            padding: 0.9rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--slate);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--gold); }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* ═══════════════════════════════════════
+           FRAMEWORK BADGE (Applied Observability)
+           ═══════════════════════════════════════ */
+        .framework-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(200, 169, 81, 0.08);
+            border: 1px solid rgba(200, 169, 81, 0.25);
+            border-radius: 100px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .framework-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* ═══════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 40%, rgba(200, 169, 81, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 80% 60% at 30% 80%, rgba(74, 108, 247, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Subtle grid pattern */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(200, 169, 81, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(200, 169, 81, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.3s;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.5s;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--slate);
+            max-width: 640px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.7s;
+        }
+
+        .hero-year {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(200, 169, 81, 0.5);
+            letter-spacing: 0.1em;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.9s;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════
+           SECTION UTILITIES
+           ═══════════════════════════════════════ */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--slate);
+            max-width: 680px;
+            line-height: 1.7;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 2rem 0;
+        }
+
+        /* ═══════════════════════════════════════
+           PROBLEM SECTION
+           ═══════════════════════════════════════ */
+        .problem {
+            background: var(--charcoal-deep);
+        }
+
+        .problem-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .problem-statement h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 4.5vw, 4rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .problem-statement h2 span {
+            display: block;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .problem-card {
+            background: var(--charcoal-light);
+            border: 1px solid rgba(200, 169, 81, 0.12);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .problem-card .italic-lead {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--ivory-soft);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(200, 169, 81, 0.2);
+        }
+
+        .problem-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .problem-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: var(--ivory);
+            line-height: 1.5;
+        }
+
+        .problem-points li::before {
+            content: '';
+            flex-shrink: 0;
+            width: 3px;
+            height: 20px;
+            margin-top: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* ═══════════════════════════════════════
+           COGNITIVE GAP — STATS
+           ═══════════════════════════════════════ */
+        .stats-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--charcoal-light);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(200, 169, 81, 0.08);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .stat-card:nth-child(1)::before { background: var(--blue-accent); }
+        .stat-card:nth-child(2)::before { background: var(--red-accent); }
+        .stat-card:nth-child(3)::before { background: var(--slate); }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card:nth-child(1) .stat-number { color: var(--blue-accent); }
+        .stat-card:nth-child(2) .stat-number { color: var(--red-accent); }
+        .stat-card:nth-child(3) .stat-number { color: var(--slate); }
+
+        .stat-unit {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════
+           SOLUTION SECTION
+           ═══════════════════════════════════════ */
+        .solution {
+            background: var(--charcoal-deep);
+        }
+
+        .solution-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .solution-intro h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .solution-intro h2 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .solution-quote {
+            background: rgba(200, 169, 81, 0.06);
+            border-left: 3px solid var(--gold);
+            padding: 1.5rem 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .solution-quote p {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--ivory-soft);
+            line-height: 1.6;
+        }
+
+        /* Comparison Table */
+        .compare-table {
+            background: var(--charcoal-light);
+            border: 1px solid rgba(200, 169, 81, 0.12);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .compare-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(200, 169, 81, 0.12);
+        }
+
+        .compare-header span {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .compare-header span:first-child { color: var(--slate); }
+        .compare-header span:last-child { color: var(--gold); }
+
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: background 0.2s;
+        }
+
+        .compare-row:hover { background: rgba(200, 169, 81, 0.03); }
+        .compare-row:last-child { border-bottom: none; }
+
+        .compare-row .old {
+            font-size: 0.9rem;
+            color: var(--slate);
+        }
+
+        .compare-row .new {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* ═══════════════════════════════════════
+           FOUR PROPERTIES
+           ═══════════════════════════════════════ */
+        .properties {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .properties-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .property-card {
+            background: rgba(245, 240, 232, 0.04);
+            border: 1px solid rgba(200, 169, 81, 0.1);
+            border-radius: 12px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(200, 169, 81, 0.3);
+        }
+
+        .property-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            background: var(--charcoal-light);
+            border: 2px solid rgba(200, 169, 81, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .property-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--gold);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .property-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .property-card p {
+            font-size: 0.85rem;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════
+           BUSINESS CASE
+           ═══════════════════════════════════════ */
+        .business-case {
+            background: var(--charcoal-deep);
+            padding: 6rem 2rem;
+        }
+
+        .business-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .business-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .business-card {
+            background: var(--charcoal-light);
+            border: 1px solid rgba(200, 169, 81, 0.08);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .business-card-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+            background: rgba(200, 169, 81, 0.08);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .business-card-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .business-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .business-card p {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.7;
+        }
+
+        /* ═══════════════════════════════════════
+           CAPABILITIES (What We're Building)
+           ═══════════════════════════════════════ */
+        .capabilities {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .capabilities-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .capability-card {
+            background: rgba(245, 240, 232, 0.03);
+            border: 1px solid rgba(200, 169, 81, 0.08);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .capability-card:hover {
+            border-color: rgba(200, 169, 81, 0.2);
+            background: rgba(245, 240, 232, 0.05);
+        }
+
+        .capability-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--charcoal-light);
+            border: 1px solid rgba(200, 169, 81, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .capability-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--gold);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .capability-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.4rem;
+        }
+
+        .capability-card p {
+            font-size: 0.85rem;
+            color: var(--slate);
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════
+           TIMELINE (Why Now)
+           ═══════════════════════════════════════ */
+        .timeline-section {
+            background: var(--charcoal-deep);
+            padding: 6rem 2rem;
+        }
+
+        .timeline-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(200, 169, 81, 0.15);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            background: var(--charcoal-light);
+            border: 2px solid var(--gold-dim);
+            border-radius: 50%;
+        }
+
+        .timeline-item:last-child .timeline-dot {
+            background: var(--gold);
+            border-color: var(--gold);
+            box-shadow: 0 0 12px rgba(200, 169, 81, 0.4);
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item:last-child .timeline-year { color: var(--gold); }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.5;
+        }
+
+        .urgency-card {
+            background: var(--charcoal-light);
+            border: 1px solid rgba(200, 169, 81, 0.15);
+            border-radius: 12px;
+            padding: 3rem;
+        }
+
+        .urgency-card h3 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .urgency-card h3 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .urgency-card .divider { margin: 1.5rem 0; }
+
+        .urgency-card p {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .urgency-card p:last-child { margin-bottom: 0; }
+
+        .urgency-highlight {
+            color: var(--ivory) !important;
+            font-weight: 500;
+        }
+
+        /* ═══════════════════════════════════════
+           CTA SECTION
+           ═══════════════════════════════════════ */
+        .cta-section {
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(200, 169, 81, 0.06), transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-question {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-answer {
+            font-size: 1.05rem;
+            color: var(--slate);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal-deep);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 1rem 2.5rem;
+            border-radius: 6px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--gold-light);
+            color: var(--charcoal-deep);
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        .site-footer {
+            background: var(--charcoal-deep);
+            border-top: 1px solid rgba(200, 169, 81, 0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-sub {
+            font-size: 0.8rem;
+            color: var(--slate);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--slate);
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-copy {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: rgba(138, 138, 160, 0.5);
+        }
+
+        /* ═══════════════════════════════════════
+           SCROLL ANIMATIONS
+           ═══════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .properties-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(18, 18, 31, 0.98);
+                padding: 1.5rem 2rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid rgba(200, 169, 81, 0.15);
+            }
+            .nav-toggle { display: block; }
+
+            .problem-inner,
+            .solution-inner,
+            .timeline-inner {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .stats-grid,
+            .business-grid,
+            .capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .properties-grid { grid-template-columns: 1fr 1fr; }
+
+            .hero { padding-top: 6rem; }
+        }
+
+        @media (max-width: 480px) {
+            .properties-grid { grid-template-columns: 1fr; }
+
+            .compare-header,
+            .compare-row {
+                grid-template-columns: 1fr 1fr;
+                font-size: 0.82rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════ NAVIGATION ════════ -->
+    <nav class="site-nav">
+        <a href="index.html" class="nav-brand">Energizing Solutions</a>
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services-overview.html">Services</a></li>
+            <li><a href="intelligent-enterprise.html">Solutions</a></li>
+            <li><a href="executive-intelligence-interface.html" class="active">EII</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ════════ HERO ════════ -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="framework-badge">Applied Observability · The Playmaker's Framework</div>
+            <p class="hero-eyebrow">Introducing</p>
+            <h1>The <em>Post-Dashboard</em> Era</h1>
+            <p class="hero-sub">Why executive decision-making is moving beyond the dashboard — and what replaces it.</p>
+            <p class="hero-year">Executive Intelligence Interface · 2026</p>
+        </div>
+    </section>
+
+    <!-- ════════ THE PROBLEM ════════ -->
+    <section class="problem">
+        <div class="problem-inner">
+            <div class="problem-statement reveal">
+                <p class="section-label">The Problem</p>
+                <h2>Your dashboard wasn't built <span>for you.</span></h2>
+            </div>
+            <div class="problem-card reveal">
+                <p class="italic-lead">It was built to answer questions someone else thought to ask.</p>
+                <ul class="problem-points">
+                    <li>Curated by analysts, not executives</li>
+                    <li>Shows what was measured, not what matters</li>
+                    <li>Answers arrive days after decisions are made</li>
+                    <li>The question stays yours — the answer rarely is</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ THE COGNITIVE GAP ════════ -->
+    <section class="stats-section">
+        <div class="stats-header reveal">
+            <p class="section-label">The Cognitive Gap</p>
+            <h2 class="section-title">Between a question and a confident answer.</h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-number">3</div>
+                <div class="stat-unit">days</div>
+                <p class="stat-desc">Average analyst turnaround on an executive question</p>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-number">1</div>
+                <div class="stat-unit">meeting</div>
+                <p class="stat-desc">How often the answer arrives after the decision was made</p>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-number">0</div>
+                <div class="stat-unit">times</div>
+                <p class="stat-desc">The dashboard changed the question you were asking</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ THE SOLUTION ════════ -->
+    <section class="solution">
+        <div class="solution-inner">
+            <div class="solution-intro reveal">
+                <p class="section-label">The Solution</p>
+                <h2>Introducing the <em>Executive Intelligence Interface</em></h2>
+                <div class="solution-quote">
+                    <p>The EII is the AI-native reasoning layer that sits between an executive and their organization's full body of knowledge — collapsing the gap between question and decision to near zero.</p>
+                </div>
+            </div>
+            <div class="compare-table reveal">
+                <div class="compare-header">
+                    <span>Dashboard</span>
+                    <span>EII</span>
+                </div>
+                <div class="compare-row">
+                    <span class="old">Fixed questions</span>
+                    <span class="new">Any question</span>
+                </div>
+                <div class="compare-row">
+                    <span class="old">Analyst-curated views</span>
+                    <span class="new">Executive-driven inquiry</span>
+                </div>
+                <div class="compare-row">
+                    <span class="old">Batch reporting</span>
+                    <span class="new">Real-time reasoning</span>
+                </div>
+                <div class="compare-row">
+                    <span class="old">Data retrieval</span>
+                    <span class="new">Contextual synthesis</span>
+                </div>
+                <div class="compare-row">
+                    <span class="old">Days to answer</span>
+                    <span class="new">Seconds to answer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ FOUR PROPERTIES ════════ -->
+    <section class="properties">
+        <div class="properties-header reveal">
+            <p class="section-label">How It Works</p>
+            <h2 class="section-title">Four defining properties of the EII</h2>
+        </div>
+        <div class="properties-grid">
+            <div class="property-card reveal">
+                <div class="property-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <h3>Answers what you actually asked</h3>
+                <p>Not a pre-formatted approximation — the real question, in your own language.</p>
+            </div>
+            <div class="property-card reveal">
+                <div class="property-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                </div>
+                <h3>Reasons, not just retrieves</h3>
+                <p>Synthesizes across data sources, spots contradictions, flags what's missing.</p>
+            </div>
+            <div class="property-card reveal">
+                <div class="property-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3>Operates at executive tempo</h3>
+                <p>Answers in seconds, not days. Built for the pace of a board meeting.</p>
+            </div>
+            <div class="property-card reveal">
+                <div class="property-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <h3>Grounded in your reality</h3>
+                <p>Your data, your documents, your context — not generic benchmarks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ BUSINESS CASE ════════ -->
+    <section class="business-case">
+        <div class="business-inner">
+            <div class="business-header reveal">
+                <p class="section-label">The Business Case</p>
+                <h2 class="section-title">What changes when the gap closes.</h2>
+            </div>
+            <div class="business-grid">
+                <div class="business-card reveal">
+                    <div class="business-card-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Faster Capital Allocation</h3>
+                    <p>Financial questions answered in the room — capital moves to best opportunities sooner, with data behind every call.</p>
+                </div>
+                <div class="business-card reveal">
+                    <div class="business-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <h3>Analyst Leverage</h3>
+                    <p>Senior analytical talent freed from reactive Q&amp;A to focus on forward-looking, strategic problems only humans can solve.</p>
+                </div>
+                <div class="business-card reveal">
+                    <div class="business-card-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                    </div>
+                    <h3>Higher-Quality Board Decisions</h3>
+                    <p>Executives who can interrogate data in real time turn status reviews into genuine strategy sessions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ WHAT WE'RE BUILDING ════════ -->
+    <section class="capabilities">
+        <div class="capabilities-header reveal">
+            <p class="section-label">What We're Building</p>
+            <h2 class="section-title">An Executive Intelligence Interface built for your organization.</h2>
+        </div>
+        <div class="capabilities-grid">
+            <div class="capability-card reveal">
+                <div class="capability-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div>
+                    <h3>Natural language query</h3>
+                    <p>Ask anything. No query language, no ticket, no waiting.</p>
+                </div>
+            </div>
+            <div class="capability-card reveal">
+                <div class="capability-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                    <h3>Connected to your data</h3>
+                    <p>Your warehouse, docs, and systems — all in scope.</p>
+                </div>
+            </div>
+            <div class="capability-card reveal">
+                <div class="capability-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                </div>
+                <div>
+                    <h3>Reasoning, not just search</h3>
+                    <p>Synthesizes, compares, and surfaces what matters.</p>
+                </div>
+            </div>
+            <div class="capability-card reveal">
+                <div class="capability-icon">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <div>
+                    <h3>Enterprise-grade security</h3>
+                    <p>Private deployment. Your data stays yours.</p>
+                </div>
+            </div>
+            <div class="capability-card reveal">
+                <div class="capability-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                    <h3>Decision-grade confidence</h3>
+                    <p>Grounded answers with traceable sources.</p>
+                </div>
+            </div>
+            <div class="capability-card reveal">
+                <div class="capability-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                    <h3>Seconds, not days</h3>
+                    <p>From question to confident answer at executive speed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ WHY NOW ════════ -->
+    <section class="timeline-section">
+        <div class="timeline-inner">
+            <div class="reveal">
+                <p class="section-label">Why Now</p>
+                <h2 class="section-title">The conditions that make this possible — and urgent.</h2>
+                <div style="height: 2rem;"></div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2010s</div>
+                        <p class="timeline-desc">BI platforms mature — dashboards become standard infrastructure</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2022–23</div>
+                        <p class="timeline-desc">LLMs reach decision-grade reasoning over private organizational data</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2024–25</div>
+                        <p class="timeline-desc">Early-adopter executives quietly replace analyst requests with AI queries</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2026 →</div>
+                        <p class="timeline-desc">Category formation: EII becomes the dominant executive instrument</p>
+                    </div>
+                </div>
+            </div>
+            <div class="urgency-card reveal">
+                <h3>The window is open. <em>Not for long.</em></h3>
+                <div class="divider"></div>
+                <p>The tools exist. The infrastructure is ready. The use cases are proving out in early-adopter organizations.</p>
+                <p>What does not yet exist is the shared framework — the language, the category definition, the intentional strategy.</p>
+                <p class="urgency-highlight">Organizations that build toward EII now carry a structural advantage into the decade ahead.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ CTA ════════ -->
+    <section class="cta-section">
+        <div class="cta-content reveal">
+            <p class="section-label">The Question</p>
+            <h2 class="cta-question">When was the last time your dashboard changed the decision you were about to make?</h2>
+            <p class="cta-answer">If the answer is never — the gap has a name now. Let's close it together.</p>
+            <a href="contact.html" class="cta-button">Start the Conversation</a>
+        </div>
+    </section>
+
+    <!-- ════════ FOOTER ════════ -->
+    <footer class="site-footer">
+        <p class="footer-brand">Energizing Solutions</p>
+        <p class="footer-sub">Enterprise IT Consultancy · Program Management · Digital Transformation · Applied Observability</p>
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services-overview.html">Services</a></li>
+            <li><a href="intelligent-enterprise.html">Solutions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy-policy.html">Privacy</a></li>
+        </ul>
+        <p class="footer-copy">&copy; 2026 Energizing Solutions LLC · Paul A. Esteves · energizing-solutions.com</p>
+    </footer>
+
+    <!-- ════════ SCROLL REVEAL ════════ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            reveals.forEach(function(el) {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
+</html>
