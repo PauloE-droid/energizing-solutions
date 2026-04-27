@@ -58,6 +58,7 @@
     .nav-dropdown > a svg { width: 10px; height: 10px; fill: currentColor; transition: transform var(--transition); }
     .nav-dropdown:hover > a svg { transform: rotate(180deg); }
     .dropdown-menu { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-6px); min-width: 220px; background: var(--charcoal-700); border: 1px solid var(--border); border-radius: 4px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity var(--transition), transform var(--transition); }
+    .dropdown-menu::before { content: ''; position: absolute; top: -20px; left: -10px; right: -10px; height: 20px; }
     .nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
     .dropdown-menu a { display: block; padding: 10px 20px; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); transition: color var(--transition), background var(--transition); }
     .dropdown-menu a:hover { color: var(--gold-300); background: rgba(201,168,76,0.06); }
@@ -213,7 +214,7 @@
   <nav id="main-nav">
     <a href="index.html" class="nav-logo">Energizing <span>Solutions</span></a>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="#home">Home</a></li>
       <li class="nav-dropdown">
         <a>Services <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
         <ul class="dropdown-menu">
@@ -294,38 +295,37 @@
           <div class="hero-stat-label">Years Enterprise PMO Leadership</div>
         </div>
         <div class="hero-stat-card">
-          <div class="hero-stat-num">$50M</div>
+          <div class="hero-stat-num">$300M</div>
           <div class="hero-stat-label">Program ROI Delivered</div>
         </div>
         <div class="hero-stat-card">
-          <div class="hero-stat-num">$160B</div>
-          <div class="hero-stat-label">Total Addressable Market</div>
+          <div class="hero-stat-num">$1.0B+</div>
+          <div class="hero-stat-label">Enterprise Value Creation</div>
         </div>
         <div class="hero-stat-card">
-          <div class="hero-stat-num">6+</div>
+          <div class="hero-stat-num">20+</div>
           <div class="hero-stat-label">Major Enterprise Clients</div>
         </div>
       </div>
     </div>
-    <div class="scroll-hint">Scroll</div>
   </section>
 
   <!-- CLIENTS STRIP -->
   <div class="clients-strip reveal">
     <div class="clients-inner">
-      <span class="clients-label">Notable Engagements</span>
+      <span class="clients-label">Notable Engagements:</span>
       <div class="clients-list">
-        <span>Alaska Airlines</span>
-        <div class="clients-dot"></div>
         <span>British Gas / Centrica</span>
+        <div class="clients-dot"></div>
+        <span>Engie UK / Cofely</span>
+        <div class="clients-dot"></div>
+        <span>Puget Sound Energy</span>
+        <div class="clients-dot"></div>
+        <span>ENSA EPM Group</span>
         <div class="clients-dot"></div>
         <span>Honda Manufacturing</span>
         <div class="clients-dot"></div>
-        <span>VMware</span>
-        <div class="clients-dot"></div>
-        <span>NetApp</span>
-        <div class="clients-dot"></div>
-        <span>Cisco</span>
+        <span>John Deere</span>
       </div>
     </div>
   </div>
@@ -352,16 +352,16 @@
         </div>
 
         <div class="service-card service-card--featured reveal reveal-delay-2">
-          <div class="featured-badge">Core Expertise</div>
           <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
           </svg>
-          <h3>Strategic Facilitation &amp; OKR Leadership</h3>
-          <p>Facilitated client program OKR and KPI milestone realization for partner incentives vision with a total addressable market of $160B. Translating C-suite vision into executable operational outcomes.</p>
+          <h3>Strategic Orchestration &amp; OKR Leadership</h3>
+          <p>Orchestratd client OKR and KPI program realization for partner incentives vision with a total addressable market of $160B. Translating C-suite vision into executable operational outcomes.</p>
           <ul class="service-tags">
             <li>OKR / KPI Alignment</li>
             <li>Executive Facilitation</li>
             <li>Partner Strategy</li>
+            <li>Multi-cloud Service Offerings</li>
           </ul>
         </div>
 
@@ -377,7 +377,6 @@
             <li>Data Insights</li>
           </ul>
         </div>
-
       </div>
     </div>
   </section>
@@ -388,10 +387,7 @@
       <div class="about-grid">
         <div class="about-left reveal">
           <div class="about-placeholder">
-            <div class="about-placeholder-inner">
-              <div class="about-initials">PE</div>
-              <div class="about-initials-label">Paul Esteves</div>
-            </div>
+            <img src="images/ChatGPT Image Jun 25, 2025, 11_27_55 AM.png" alt="Paul Esteves" style="width:75%;height:75;%;object-fit:cover;display:block;" />
           </div>
           <div class="about-stats">
             <div class="about-stat">
@@ -399,12 +395,16 @@
               <div class="about-stat-label">Years Experience</div>
             </div>
             <div class="about-stat">
-              <div class="about-stat-num">$50M</div>
+              <div class="about-stat-num">$300M</div>
               <div class="about-stat-label">ROI Delivered</div>
             </div>
             <div class="about-stat">
-              <div class="about-stat-num">$160B</div>
-              <div class="about-stat-label">TAM Addressed</div>
+              <div class="about-stat-num">$1.0B</div>
+              <div class="about-stat-label">Enterprise Value Creation</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">20+</div>
+              <div class="about-stat-label">Major Clients</div>
             </div>
           </div>
         </div>
@@ -510,4 +510,16 @@
     mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
 
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) =>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
