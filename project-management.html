@@ -61,6 +61,9 @@
       z-index: 0;
     }
 
+    /* ===== SCROLL ANCHOR OFFSET ===== */
+    section[id], div[id] { scroll-margin-top: calc(var(--nav-height) + 16px); }
+
     /* ===== NAV ===== */
     nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
     nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
