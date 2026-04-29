@@ -49,16 +49,16 @@
     .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-300); white-space: nowrap; }
     .nav-logo span { color: var(--white); font-weight: 300; }
     .nav-links { display: flex; gap: 36px; align-items: center; }
-    .nav-links > li > a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); position: relative; }
+    .nav-links > li > a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); position: relative; cursor: pointer; }
     .nav-links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold-400); transition: width var(--transition); }
-    .nav-links > li > a:hover, .nav-links > li > a.active { color: var(--white); }
-    .nav-links > li > a:hover::after, .nav-links > li > a.active::after { width: 100%; }
-    .nav-links > li > a.active { color: var(--gold-300); }
+    .nav-links > li > a:hover { color: var(--white); }
+    .nav-links > li > a:hover::after { width: 100%; }
     .nav-dropdown { position: relative; }
-    .nav-dropdown > a { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 5px; }
     .nav-dropdown > a svg { width: 10px; height: 10px; fill: currentColor; transition: transform var(--transition); }
     .nav-dropdown:hover > a svg { transform: rotate(180deg); }
     .dropdown-menu { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-6px); min-width: 220px; background: var(--charcoal-700); border: 1px solid var(--border); border-radius: 4px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity var(--transition), transform var(--transition); }
+    .dropdown-menu::before { content: ''; position: absolute; top: -20px; left: -10px; right: -10px; height: 20px; }
     .nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
     .dropdown-menu a { display: block; padding: 10px 20px; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); transition: color var(--transition), background var(--transition); }
     .dropdown-menu a:hover { color: var(--gold-300); background: rgba(201,168,76,0.06); }
