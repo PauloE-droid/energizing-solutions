@@ -26,9 +26,9 @@
     a{color:inherit;text-decoration:none;} ul{list-style:none;}
     body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
     
-    
-    section[id],div[id]{scroll-margin-top:calc(var(--nav-height) + 16px);}
-    
+    /* ===== SCROLL ANCHOR OFFSET ===== */
+    section[id], div[id] { scroll-margin-top: calc(var(--nav-height) + 16px); }
+
     /* ===== NAV ===== */
     nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
     nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
@@ -56,7 +56,7 @@
     .mobile-menu a:hover { color: var(--gold-300); }
     .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--muted); }
 
-    
+    /* ===== HERO ===== */
     .page-hero{position:relative;padding:calc(var(--nav-height) + 80px) 48px 80px;overflow:hidden;}
     .page-hero::before{content:'';position:absolute;top:-120px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
     .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
@@ -69,10 +69,17 @@
     .chapter-nav{background:var(--charcoal-800);border-bottom:1px solid var(--border);padding:0 48px;position:sticky;top:var(--nav-height);z-index:900;}
     .chapter-nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
     .chapter-nav-inner::-webkit-scrollbar{display:none;}
+    .ch-nav-btn{position:absolute;top:0;bottom:0;width:48px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;color:var(--muted);font-size:1rem;z-index:10;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+    .ch-nav-btn.left{left:0;background:linear-gradient(to right,var(--charcoal-800) 55%,transparent);}
+    .ch-nav-btn.right{right:0;background:linear-gradient(to left,var(--charcoal-800) 55%,transparent);}
+    .ch-nav-btn.visible{opacity:1;pointer-events:auto;}
+    .ch-nav-btn:hover{color:var(--white);}
     .chapter-nav-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);white-space:nowrap;padding-right:24px;border-right:1px solid var(--border);margin-right:24px;flex-shrink:0;}
     .ch-link{font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:16px 16px;white-space:nowrap;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition);flex-shrink:0;}
     .ch-link:hover{color:var(--white);}
     .ch-link.active{color:var(--gold-300);border-bottom-color:var(--gold-400);}
+    
+    
     .section{position:relative;z-index:1;padding:96px 48px;}
     .section-alt{background:var(--charcoal-800);}
     .section-inner{max-width:1160px;margin:0 auto;}
@@ -110,6 +117,8 @@
     .btn-gold:hover{background:var(--gold-400);color:var(--charcoal-900);}
     .btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--muted);font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:border-color var(--transition),color var(--transition);}
     .btn-ghost:hover{border-color:var(--gold-400);color:var(--white);}
+    
+    
     footer{background:var(--charcoal-900);border-top:1px solid var(--border);padding:48px;}
     .footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
     .footer-logo{font-family:var(--font-display);font-size:1.2rem;font-weight:600;color:var(--gold-300);}
@@ -181,7 +190,9 @@
     <a href="its-telemetry-adoption.html">Ch.7 Telemetry Adoption</a>
   </div>
   <div class="chapter-nav">
-    <div class="chapter-nav-inner">
+    <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
+    <button class="ch-nav-btn right" id="ch-btn-right" aria-label="Scroll right">&#8594;</button>
+    <div class="chapter-nav-inner" id="ch-scroller">
       <span class="chapter-nav-label">Applied Observability™</span>
       <a href="applied-observability.html" class="ch-link active">Overview</a>
       <a href="system-understanding.html" class="ch-link">Ch.1 System Understanding</a>
@@ -331,8 +342,8 @@
   <div class="stats-band">
     <div class="stats-inner">
         <div class="stat-cell reveal"><div class="stat-number">12</div><div class="stat-label">Observability Enablers</div></div>
-        <div class="stat-cell reveal"><div class="stat-number">$50M</div><div class="stat-label">ROI Delivered</div></div>
-        <div class="stat-cell reveal"><div class="stat-number">20+</div><div class="stat-label">Years Enterprise Leadership</div></div>
+        <div class="stat-cell reveal"><div class="stat-number">$300M</div><div class="stat-label">ROI Delivered</div></div>
+        <div class="stat-cell reveal"><div class="stat-number">20+</div><div class="stat-label">Years Enterprise IT Leadership</div></div>
         <div class="stat-cell reveal"><div class="stat-number">$160B</div><div class="stat-label">Total Addressable Market</div></div>
         
     </div>
@@ -359,6 +370,20 @@
     document.getElementById('mobile-close').addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
     const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}), {threshold:0.07,rootMargin:'0px 0px -40px 0px'});
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    (function(){
+      const sc = document.getElementById('ch-scroller');
+      const bL = document.getElementById('ch-btn-left');
+      const bR = document.getElementById('ch-btn-right');
+      if(!sc||!bL||!bR) return;
+      function upd(){
+        bL.classList.toggle('visible', sc.scrollLeft > 4);
+        bR.classList.toggle('visible', sc.scrollLeft < sc.scrollWidth - sc.clientWidth - 4);
+      }
+      sc.addEventListener('scroll', upd, {passive:true});
+      bL.addEventListener('click', () => sc.scrollBy({left:-200, behavior:'smooth'}));
+      bR.addEventListener('click', () => sc.scrollBy({left:200, behavior:'smooth'}));
+      upd();
+    })();
   </script>
 </body>
 </html>

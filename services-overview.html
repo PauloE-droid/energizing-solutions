@@ -61,9 +61,7 @@
       z-index: 0;
     }
 
-    /* =============================
-       NAV
-    ============================= */
+    /* ===== NAV ===== */
     nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
     nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-300); white-space: nowrap; }
@@ -89,6 +87,7 @@
     .mobile-menu a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 10px; transition: color var(--transition); }
     .mobile-menu a:hover { color: var(--gold-300); }
     .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--muted); }
+
 
     /* =============================
        PAGE HERO
@@ -632,10 +631,13 @@
   ============================= -->
   <nav id="main-nav">
     <a href="index.html" class="nav-logo">Energizing <span>Solutions</span></a>
+
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li class="nav-dropdown">
-        <a>Services <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        <a class="active">
+          Services
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
         </a>
         <ul class="dropdown-menu">
           <li><a href="services-overview.html" class="active">Services Overview</a></li>
@@ -853,10 +855,10 @@
     <div class="stats-inner">
       <div class="stat-cell reveal reveal-delay-1">
         <div class="stat-number">20+</div>
-        <div class="stat-label">Years Enterprise PMO Leadership</div>
+        <div class="stat-label">Years Enterprise IT Leadership</div>
       </div>
       <div class="stat-cell reveal reveal-delay-2">
-        <div class="stat-number">$50M</div>
+        <div class="stat-number">$300M</div>
         <div class="stat-label">ROI Delivered</div>
       </div>
       <div class="stat-cell reveal reveal-delay-3">
@@ -905,7 +907,7 @@
         or operational DevOps excellence — let's build the right engagement.
       </p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
-        <a href="mailto:paul.esteves@energizing-solutions.com" class="btn-gold">Get In Touch</a>
+        <a href="index.html#contact" class="btn-gold">Get in Touch</a>
         <a href="portfolio.html" class="btn-ghost">View Portfolio</a>
       </div>
     </div>
