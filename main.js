@@ -1,7 +1,7 @@
 // Energizing Solutions — main.js
 
 // Header scroll effect
-const header = document.getElementById('site-header');
+const header = document.getElementById('main-nav');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
     header.classList.add('scrolled');
