@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Chapter 08 — Faster Troubleshooting &amp; Issue Resolution — Energizing Solutions</title>
+  <meta name="description" content="Applied Observability™ Chapter 8: 13 plays for turning raw telemetry into the fastest possible path from 'something is wrong' to 'we fixed it, permanently.'"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --charcoal-900: #072A6C; --charcoal-800: #141414;
+      --charcoal-700: #1c1c1c; --charcoal-600: #242424;
+      --gold-400: #c9a84c;     --gold-300: #dfc06a;
+      --gold-200: #ecdfa0;     --white: #f5f4f0;
+      --muted: #8a8a8a;        --border: rgba(201,168,76,0.18);
+      --nav-height: 72px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Montserrat', sans-serif;
+      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--charcoal-900);color:var(--white);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden;}
+    a{color:inherit;text-decoration:none;} ul{list-style:none;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+
+    section[id], div[id] { scroll-margin-top: calc(var(--nav-height) + 16px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
+    nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-300); white-space: nowrap; }
+    .nav-logo span { color: var(--white); font-weight: 300; }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links > li > a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); position: relative; cursor: pointer; }
+    .nav-links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold-400); transition: width var(--transition); }
+    .nav-links > li > a:hover { color: var(--white); }
+    .nav-links > li > a:hover::after { width: 100%; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 5px; }
+    .nav-dropdown > a svg { width: 10px; height: 10px; fill: currentColor; transition: transform var(--transition); }
+    .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+    .dropdown-menu { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-6px); min-width: 220px; background: var(--charcoal-700); border: 1px solid var(--border); border-radius: 4px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity var(--transition), transform var(--transition); }
+    .dropdown-menu::before { content: ''; position: absolute; top: -20px; left: -10px; right: -10px; height: 20px; }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu a { display: block; padding: 10px 20px; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); transition: color var(--transition), background var(--transition); }
+    .dropdown-menu a:hover { color: var(--gold-300); background: rgba(201,168,76,0.06); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal-800); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 10px; transition: color var(--transition); }
+    .mobile-menu a:hover { color: var(--gold-300); }
+    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--muted); }
+
+    .page-hero{position:relative;padding:calc(var(--nav-height) + 80px) 48px 80px;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;top:-120px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
+    .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
+    .hero-inner{max-width:1160px;margin:0 auto;position:relative;z-index:1;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:0.68rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;}
+    .hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold-400);}
+    .page-hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,5rem);font-weight:300;line-height:1.08;letter-spacing:-0.01em;color:var(--white);margin-bottom:24px;}
+    .page-hero h1 em{font-style:italic;color:var(--gold-300);}
+    .hero-desc{max-width:700px;font-size:1rem;font-weight:300;color:var(--muted);line-height:1.85;}
+
+    .chapter-nav{background:var(--charcoal-800);border-bottom:1px solid var(--border);padding:0 48px;position:sticky;top:var(--nav-height);z-index:900;}
+    .chapter-nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
+    .chapter-nav-inner::-webkit-scrollbar{display:none;}
+    .ch-nav-btn{position:absolute;top:0;bottom:0;width:48px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;color:var(--muted);font-size:1rem;z-index:10;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+    .ch-nav-btn.left{left:0;background:linear-gradient(to right,var(--charcoal-800) 55%,transparent);}
+    .ch-nav-btn.right{right:0;background:linear-gradient(to left,var(--charcoal-800) 55%,transparent);}
+    .ch-nav-btn.visible{opacity:1;pointer-events:auto;}
+    .ch-nav-btn:hover{color:var(--white);}
+    .chapter-nav-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);white-space:nowrap;padding-right:24px;border-right:1px solid var(--border);margin-right:24px;flex-shrink:0;}
+    .ch-link{font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:16px 16px;white-space:nowrap;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition);flex-shrink:0;}
+    .ch-link:hover{color:var(--white);}
+    .ch-link.active{color:var(--gold-300);border-bottom-color:var(--gold-400);}
+
+    .section{position:relative;z-index:1;padding:96px 48px;}
+    .section-alt{background:var(--charcoal-800);}
+    .section-inner{max-width:1160px;margin:0 auto;}
+    .section-label{display:inline-flex;align-items:center;gap:12px;font-size:0.65rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:16px;}
+    .section-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold-400);}
+    .section-title{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:var(--white);letter-spacing:-0.01em;margin-bottom:56px;}
+    .section-title em{font-style:italic;color:var(--gold-300);}
+
+    .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+    .card{background:var(--charcoal-800);padding:40px 36px;position:relative;overflow:hidden;transition:background var(--transition);}
+    .card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));transition:width .5s ease;}
+    .card:hover{background:var(--charcoal-700);}
+    .card:hover::before{width:100%;}
+    .card-tag{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;}
+    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:12px;}
+    .card-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
+    .card-icon{width:36px;height:36px;color:var(--gold-400);margin-bottom:18px;opacity:0.85;}
+    .card-hook{font-size:0.78rem;font-style:italic;color:var(--gold-300);margin-bottom:10px;line-height:1.5;}
+
+    .outcomes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .outcome{background:var(--charcoal-800);padding:36px 40px;display:flex;gap:20px;align-items:flex-start;}
+    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(201,168,76,0.2);line-height:1;flex-shrink:0;width:48px;}
+    .outcome-content{}
+    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:8px;}
+    .outcome-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
+
+    .sector-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .sector-cell{background:var(--charcoal-800);padding:36px 40px;position:relative;}
+    .sector-cell::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));transition:width .5s ease;}
+    .sector-cell:hover::before{width:100%;}
+    .sector-label{font-size:0.62rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:8px;}
+    .sector-problem{font-size:0.82rem;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+    .sector-move-label{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--white);margin-bottom:6px;}
+    .sector-move{font-size:0.8rem;color:var(--white);line-height:1.8;}
+
+    .playbook-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .playbook-step{background:var(--charcoal-800);padding:32px 36px;display:flex;gap:20px;align-items:flex-start;}
+    .step-num{font-family:var(--font-display);font-size:2rem;font-weight:300;color:rgba(201,168,76,0.25);line-height:1;flex-shrink:0;width:40px;}
+    .step-content{}
+    .step-title{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);margin-bottom:6px;}
+    .step-body{font-size:0.8rem;color:var(--muted);line-height:1.8;}
+
+    .stats-band{padding:72px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);}
+    .stat-cell{background:var(--charcoal-800);padding:40px 32px;text-align:center;}
+    .stat-number{font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:10px;}
+    .stat-label{font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);}
+
+    .cta-section{padding:96px 48px;text-align:center;position:relative;overflow:hidden;}
+    .cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:350px;background:radial-gradient(ellipse,rgba(201,168,76,0.05) 0%,transparent 70%);pointer-events:none;}
+    .cta-inner{max-width:640px;margin:0 auto;position:relative;z-index:1;}
+    .cta-inner h2{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.2;margin-bottom:20px;}
+    .cta-inner h2 em{font-style:italic;color:var(--gold-300);}
+    .cta-inner p{font-size:0.9rem;color:var(--muted);margin-bottom:40px;line-height:1.8;}
+    .btn-gold{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:transparent;border:1px solid var(--gold-400);color:var(--gold-300);font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background var(--transition),color var(--transition);}
+    .btn-gold:hover{background:var(--gold-400);color:var(--charcoal-900);}
+    .btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--muted);font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:border-color var(--transition),color var(--transition);}
+    .btn-ghost:hover{border-color:var(--gold-400);color:var(--white);}
+
+    footer{background:var(--charcoal-900);border-top:1px solid var(--border);padding:48px;}
+    .footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+    .footer-logo{font-family:var(--font-display);font-size:1.2rem;font-weight:600;color:var(--gold-300);}
+    .footer-logo span{color:var(--white);font-weight:300;}
+    .footer-links{display:flex;gap:28px;flex-wrap:wrap;}
+    .footer-links a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);}
+    .footer-links a:hover{color:var(--gold-300);}
+    .footer-copy{font-size:0.7rem;color:rgba(138,138,138,0.5);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:.1s;} .reveal-delay-2{transition-delay:.18s;}
+    .reveal-delay-3{transition-delay:.26s;} .reveal-delay-4{transition-delay:.34s;}
+
+    @media(max-width:1024px){.cards-grid{grid-template-columns:repeat(2,1fr);}.outcomes-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:repeat(2,1fr);}.sector-grid{grid-template-columns:1fr;}.playbook-steps{grid-template-columns:1fr;}}
+    @media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.page-hero{padding:calc(var(--nav-height) + 48px) 24px 56px;}.section{padding:64px 24px;}.chapter-nav{padding:0 24px;}.stats-band{padding:48px 24px;}.cta-section{padding:64px 24px;}footer{padding:32px 24px;}.footer-inner{flex-direction:column;align-items:flex-start;}}
+    @media(max-width:580px){.cards-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Energizing <span>Solutions</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a>Services <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="services-overview.html">Services Overview</a></li>
+          <li><a href="project-management.html">Project Management</a></li>
+          <li><a href="operational-devops.html">Operational DevOps</a></li>
+          <li><a href="digital-evolution.html">Digital Evolution</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a>Solutions <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="solutions-overview.html">Solutions Overview</a></li>
+          <li><a href="digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="experience-economy.html">Experience Economy</a></li>
+          <li><a href="digital-to-the-core.html">Digital to the Core</a></li>
+          <li><a href="devops-for-sap.html">DevOps for SAP</a></li>
+          <li><a href="intelligent-enterprise.html">Intelligent Enterprise</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a class="active">Products <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="applied-observability.html">Applied Observability</a></li>
+          <li><a href="system-understanding.html">System Understanding</a></li>
+          <li><a href="datadriven-decisionmaking.html">DataDriven DecisionMaking</a></li>
+          <li><a href="okr-kpi-management.html">OKR &amp; KPI Management</a></li>
+          <li><a href="capacity-plan-and-scaling.html">Capacity Plan &amp; Scaling</a></li>
+          <li><a href="improved-user-experience.html">Improved User Experience</a></li>
+          <li><a href="cost-optimization.html">Cost Optimization</a></li>
+          <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
+          <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+        </ul>
+      </li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <span class="mobile-close" id="mobile-close">✕</span>
+    <a href="index.html">Home</a>
+    <a href="applied-observability.html">Applied Observability</a>
+    <a href="system-understanding.html">Ch.1 System Understanding</a>
+    <a href="datadriven-decisionmaking.html">Ch.2 Data-Driven Decisions</a>
+    <a href="okr-kpi-management.html">Ch.3 OKR &amp; KPI</a>
+    <a href="capacity-plan-and-scaling.html">Ch.4 Capacity Planning</a>
+    <a href="improved-user-experience.html">Ch.5 User Experience</a>
+    <a href="cost-optimization.html">Ch.6 Cost Optimization</a>
+    <a href="its-telemetry-adoption.html">Ch.7 Telemetry Adoption</a>
+    <a href="faster-troubleshooting-and-issue-resolution.html">Ch.8 Faster Troubleshooting</a>
+  </div>
+
+  <div class="chapter-nav" style="position:relative;">
+    <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
+    <button class="ch-nav-btn right" id="ch-btn-right" aria-label="Scroll right">&#8594;</button>
+    <div class="chapter-nav-inner" id="ch-scroller">
+      <span class="chapter-nav-label">Applied Observability™</span>
+      <a href="applied-observability.html" class="ch-link">Overview</a>
+      <a href="system-understanding.html" class="ch-link">Ch.1 System Understanding</a>
+      <a href="datadriven-decisionmaking.html" class="ch-link">Ch.2 Data-Driven Decisions</a>
+      <a href="okr-kpi-management.html" class="ch-link">Ch.3 OKR &amp; KPI</a>
+      <a href="capacity-plan-and-scaling.html" class="ch-link">Ch.4 Capacity Planning</a>
+      <a href="improved-user-experience.html" class="ch-link">Ch.5 User Experience</a>
+      <a href="cost-optimization.html" class="ch-link">Ch.6 Cost Optimization</a>
+      <a href="its-telemetry-adoption.html" class="ch-link">Ch.7 Telemetry Adoption</a>
+      <a href="faster-troubleshooting-and-issue-resolution.html" class="ch-link active">Ch.8 Faster Troubleshooting</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow reveal">Applied Observability™ — Chapter 08</div>
+      <h1 class="reveal reveal-delay-1">Faster Troubleshooting &amp;<br><em>Issue Resolution</em></h1>
+      <p class="hero-desc reveal reveal-delay-2">The incident is not your problem. The hours you spent finding it are. Applied Observability™ closes the gap between when something breaks and when someone knows why — one playbook, 13 plays, zero patience for slow incident response.</p>
+    </div>
+  </section>
+
+  <!-- INTRODUCTION -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">The Problem</div>
+      <h2 class="section-title reveal reveal-delay-1">The Incident Is Not Your Problem.<br><em>The Hours You Spent Finding It Are.</em></h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="reveal reveal-delay-2">
+        <div>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">Your monitoring systems are firing. Your on-call engineer is awake at 3 AM. Your customers are already tweeting about it. And your team is ninety minutes into a war room that should have taken eight minutes.</p>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">That gap — between when something breaks and when someone knows why — is where revenue dies, reputations erode, and engineers quit. It is not a technology problem. It is a visibility problem wearing a technology problem's clothes.</p>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;">The 2024 Logz.io Observability Pulse found over 80% of enterprise teams report MTTR exceeding multiple hours. Only 9% are satisfied with how fast they resolve incidents. That means 91% of organizations are paying full price for systems they cannot fix fast enough to protect the business they built.</p>
+        </div>
+        <div style="background:var(--charcoal-700);border:1px solid var(--border);padding:36px;position:relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));"></div>
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;">The Cost of Slow Recovery</div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:6px;">$300K</div>
+              <div style="font-size:0.75rem;color:var(--muted);">per minute of unplanned enterprise downtime</div>
+            </div>
+            <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:6px;">$5.4B</div>
+              <div style="font-size:0.75rem;color:var(--muted);">Fortune 500 combined loss from the July 2024 CrowdStrike failure</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:6px;">9%</div>
+              <div style="font-size:0.75rem;color:var(--muted);">of organizations satisfied with incident resolution speed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAKEHOLDER VALUE -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">Strategic Business Value</div>
+      <h2 class="section-title reveal reveal-delay-1">Outcomes by <em>Stakeholder</em></h2>
+      <div class="outcomes-grid">
+        <div class="outcome reveal reveal-delay-1">
+          <div class="outcome-num">Org</div>
+          <div class="outcome-content">
+            <div class="outcome-title">For Organizations</div>
+            <p class="outcome-body">Faster time-to-market and innovation due to fewer outages. Enhanced competitive edge as downtime costs plummet and customer confidence rises. Full-stack observability cuts the cost of high-impact outages by up to 50%. Organizations with mature FinOps-observability integration report 31% reductions in cloud spend and 43% improvements in resource utilization.</p>
+          </div>
+        </div>
+        <div class="outcome reveal reveal-delay-2">
+          <div class="outcome-num">Exec</div>
+          <div class="outcome-content">
+            <div class="outcome-title">For Executives &amp; Leaders</div>
+            <p class="outcome-body">Insight into real-time operations turns executives into proactive strategists. SLO dashboards give executives a real-time view of reliability as a business metric, not a technical abstraction. CIOs and CTOs gain credibility by preventing crises — tying technical reliability directly to business goals.</p>
+          </div>
+        </div>
+        <div class="outcome reveal reveal-delay-3">
+          <div class="outcome-num">B2B</div>
+          <div class="outcome-content">
+            <div class="outcome-title">For B2B Customers</div>
+            <p class="outcome-body">Better SLAs and deeper performance reporting. Vendors who demonstrate resilience testing create accountability and trust. Reduced outage frequency means fewer disruptions to B2B operations. Reliable SLAs backed by evidence, not promises.</p>
+          </div>
+        </div>
+        <div class="outcome reveal reveal-delay-4">
+          <div class="outcome-num">B2C</div>
+          <div class="outcome-content">
+            <div class="outcome-title">For Consumers</div>
+            <p class="outcome-body">Services that stay up longer and faster. When problems do occur, fixes happen faster — meaning fewer user frustrations. MTTR under 15 minutes for P0 incidents is the new expectation. Customers get the seamless experience they expect: no abandoned checkouts, no login failures.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 SUBCHAPTERS -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">The 13 Plays</div>
+      <h2 class="section-title reveal reveal-delay-1">Chapter 8 Subchapters:<br><em>The Full Troubleshooting Playbook</em></h2>
+      <div class="cards-grid">
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div class="card-tag">Play 8.1</div>
+          <div class="card-title">Comprehensive Telemetry</div>
+          <p class="card-hook">Your Monitoring System Has Three Blind Spots. You Just Do Not Know Which Three.</p>
+          <p class="card-body">Metrics, Events, Logs, and Traces — the MELT model — is the minimum viable signal set for understanding internal system state from external outputs. Miss any one and you are flying with a partially functional instrument panel. OpenTelemetry (76% adoption) is the industry answer to telemetry fragmentation.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          <div class="card-tag">Play 8.2</div>
+          <div class="card-title">Real-time Analytics &amp; AI Automation</div>
+          <p class="card-hook">Your Engineers Are Not Slow. Your Data Pipeline Is.</p>
+          <p class="card-body">AIOps correlates CPU spikes, error log patterns, and deployment timestamps within 90 seconds of anomaly detection. AIOps adopters see 15–45% reduction in high-priority incidents and 70–90% less investigation time. BigPanda reports up to 95% alert volume reduction through intelligent correlation.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          <div class="card-tag">Play 8.3</div>
+          <div class="card-title">Automated Alerting &amp; Incident Workflows</div>
+          <p class="card-hook">Runbooks Are Not Bureaucracy. They Are the 10-Minute Fix vs. the 3-Hour War Room.</p>
+          <p class="card-body">The gap between knowing something is wrong and knowing what to do about it is where most MTTR lives. Industry leaders target P1 MTTR under 15 minutes — not through exceptional engineers, but through pre-built runbooks and automated triage workflows designed before the crisis, not during it.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <div class="card-tag">Play 8.4</div>
+          <div class="card-title">Chaos Engineering &amp; Resilience Testing</div>
+          <p class="card-hook">Your Next Outage Is Already Designed. You Just Have Not Run the Experiment Yet.</p>
+          <p class="card-body">Chaos engineering is the discipline of finding your failures before your customers do. 59% of organizations now deploy it as a core SRE practice. The chaos engineering market reached $843M in 2025, on a trajectory to $3.5B by 2030. The July 2024 CrowdStrike failure proved: chaos engineering is not expensive — not doing it is.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          <div class="card-tag">Play 8.5</div>
+          <div class="card-title">Root-Cause Analysis &amp; Diagnostic Tools</div>
+          <p class="card-hook">You Did Not Fix the Problem. You Fixed the Symptom. It Will Be Back.</p>
+          <p class="card-body">RCA is the discipline that breaks the loop — not by finding what is wrong, but by finding why it is wrong, permanently. Studies show observability reduces MTTR by up to 45% through better diagnostic tooling. The trace-to-log-to-metric correlation that takes hours in fragmented tooling takes minutes in a unified platform.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <div class="card-tag">Play 8.6</div>
+          <div class="card-title">Cross-Functional Collaboration &amp; Culture</div>
+          <p class="card-hook">You Do Not Have a Communication Problem. You Have a Context Problem.</p>
+          <p class="card-body">The most underestimated enabler of fast troubleshooting is shared context — when every stakeholder looks at the same observability data, the conversation shifts from "whose fault is this" to "where is this and how do we fix it together." 85% of DevOps teams use multiple monitoring tools; 52% are moving to unified platforms to resolve fragmentation.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <div class="card-tag">Play 8.7</div>
+          <div class="card-title">Infrastructure &amp; Cloud Observability</div>
+          <p class="card-hook">Your Cloud Provider Has an SLA. Your Architecture Does Not.</p>
+          <p class="card-body">The cloud does not fail uniformly. It fails in ways your provider's SLA does not cover — network partitions between availability zones, control plane API slowdowns, noisy neighbors degrading connection pools. 89% of large enterprises run multi-cloud. Every cloud boundary is a potential blind spot. Infrastructure observability closes them.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+          <div class="card-tag">Play 8.8</div>
+          <div class="card-title">Application &amp; Microservices Observability</div>
+          <p class="card-hook">Your Application Is Observable. Your Business Logic Is Not.</p>
+          <p class="card-body">Monitoring tells you the API responds in 200ms. Observability tells you the 0.01% of requests taking 8 seconds are all from mobile users in Southeast Asia, hitting a database shard with a missing index introduced eleven days ago. High-cardinality attributes let you slice telemetry by user cohort, tenant, feature flag, and geography.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          <div class="card-tag">Play 8.9</div>
+          <div class="card-title">Business &amp; Financial Observability</div>
+          <p class="card-hook">If Your Engineers Cannot See the Revenue Impact of an Incident, They Are Optimizing in the Dark.</p>
+          <p class="card-body">Revenue, cloud cost, conversion rate, churn risk — all observable. Applied Observability treats business metrics as first-class telemetry signals. The FinOps Foundation documents $805B in cloud spend under active management, most still optimized through monthly billing review rather than real-time telemetry alerting. That gap is the opportunity.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <div class="card-tag">Play 8.10</div>
+          <div class="card-title">UX / End-User Observability</div>
+          <p class="card-hook">Your p99 Latency Is Fine. Your Users Are Gone.</p>
+          <p class="card-body">Backend engineers celebrate when the API responds in 45ms. Meanwhile, the mobile user on a 4G connection experienced 8 seconds of loading and abandoned checkout. Real User Monitoring, synthetic testing, and user journey SLOs close the gap between what systems report and what users experience. Organizations with mature UX observability report 85% faster incident resolution on user-facing performance issues.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <div class="card-tag">Play 8.11</div>
+          <div class="card-title">Security Observability &amp; Compliance</div>
+          <p class="card-hook">Every Breach Has a Telemetry Trail. The Question Is Whether You Were Looking.</p>
+          <p class="card-body">Security anomalies and performance anomalies look identical in telemetry. A DDoS manifests as a latency spike. Credential stuffing manifests as an authentication error surge. Data exfiltration manifests as unusual API call patterns. Unified observability makes the full picture visible to security and performance teams simultaneously. Average breach cost: $4.88M.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          <div class="card-tag">Play 8.12</div>
+          <div class="card-title">Governance, Compliance &amp; Data Ethics</div>
+          <p class="card-hook">Observability Without Governance Is a GDPR Violation with Good Intentions.</p>
+          <p class="card-body">The same telemetry that enables fast troubleshooting can, if mishandled, create the data breach you were trying to prevent. EU DORA, the EU AI Act (fines up to EUR 35M or 7% of global turnover), and GDPR are not optional obligations. Governance is not bureaucracy layered on observability — it is the architecture that makes observability trustworthy.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <div class="card-tag">Play 8.13</div>
+          <div class="card-title">Observability Culture &amp; Continuous Improvement</div>
+          <p class="card-hook">Observability Is Not a Tool. It Is a Habit. And Most Organizations Have Not Formed It Yet.</p>
+          <p class="card-body">You can buy the best observability platform, instrument every service, and build stunning dashboards — and engineers will still resolve incidents by SSHing into the box and grepping logs, because nobody made the dashboard the faster path until the culture changed. The Dynatrace State of Observability 2025: 70% of organizations increased observability budgets. The budget is not the problem. The culture is.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTOR LENS -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">Sector Lens</div>
+      <h2 class="section-title reveal reveal-delay-1">Where the <em>Plays Get Real</em></h2>
+      <p style="font-size:0.9rem;color:var(--muted);max-width:640px;line-height:1.85;margin-bottom:48px;" class="reveal reveal-delay-2">Every industry feels this pain differently. The playbook adapts.</p>
+      <div class="sector-grid">
+
+        <div class="sector-cell reveal reveal-delay-1">
+          <div class="sector-label">e-Commerce</div>
+          <p class="sector-problem">Black Friday is not a sales event. It is a live chaos experiment you did not design. Cart abandonment from backend latency spikes during peak traffic is lost revenue with a timestamp.</p>
+          <div class="sector-move-label">The Playmaker's Move</div>
+          <p class="sector-move">Instrument every checkout step as an SLO. Chaos-test peak load scenarios monthly. Deploy RUM on conversion-critical paths. MTTR target: sub-5 minutes on P1 payment failures.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-2">
+          <div class="sector-label">SaaS / DevOps</div>
+          <p class="sector-problem">Your customers are paying for uptime. Are they getting it? Multi-tenant blast radius means one bad deployment breaks 10,000 customers simultaneously. Every false positive page is one step closer to the on-call engineer who stops responding.</p>
+          <div class="sector-move-label">The Playmaker's Move</div>
+          <p class="sector-move">Observability gates in CI/CD — no deployment without instrumentation. Canary deployments with automatic SLO-breach rollback. AIOps anomaly detection on all tenant-level telemetry. CI/CD integrated baseline recalibration on every deploy.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-3">
+          <div class="sector-label">FinOps / RevOps</div>
+          <p class="sector-problem">Cloud cost is not a finance problem. It is an observability problem. Cost spikes from misconfigured resources stay invisible until the monthly bill arrives. Revenue impact of performance degradation goes unmeasured. FinOps teams are optimizing blind.</p>
+          <div class="sector-move-label">The Playmaker's Move</div>
+          <p class="sector-move">Treat cost as an observable metric — real-time spend telemetry alongside system health. Anomaly alerting on cloud cost per service. Deployment event correlation with billing changes. Extend anomaly detection to cloud cost metrics.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-4">
+          <div class="sector-label">SecOps</div>
+          <p class="sector-problem">Every breach has a telemetry trail. Most organizations never read it in time. Security teams applying observability to network traffic and logs miss the cross-domain correlation between authentication anomalies and latency spikes.</p>
+          <div class="sector-move-label">The Playmaker's Move</div>
+          <p class="sector-move">Unified observability and SIEM — security logs as first-class telemetry. Chaos engineering applied to security failure scenarios. Immutable log retention for audit and compliance. Unified ML model trained on both performance and security telemetry.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-1">
+          <div class="sector-label">UX / UI</div>
+          <p class="sector-problem">The user experience is observable. Most engineering teams are not observing it. Frontend performance regressions stay invisible to backend monitoring. Rage clicks and abandonment patterns go untracked.</p>
+          <div class="sector-move-label">The Playmaker's Move</div>
+          <p class="sector-move">RUM on all critical user journeys. Journey SLOs that define acceptable latency for every conversion step. UX metrics correlated with backend telemetry for an end-to-end incident view.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-2">
+          <div class="sector-label">Quantum Computing</div>
+          <p class="sector-problem">The next class of production incidents will be measured in decoherence events, not HTTP error codes. Quantum-hybrid workloads introduce failure modes that classical observability stacks cannot ingest natively.</p>
+          <div class="sector-move-label">The Playmaker's Move</div>
+          <p class="sector-move">Extend OTel pipelines to accept quantum telemetry. Define qubit-fidelity SLOs. Chaos engineering at quantum-classical handoff points. PQC migration compliance through cryptographic observability.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <div class="stats-band">
+    <div class="stats-inner">
+      <div class="stat-cell reveal"><div class="stat-number">80%+</div><div class="stat-label">Enterprise teams with MTTR exceeding hours</div></div>
+      <div class="stat-cell reveal"><div class="stat-number">45%</div><div class="stat-label">MTTR reduction through better observability</div></div>
+      <div class="stat-cell reveal"><div class="stat-number">95%</div><div class="stat-label">Alert volume reduction via AIOps correlation</div></div>
+      <div class="stat-cell reveal"><div class="stat-number">13</div><div class="stat-label">Plays in the troubleshooting playbook</div></div>
+    </div>
+  </div>
+
+  <!-- PLAYBOOK -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">The Playmakers</div>
+      <h2 class="section-title reveal reveal-delay-1">The 12-Step Playbook for<br><em>Institutionalizing Applied Observability</em></h2>
+      <p style="font-size:0.9rem;color:var(--muted);max-width:640px;line-height:1.85;margin-bottom:48px;" class="reveal reveal-delay-2">Building on all 13 enablers above, here is the step-by-step playbook for organizations looking to institutionalize Applied Observability™. Together these plays form a feedback loop of Measure → Analyze → Fix → Automate.</p>
+      <div class="playbook-steps">
+
+        <div class="playbook-step reveal reveal-delay-1">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Define Business &amp; Technical KPIs</div>
+            <p class="step-body">Establish the success criteria that connect system health to business outcomes. No observability investment survives without board-level narrative grounded in revenue, cost, and customer experience metrics.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-2">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Instrument Everything</div>
+            <p class="step-body">End-to-end trace coverage. Every customer request traceable from browser click to database query and back. OpenTelemetry standardization eliminates vendor lock-in at the most expensive possible layer.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-3">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Centralize Data Pipelines</div>
+            <p class="step-body">Single governed telemetry pipeline across infra, app, and business signals. No more incompatible log format reconciliation during a 3 AM war room. Consistent, correlated telemetry from day one.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-4">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Build Dashboards &amp; Alerts</div>
+            <p class="step-body">Single pane of glass for incident investigation. MTTR reduction begins the moment correlation replaces manual triangulation. 50–95% alert volume reduction within 90 days through AI-driven prioritization.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-1">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <div class="step-title">Establish Incident Processes</div>
+            <p class="step-body">Pre-built runbooks, automated triage, and incident management workflows designed before the crisis, not during it. Consistent severity classification across all teams. Right stakeholders paged at the right level.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-2">
+          <div class="step-num">06</div>
+          <div class="step-content">
+            <div class="step-title">Inject Chaos</div>
+            <p class="step-body">Start with single component faults in staging. Progressively expand to multi-component faults, production off-peak testing, and full region failure simulation. Run quarterly game days with cross-functional participation.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-3">
+          <div class="step-num">07</div>
+          <div class="step-content">
+            <div class="step-title">Integrate DevOps &amp; FinOps</div>
+            <p class="step-body">Observability gates in CI/CD. Cost as an observable metric alongside performance. Deployment event correlation with billing changes. FinOps integrated AIOps extending anomaly detection to cloud cost metrics.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-4">
+          <div class="step-num">08</div>
+          <div class="step-content">
+            <div class="step-title">Leverage AI / Analytics</div>
+            <p class="step-body">AI models trained on real production behavior. Anomaly detection tuned to actual system patterns, not synthetic defaults. AIOps investment justified in CFO language. Expansion funded based on measured returns.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-1">
+          <div class="step-num">09</div>
+          <div class="step-content">
+            <div class="step-title">Govern &amp; Secure</div>
+            <p class="step-body">PII masking in logs. AI model bias vetting. GDPR and EU AI Act compliance by design. Immutable log retention for audit compliance. Security logs as first-class telemetry signals within the unified pipeline.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-2">
+          <div class="step-num">10</div>
+          <div class="step-content">
+            <div class="step-title">Measure &amp; Iterate</div>
+            <p class="step-body">Calculate failure modes discovered per quarter, estimated incident cost avoided per discovered failure, MTTR improvement for covered failure categories. Observability investment justified by measurable operational efficiency gains.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-3">
+          <div class="step-num">11</div>
+          <div class="step-content">
+            <div class="step-title">Embed Culture &amp; Skills</div>
+            <p class="step-body">Cross-team drills, standardized dashboards, and clear alert ownership. Blameless postmortems as a prerequisite, not a nice-to-have. Observability culture measured by KPIs: instrumentation coverage %, alert false positive rate, recurring incident rate trend.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-4">
+          <div class="step-num">12</div>
+          <div class="step-content">
+            <div class="step-title">Plan for the Future (Quantum, AI)</div>
+            <p class="step-body">Extend OTel pipelines to accept quantum telemetry. Define qubit-fidelity SLOs. Chaos engineering at quantum-classical handoff points. Observability pipeline architecture-agnostic — ready for hybrid classical-quantum workloads without a full reinstrumentation project.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="reveal">If Your MTTR Is Measured in Hours,<br><em>We Should Talk.</em></h2>
+      <p class="reveal reveal-delay-1">Applied Observability™: The Playmaker's Framework — Chapter 8 is one of twelve chapters across three volumes. Five years of enterprise IT program leadership across Fortune 500 environments. One playbook. Zero patience for the idea that slow incident response is a cost of doing business.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
+        <a href="index.html#contact" class="btn-gold">Schedule a Discovery Call</a>
+        <a href="applied-observability.html" class="btn-ghost">Back to Overview</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Energizing <span>Solutions</span></div>
+    </div>
+    <p class="footer-copy">© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-menu').classList.add('open'));
+    document.getElementById('mobile-close').addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}), {threshold:0.07,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    (function(){
+      const sc = document.getElementById('ch-scroller');
+      const bL = document.getElementById('ch-btn-left');
+      const bR = document.getElementById('ch-btn-right');
+      if(!sc||!bL||!bR) return;
+      function upd(){
+        bL.classList.toggle('visible', sc.scrollLeft > 4);
+        bR.classList.toggle('visible', sc.scrollLeft < sc.scrollWidth - sc.clientWidth - 4);
+      }
+      sc.addEventListener('scroll', upd, {passive:true});
+      bL.addEventListener('click', () => sc.scrollBy({left:-200, behavior:'smooth'}));
+      bR.addEventListener('click', () => sc.scrollBy({left:200, behavior:'smooth'}));
+      upd();
+    })();
+  </script>
+</body>
+</html>
