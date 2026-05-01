@@ -38,8 +38,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      background: var(--charcoal-900);
-      color: var(--white);
+      background: var(--white);
+      color: var(--charcoal-800);
       font-family: var(--font-body);
       font-weight: 300;
       line-height: 1.7;
@@ -68,11 +68,11 @@
     nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
     nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-300); white-space: nowrap; }
-    .nav-logo span { color: var(--white); font-weight: 300; }
+    .nav-logo span { color: var(--charcoal-800); font-weight: 300; }
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links > li > a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); position: relative; cursor: pointer; }
     .nav-links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold-400); transition: width var(--transition); }
-    .nav-links > li > a:hover { color: var(--white); }
+    .nav-links > li > a:hover { color: var(--charcoal-800); }
     .nav-links > li > a:hover::after { width: 100%; }
     .nav-dropdown { position: relative; }
     .nav-dropdown > a { display: flex; align-items: center; gap: 5px; }
@@ -85,7 +85,7 @@
     .dropdown-menu a:hover { color: var(--gold-300); background: rgba(201,168,76,0.06); }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); }
-    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal-800); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal-900); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 10px; transition: color var(--transition); }
     .mobile-menu a:hover { color: var(--gold-300); }
@@ -144,7 +144,7 @@
       font-weight: 300;
       line-height: 1.1;
       letter-spacing: -0.01em;
-      color: var(--white);
+      color: var(--charcoal-800);
       margin-bottom: 24px;
     }
     .page-hero h1 em {
@@ -196,7 +196,7 @@
       font-size: clamp(2rem, 3.5vw, 3rem);
       font-weight: 300;
       line-height: 1.15;
-      color: var(--white);
+      color: var(--charcoal-800);
       letter-spacing: -0.01em;
       margin-bottom: 56px;
     }
@@ -216,7 +216,7 @@
     }
 
     .service-card {
-      background: var(--charcoal-800);
+      background: var(--charcoal-900);
       padding: 40px 36px;
       transition: background var(--transition);
       position: relative;
@@ -244,7 +244,7 @@
       font-size: 1.35rem;
       font-weight: 600;
       line-height: 1.25;
-      color: var(--white);
+      color: var(--charcoal-800);
       margin-bottom: 14px;
       letter-spacing: 0.01em;
     }
@@ -277,7 +277,7 @@
        CREDENTIALS STRIP
     ============================= */
     .creds-section {
-      background: var(--charcoal-800);
+      background: var(--charcoal-900);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
@@ -312,7 +312,7 @@
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--white);
+      color: var(--charcoal-800);
       background: var(--charcoal-600);
       border: 1px solid var(--border);
       padding: 6px 14px;
@@ -340,7 +340,7 @@
       background: var(--border);
     }
     .stat-cell {
-      background: var(--charcoal-800);
+      background: var(--charcoal-900);
       padding: 36px 32px;
       text-align: center;
     }
@@ -420,7 +420,7 @@
     }
     .btn-gold:hover {
       background: var(--gold-400);
-      color: var(--charcoal-900);
+      color: var(--charcoal-800);
     }
     .btn-ghost {
       display: inline-flex;
@@ -440,14 +440,14 @@
     }
     .btn-ghost:hover {
       border-color: var(--gold-400);
-      color: var(--white);
+      color: var(--charcoal-800);
     }
 
     /* =============================
        FOOTER
     ============================= */
     footer {
-      background: var(--charcoal-900);
+      background: var(--white);
       border-top: 1px solid var(--border);
       padding: 48px;
     }
@@ -466,7 +466,7 @@
       font-weight: 600;
       color: var(--gold-300);
     }
-    .footer-logo span { color: var(--white); font-weight: 300; }
+    .footer-logo span { color: var(--charcoal-800); font-weight: 300; }
     .footer-links {
       display: flex;
       gap: 28px;

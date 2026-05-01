@@ -12,7 +12,7 @@
     :root{--charcoal-900:#072A6C;--charcoal-800:#141414;--charcoal-700:#1c1c1c;--charcoal-600:#242424;--gold-400:#c9a84c;--gold-300:#dfc06a;--gold-200:#ecdfa0;--white:#f5f4f0;--muted:#8a8a8a;--border:rgba(201,168,76,0.18);--nav-height:72px;--font-display:'Cormorant Garamond',Georgia,serif;--font-body:'Montserrat',sans-serif;--transition:0.35s cubic-bezier(0.4,0,0.2,1);}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{background:var(--charcoal-900);color:var(--white);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden;}
+    body{background:var(--white);color:var(--charcoal-800);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden;}
     a{color:var(--gold-300);text-decoration:none;transition:color var(--transition);}
     a:hover{color:var(--gold-200);}
     ul{list-style:none;}
@@ -20,13 +20,13 @@
     nav{position:fixed;top:0;left:0;right:0;height:var(--nav-height);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;transition:background var(--transition),border-bottom var(--transition);}
     nav.scrolled{background:rgba(13,13,13,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
     .nav-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:0.04em;color:var(--gold-300);}
-    .nav-logo span{color:var(--white);font-weight:300;}
+    .nav-logo span{color:var(--charcoal-800);font-weight:300;}
     .nav-links{display:flex;gap:36px;align-items:center;}
     .nav-links>li>a{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);}
-    .nav-links>li>a:hover{color:var(--white);}
+    .nav-links>li>a:hover{color:var(--charcoal-800);}
     .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
     .nav-hamburger span{display:block;width:24px;height:1.5px;background:var(--white);}
-    .mobile-menu{display:none;position:fixed;inset:0;background:var(--charcoal-800);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+    .mobile-menu{display:none;position:fixed;inset:0;background:var(--charcoal-900);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
     .mobile-menu.open{display:flex;}
     .mobile-menu a{font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:10px;}
     .mobile-menu a:hover{color:var(--gold-300);}
@@ -36,24 +36,24 @@
     .hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
     .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:0.68rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;}
     .hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold-400);}
-    .page-hero h1{font-family:var(--font-display);font-size:clamp(2.4rem,4vw,4rem);font-weight:300;line-height:1.1;color:var(--white);margin-bottom:16px;}
+    .page-hero h1{font-family:var(--font-display);font-size:clamp(2.4rem,4vw,4rem);font-weight:300;line-height:1.1;color:var(--charcoal-800);margin-bottom:16px;}
     .page-hero .updated{font-size:0.72rem;color:var(--muted);letter-spacing:0.08em;}
     .content-wrap{max-width:800px;margin:0 auto;padding:64px 48px 96px;}
     .policy-section{margin-bottom:56px;}
-    .policy-section h2{font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:var(--white);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+    .policy-section h2{font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:var(--charcoal-800);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
     .policy-section p{font-size:0.875rem;color:var(--muted);line-height:1.9;margin-bottom:14px;}
     .policy-section p:last-child{margin-bottom:0;}
     .policy-section ul.policy-list{margin:12px 0 14px 0;display:flex;flex-direction:column;gap:8px;}
     .policy-section ul.policy-list li{font-size:0.875rem;color:var(--muted);line-height:1.8;padding-left:20px;position:relative;}
     .policy-section ul.policy-list li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;border:1px solid var(--gold-400);border-radius:50%;}
-    .contact-block{background:var(--charcoal-800);border:1px solid var(--border);border-left:3px solid var(--gold-400);padding:28px 32px;margin-top:16px;}
+    .contact-block{background:var(--charcoal-900);border:1px solid var(--border);border-left:3px solid var(--gold-400);padding:28px 32px;margin-top:16px;}
     .contact-block p{font-size:0.875rem;color:var(--muted);line-height:1.9;margin-bottom:6px;}
     .contact-block p:last-child{margin-bottom:0;}
     .contact-block a{color:var(--gold-300);}
-    footer{background:var(--charcoal-900);border-top:1px solid var(--border);padding:48px;}
+    footer{background:var(--white);border-top:1px solid var(--border);padding:48px;}
     .footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
     .footer-logo{font-family:var(--font-display);font-size:1.2rem;font-weight:600;color:var(--gold-300);}
-    .footer-logo span{color:var(--white);font-weight:300;}
+    .footer-logo span{color:var(--charcoal-800);font-weight:300;}
     .footer-links{display:flex;gap:28px;flex-wrap:wrap;}
     .footer-links a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);}
     .footer-links a:hover{color:var(--gold-300);}
@@ -101,12 +101,12 @@
     <div class="policy-section">
       <h2>2. Information We Collect</h2>
       <p>We collect only what is reasonably necessary to respond to inquiries and improve the Site experience.</p>
-      <p><strong style="color:var(--white);font-weight:500;">Information you provide directly:</strong></p>
+      <p><strong style="color:var(--charcoal-800);font-weight:500;">Information you provide directly:</strong></p>
       <ul class="policy-list">
         <li>Name, email address, phone number, and message content when you contact us via the contact form or email</li>
         <li>Professional context (company, role, project details) that you voluntarily share in communications</li>
       </ul>
-      <p><strong style="color:var(--white);font-weight:500;">Information collected automatically:</strong></p>
+      <p><strong style="color:var(--charcoal-800);font-weight:500;">Information collected automatically:</strong></p>
       <ul class="policy-list">
         <li>Browser type, operating system, and device type</li>
         <li>Pages visited, time on site, and referring URL</li>
@@ -132,9 +132,9 @@
       <p>Energizing Solutions does not sell, rent, or trade your personal information to third parties. Full stop.</p>
       <p>We may share limited information in the following circumstances:</p>
       <ul class="policy-list">
-        <li><strong style="color:var(--white);font-weight:500;">Service providers:</strong> We may use third-party tools (e.g. email hosting, analytics platforms) that process data on our behalf under appropriate data processing agreements.</li>
-        <li><strong style="color:var(--white);font-weight:500;">Legal requirements:</strong> We may disclose information if required by law, court order, or governmental authority.</li>
-        <li><strong style="color:var(--white);font-weight:500;">Business transfers:</strong> In the event of a merger, acquisition, or sale of assets, personal data may transfer as part of that transaction, subject to equivalent privacy protections.</li>
+        <li><strong style="color:var(--charcoal-800);font-weight:500;">Service providers:</strong> We may use third-party tools (e.g. email hosting, analytics platforms) that process data on our behalf under appropriate data processing agreements.</li>
+        <li><strong style="color:var(--charcoal-800);font-weight:500;">Legal requirements:</strong> We may disclose information if required by law, court order, or governmental authority.</li>
+        <li><strong style="color:var(--charcoal-800);font-weight:500;">Business transfers:</strong> In the event of a merger, acquisition, or sale of assets, personal data may transfer as part of that transaction, subject to equivalent privacy protections.</li>
       </ul>
     </div>
 
@@ -161,11 +161,11 @@
       <h2>8. Your Rights</h2>
       <p>Depending on your location, you may have the following rights regarding your personal information:</p>
       <ul class="policy-list">
-        <li><strong style="color:var(--white);font-weight:500;">Access:</strong> Request a copy of the personal data we hold about you</li>
-        <li><strong style="color:var(--white);font-weight:500;">Correction:</strong> Request correction of inaccurate or incomplete information</li>
-        <li><strong style="color:var(--white);font-weight:500;">Deletion:</strong> Request deletion of your personal data, subject to any legal retention obligations</li>
-        <li><strong style="color:var(--white);font-weight:500;">Objection:</strong> Object to how we process your data in certain circumstances</li>
-        <li><strong style="color:var(--white);font-weight:500;">Portability:</strong> Request your data in a portable format where technically feasible</li>
+        <li><strong style="color:var(--charcoal-800);font-weight:500;">Access:</strong> Request a copy of the personal data we hold about you</li>
+        <li><strong style="color:var(--charcoal-800);font-weight:500;">Correction:</strong> Request correction of inaccurate or incomplete information</li>
+        <li><strong style="color:var(--charcoal-800);font-weight:500;">Deletion:</strong> Request deletion of your personal data, subject to any legal retention obligations</li>
+        <li><strong style="color:var(--charcoal-800);font-weight:500;">Objection:</strong> Object to how we process your data in certain circumstances</li>
+        <li><strong style="color:var(--charcoal-800);font-weight:500;">Portability:</strong> Request your data in a portable format where technically feasible</li>
       </ul>
       <p>To exercise any of these rights, contact us using the details in Section 10. We will respond within 30 days. We will not discriminate against you for exercising your privacy rights.</p>
     </div>
@@ -179,7 +179,7 @@
       <h2>10. Contact Us</h2>
       <p>For any privacy-related questions, requests, or concerns, please contact:</p>
       <div class="contact-block">
-        <p><strong style="color:var(--white);font-weight:500;">Energizing Solutions LLC</strong></p>
+        <p><strong style="color:var(--charcoal-800);font-weight:500;">Energizing Solutions LLC</strong></p>
         <p>Bothell, Washington, USA</p>
         <p>Email: <a href="mailto:paesteves21@outlook.com">paesteves21@outlook.com</a></p>
         <p>Phone: <a href="tel:+14253548133">425-354-8133</a></p>
