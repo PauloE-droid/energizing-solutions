@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Energizing Solutions — Enterprise PMO &amp; Technology Leadership</title>
+  <title>Energizing Solutions — Enterprise Technology &amp; PMO Leadership</title>
   <meta name="description" content="Enterprise program leadership, PMO governance, and technology transformation consulting. 20+ years delivering results across regulated industries, defense-adjacent environments, and global enterprise clients." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -155,6 +155,21 @@
     .t-author-title { font-size: 0.68rem; color: var(--muted); }
     .t-placeholder { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--charcoal-600); border: 1px solid var(--border); font-size: 0.7rem; color: var(--muted); margin-bottom: 12px; }
 
+    /* ===== CLIENT VOICE GALLERY ===== */
+    .cv-gallery { margin-top: 56px; }
+    .cv-gallery-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 20px; text-align: center; }
+    .cv-slider { display: flex; align-items: center; gap: 20px; max-width: 660px; margin: 0 auto; }
+    .cv-frame { flex: 1; aspect-ratio: 3/4; background: var(--charcoal-700); border: 1px solid var(--border); overflow: hidden; position: relative; }
+    .cv-frame::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.06) 0%, transparent 70%); z-index: 1; pointer-events: none; }
+    .cv-img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity 0.25s ease; }
+    .cv-img.cv-fade { opacity: 0; }
+    .cv-arrow { flex-shrink: 0; width: 48px; height: 48px; border: 1px solid var(--border); background: var(--charcoal-700); color: var(--gold-400); font-size: 1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background var(--transition), border-color var(--transition); }
+    .cv-arrow:hover { background: rgba(201,168,76,0.1); border-color: var(--gold-400); }
+    .cv-counter { text-align: center; margin-top: 14px; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); }
+    .cv-dots { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; max-width: 660px; margin: 10px auto 0; }
+    .cv-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--charcoal-600); border: 1px solid var(--border); cursor: pointer; padding: 0; transition: background var(--transition), border-color var(--transition); }
+    .cv-dot.active { background: var(--gold-400); border-color: var(--gold-400); }
+
     /* ===== CONTACT ===== */
     .contact-inner { max-width: 640px; margin: 0 auto; text-align: center; }
     .contact-sub { font-size: 0.9rem; color: var(--muted); line-height: 1.85; max-width: 520px; margin: 0 auto 48px; }
@@ -199,6 +214,7 @@
       .section { padding: 64px 24px; }
       .clients-strip { padding: 16px 24px; }
       footer { padding: 32px 24px; }
+      .cv-arrow { width: 36px; height: 36px; font-size: 1rem; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .scroll-hint { display: none; }
     }
@@ -268,7 +284,7 @@
   <section class="hero" id="home">
     <div class="hero-inner">
       <div class="hero-text">
-        <div class="hero-eyebrow reveal">Enterprise PMO &amp; Technology Leadership</div>
+        <div class="hero-eyebrow reveal">Enterprise Technology &amp; PMO Leadership</div>
         <h1 class="reveal reveal-delay-1">
           Turning Complex<br />
           Programs Into<br />
@@ -435,6 +451,23 @@
     <div class="section-inner">
       <div class="section-label reveal">Client Voices</div>
       <h2 class="section-title reveal reveal-delay-1"><em>Testimonials</em></h2>
+      
+      <!-- Client Voice Image Gallery -->
+      <div class="cv-gallery reveal reveal-delay-2">
+        <div class="cv-gallery-label">Letters of Recommendation &amp; Praise</div>
+        <div class="cv-slider">
+          <button class="cv-arrow" id="cvPrev" aria-label="Previous recommendation">&#8592;</button>
+          <div class="cv-frame">
+            <img class="cv-img" id="cvImg"
+              src="Images/Client-Voice/MimiSpurPraise-2022.jpg"
+              alt="Mimi Spur Praise 2022" />
+          </div>
+          <button class="cv-arrow" id="cvNext" aria-label="Next recommendation">&#8594;</button>
+        </div>
+        <div class="cv-counter"><span id="cvCurrent">1</span> / 15</div>
+        <div class="cv-dots" id="cvDots"></div>
+      </div>
+      
       <div class="testimonials-grid">
         <div class="testimonial-card reveal reveal-delay-1">
           <div class="t-quote-mark">"</div>
@@ -514,6 +547,53 @@
     }, { threshold: 0.15 });
 
     reveals.forEach(el => observer.observe(el));
+
+    // Client Voice Gallery
+    const cvImages = [
+      { src: 'Images/Client-Voice/MimiSpurPraise-2022.jpg',                          alt: 'Mimi Spur Praise 2022' },
+      { src: 'Images/Client-Voice/VMware%20Praise%20-%20Handwritten_2022-11-10.jpg', alt: 'VMware Handwritten Praise 2022' },
+      { src: 'Images/Client-Voice/VMware%20Praise%20-%20Retrospective%202022.jpg',   alt: 'VMware Retrospective Praise 2022' },
+      { src: 'Images/Client-Voice/VMware%20Praise%20-%20Retrospective2%202022.jpg',  alt: 'VMware Retrospective 2 Praise 2022' },
+      { src: 'Images/Client-Voice/1MichaelDoranRecommendation.jpg',                  alt: 'Michael Doran Recommendation' },
+      { src: 'Images/Client-Voice/2KarlPringleRecommendation.jpg',                   alt: 'Karl Pringle Recommendation' },
+      { src: 'Images/Client-Voice/3DavidDuchonRecommendation.jpg',                   alt: 'David Duchon Recommendation' },
+      { src: 'Images/Client-Voice/4DianaShepardRecommendation.jpg',                  alt: 'Diana Shepard Recommendation' },
+      { src: 'Images/Client-Voice/5RossMcLanachanRecommendation.jpg',                alt: 'Ross McLanachan Recommendation' },
+      { src: 'Images/Client-Voice/6AlbertLeeRecommendation.jpg',                     alt: 'Albert Lee Recommendation' },
+      { src: 'Images/Client-Voice/7JoeyStephensRecommendation.jpg',                  alt: 'Joey Stephens Recommendation' },
+      { src: 'Images/Client-Voice/8ArunPeraRecommendation.jpg',                      alt: 'Arun Pera Recommendation' },
+      { src: 'Images/Client-Voice/9BenDakersRecommendation.jpg',                     alt: 'Ben Dakers Recommendation' },
+      { src: 'Images/Client-Voice/10SunnyMaRecommendation.jpg',                      alt: 'Sunny Ma Recommendation' },
+      { src: 'Images/Client-Voice/11PaulBrandRecommendation.jpg',                    alt: 'Paul Brand Recommendation' }
+    ];
+
+    let cvIndex = 0;
+    const cvImgEl   = document.getElementById('cvImg');
+    const cvCurrent = document.getElementById('cvCurrent');
+    const cvDotsEl  = document.getElementById('cvDots');
+
+    cvImages.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'cv-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
+      dot.addEventListener('click', () => cvGoTo(i));
+      cvDotsEl.appendChild(dot);
+    });
+
+    function cvGoTo(idx) {
+      cvImgEl.classList.add('cv-fade');
+      setTimeout(() => {
+        cvIndex = (idx + cvImages.length) % cvImages.length;
+        cvImgEl.src = cvImages[cvIndex].src;
+        cvImgEl.alt = cvImages[cvIndex].alt;
+        cvCurrent.textContent = cvIndex + 1;
+        cvDotsEl.querySelectorAll('.cv-dot').forEach((d, i) => d.classList.toggle('active', i === cvIndex));
+        cvImgEl.classList.remove('cv-fade');
+      }, 250);
+    }
+
+    document.getElementById('cvPrev').addEventListener('click', () => cvGoTo(cvIndex - 1));
+    document.getElementById('cvNext').addEventListener('click', () => cvGoTo(cvIndex + 1));
   </script>
 </body>
 </html>
