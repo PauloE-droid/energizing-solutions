@@ -47,7 +47,8 @@
     nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
     nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-300); white-space: nowrap; }
-    .nav-logo span { color: var(--charcoal-800); font-weight: 300; }
+    .nav-logo span { color: var(--charcoal-800); font-weight: 300; transition: color var(--transition); }
+    nav.scrolled .nav-logo span { color: #ffffff; }
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links > li > a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); position: relative; cursor: pointer; }
     .nav-links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold-400); transition: width var(--transition); }
@@ -124,7 +125,7 @@
     .service-card--featured::before { width: 100%; }
     .featured-badge { display: inline-block; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--charcoal-800); background: var(--gold-400); padding: 3px 10px; margin-bottom: 14px; align-self: flex-start; }
     .service-icon { width: 40px; height: 40px; color: var(--gold-400); margin-bottom: 20px; opacity: 0.8; }
-    .service-card h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--charcoal-800); line-height: 1.2; margin-bottom: 14px; }
+    .service-card h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: #ffffff; line-height: 1.2; margin-bottom: 14px; }
     .service-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.85; flex: 1; margin-bottom: 24px; }
     .service-tags { display: flex; flex-direction: column; gap: 7px; }
     .service-tags li { font-size: 0.72rem; color: var(--muted); padding-left: 16px; position: relative; }
@@ -299,12 +300,6 @@
           <a href="services-overview.html" class="btn-gold">View Services</a>
           <a href="#about" class="btn-ghost">About Paul</a>
         </div>
-        <div class="hero-creds reveal reveal-delay-4">
-          <span class="hero-cred">PRINCE2 PMP</span>
-          <span class="hero-cred">CSM · CSPO</span>
-          <span class="hero-cred">Lean Six Sigma</span>
-          <span class="hero-cred">Azure Fundamentals</span>
-        </div>
       </div>
       <div class="hero-right reveal reveal-delay-2">
         <div class="hero-stat-card">
@@ -320,8 +315,8 @@
           <div class="hero-stat-label">Enterprise Value Creation</div>
         </div>
         <div class="hero-stat-card">
-          <div class="hero-stat-num">20+</div>
-          <div class="hero-stat-label">Major Enterprise Clients</div>
+          <div class="hero-stat-num">15</div>
+          <div class="hero-stat-label">Fortune 500 clients</div>
         </div>
       </div>
     </div>
@@ -334,7 +329,7 @@
       <div class="clients-list">
         <span>British Gas / Centrica</span>
         <div class="clients-dot"></div>
-        <span>Engie UK / Cofely</span>
+        <span>Engie / Cofely UK</span>
         <div class="clients-dot"></div>
         <span>Puget Sound Energy</span>
         <div class="clients-dot"></div>

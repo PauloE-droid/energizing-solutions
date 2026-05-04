@@ -57,7 +57,8 @@
     nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
     nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-300); white-space: nowrap; }
-    .nav-logo span { color: var(--charcoal-800); font-weight: 300; }
+    .nav-logo span { color: var(--charcoal-800); font-weight: 300; transition: color var(--transition); }
+    nav.scrolled .nav-logo span { color: #ffffff; }
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links > li > a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); position: relative; cursor: pointer; }
     .nav-links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold-400); transition: width var(--transition); }
