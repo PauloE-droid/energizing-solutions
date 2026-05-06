@@ -79,12 +79,47 @@
     </ul>
     <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
-  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu">
     <span class="mobile-close" id="mobile-close">&#x2715;</span>
     <a href="index.html">Home</a>
-    <a href="services-overview.html">Services</a>
-    <a href="solutions-overview.html">Solutions</a>
-    <a href="applied-observability.html">Products</a>
+
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn">Services <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <div class="mobile-dropdown-list">
+        <a href="services-overview.html">Services Overview</a>
+        <a href="project-management.html">Project Management</a>
+        <a href="operational-devops.html">Operational DevOps</a>
+        <a href="digital-evolution.html">Digital Evolution</a>
+      </div>
+    </div>
+
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn">Solutions <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <div class="mobile-dropdown-list">
+        <a href="solutions-overview.html">Solutions Overview</a>
+        <a href="digital-transformation.html">Digital Transformation</a>
+        <a href="experience-economy.html">Experience Economy</a>
+        <a href="digital-to-the-core.html">Digital to the Core</a>
+        <a href="devops-for-sap.html">DevOps for SAP</a>
+        <a href="intelligent-enterprise.html">Intelligent Enterprise</a>
+      </div>
+    </div>
+
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn">Products <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <div class="mobile-dropdown-list">
+        <a href="applied-observability.html">Applied Observability</a>
+        <a href="system-understanding.html">System Understanding</a>
+        <a href="datadriven-decisionmaking.html">DataDriven DecisionMaking</a>
+        <a href="okr-kpi-management.html">OKR &amp; KPI Management</a>
+        <a href="capacity-plan-and-scaling.html">Capacity Plan &amp; Scaling</a>
+        <a href="improved-user-experience.html">Improved User Experience</a>
+        <a href="cost-optimization.html">Cost Optimization</a>
+        <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
+        <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+      </div>
+    </div>
+
     <a href="portfolio.html">Portfolio</a>
   </div>
 
@@ -220,7 +255,17 @@
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
     document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-menu').classList.add('open'));
     document.getElementById('mobile-close').addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
-  </script>
+      document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.parentElement;
+        const isOpen = parent.classList.contains('open');
+        document.querySelectorAll('.mobile-dropdown').forEach(d => d.classList.remove('open'));
+        if (!isOpen) parent.classList.add('open');
+      });
+    });
+    </script>
 </body>
 </html>
+
+
 
