@@ -623,7 +623,18 @@
   
     /* ===== SCROLL ANCHOR OFFSET ===== */
     section[id], div[id] { scroll-margin-top: calc(var(--nav-height) + 16px); }
-</style>
+
+    /* ===== MUTED ON DARK BACKGROUNDS ===== */
+    .dropdown-menu,
+    .mobile-menu,
+    .pillar-intro,
+    .pillar-content,
+    .tag,
+    .creds-section,
+    .cred-tag,
+    .stat-cell,
+    nav.scrolled { --muted: var(--white); }
+  </style>
 </head>
 <body>
 
@@ -957,4 +968,5 @@
 
 </body>
 </html>
+
 

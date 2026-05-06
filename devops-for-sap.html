@@ -129,7 +129,19 @@
     .reveal-delay-3{transition-delay:.26s;} .reveal-delay-4{transition-delay:.34s;}
     @media(max-width:1024px){.hero-inner{grid-template-columns:1fr;gap:40px;}.cards-grid{grid-template-columns:repeat(2,1fr);}.outcomes-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:repeat(2,1fr);}}
     @media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.page-hero{padding:calc(var(--nav-height)+48px) 24px 56px;}.section{padding:64px 24px;}.sol-nav{padding:0 24px;}.stats-band{padding:48px 24px;}.cta-section{padding:64px 24px;}footer{padding:32px 24px;}.footer-inner{flex-direction:column;align-items:flex-start;}}
-    @media(max-width:580px){.cards-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:1fr;}}</style>
+    @media(max-width:580px){.cards-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:1fr;}}
+    /* ===== MUTED ON DARK BACKGROUNDS ===== */
+    .dropdown-menu,
+    .mobile-menu,
+    .hero-def,
+    .section-alt,
+    .card,
+    .card:hover,
+    .outcome,
+    .sol-nav,
+    .stat-cell,
+    nav.scrolled { --muted: var(--white); }
+  </style>
 </head>
 <body>
   <nav id="main-nav">
@@ -306,3 +318,4 @@
   </script>
 </body>
 </html>
+

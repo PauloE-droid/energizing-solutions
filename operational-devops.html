@@ -305,6 +305,18 @@
     @media (max-width: 480px) {
       .stats-inner { grid-template-columns: 1fr; }
     }
+
+    /* ===== MUTED ON DARK BACKGROUNDS ===== */
+    .dropdown-menu,
+    .mobile-menu,
+    .cap-card,
+    .cap-card:hover,
+    .pipeline-step,
+    .pipeline-step:hover,
+    .tools-section,
+    .tool-tag,
+    .stat-cell,
+    nav.scrolled { --muted: var(--white); }
   </style>
 </head>
 <body>
@@ -600,4 +612,5 @@
 
 </body>
 </html>
+
 
