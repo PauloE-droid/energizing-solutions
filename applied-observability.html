@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Applied Observabilityâ„¢: The Playmaker's Framework â€” Energizing Solutions</title>
-  <meta name="description" content="Applied Observabilityâ„¢ by Energizing Solutions â€” the organizational playbook for turning telemetry into actionable intelligence across 12 strategic enablers."/>
+  <title>Applied Observability: The Playmaker's Framework by Energizing Solutions</title>
+  <meta name="description" content="Applied Observability by Energizing Solutions is the organizational playbook for turning telemetry into actionable intelligence across 12 strategic enablers."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -103,7 +103,7 @@
     .card:hover{background:var(--charcoal-700);}
     .card:hover::before{width:100%;}
     .card-tag{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;}
-    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--charcoal-800);line-height:1.2;margin-bottom:12px;}
+    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:12px;}
     .card-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
     .card-icon{width:36px;height:36px;color:var(--gold-400);margin-bottom:18px;opacity:0.85;}
     .outcomes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
@@ -136,7 +136,7 @@
     .footer-links{display:flex;gap:28px;flex-wrap:wrap;}
     .footer-links a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);}
     .footer-links a:hover{color:var(--gold-300);}
-    .footer-copy{font-size:0.7rem;color:rgba(138,138,138,0.5);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
+    .footer-copy{font-size:0.7rem;color:rgba(15, 15, 15, 0.925);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);}
     .reveal.visible{opacity:1;transform:translateY(0);}
     .reveal-delay-1{transition-delay:.1s;} .reveal-delay-2{transition-delay:.18s;}
@@ -203,12 +203,14 @@
           <li><a href="cost-optimization.html">Cost Optimization</a></li>
           <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
           <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+          <li><a href="support-for-continuous-deployment.html">Continuous Deployment</a></li>
         </ul>
       </li>
       <li><a href="portfolio.html">Portfolio</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
+
   <!-- Mobile Close (outside menu so position:fixed works regardless of parent display) -->
   <span class="mobile-close" id="mobile-close">&#x2715;</span>
 
@@ -250,33 +252,22 @@
         <a href="cost-optimization.html">Cost Optimization</a>
         <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
         <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+        <a href="support-for-continuous-deployment.html">Continuous Deployment</a>
       </div>
     </div>
 
     <a href="portfolio.html">Portfolio</a>
+    <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
   </div>
-  <div class="chapter-nav">
-    <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
-    <button class="ch-nav-btn right" id="ch-btn-right" aria-label="Scroll right">&#8594;</button>
-    <div class="chapter-nav-inner" id="ch-scroller">
-      <span class="chapter-nav-label">Applied Observabilityâ„¢</span>
-      <a href="applied-observability.html" class="ch-link active">Overview</a>
-      <a href="system-understanding.html" class="ch-link">Ch.1 System Understanding</a>
-      <a href="datadriven-decisionmaking.html" class="ch-link">Ch.2 Data-Driven Decisions</a>
-      <a href="okr-kpi-management.html" class="ch-link">Ch.3 OKR & KPI</a>
-      <a href="capacity-plan-and-scaling.html" class="ch-link">Ch.4 Capacity Planning</a>
-      <a href="improved-user-experience.html" class="ch-link">Ch.5 User Experience</a>
-      <a href="cost-optimization.html" class="ch-link">Ch.6 Cost Optimization</a>
-      <a href="its-telemetry-adoption.html" class="ch-link">Ch.7 Telemetry Adoption</a>
-      <a href="faster-troubleshooting-and-issue-resolution.html" class="ch-link">Ch.8 Faster Troubleshooting</a>
-      
-    </div>
-  </div>
+  
+  <!-- HERO -->
   <section class="page-hero">
     <div class="hero-inner">
-      <div class="hero-eyebrow reveal">Products â€” Book One</div>
-      <h1 class="reveal reveal-delay-1">Applied Observabilityâ„¢<br><em>The Playmaker's Framework</em></h1>
-      <p class="hero-desc reveal reveal-delay-2">Proactive use of observable, insightful data from across systems and processes to drive faster, more informed decision-making. Not just metrics â€” visibility that leaders, engineers, and business units can act on.</p>
+      <div class="hero-eyebrow reveal">Products Book One</div>
+      <h1 class="reveal reveal-delay-1">Applied Observability<br>
+      <em>The Playmaker's Framework</em></h1>
+      <p class="hero-desc reveal reveal-delay-2">Proactive use of observable, insightful data from across systems and processes to drive faster, more informed decision-making. Not just metrics, visibility that leaders, engineers, and business units can act on.</p>
     </div>
   </section>
 
@@ -284,14 +275,15 @@
   <section class="section section-alt">
     <div class="section-inner">
       <div class="section-label reveal">The Framework</div>
-      <h2 class="section-title reveal reveal-delay-1">Applied Observabilityâ„¢:<br><em>The Playmaker's Framework</em></h2>
+      <h2 class="section-title reveal reveal-delay-1">Applied Observability:<br>
+      <em>The Playmaker's Framework</em></h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="reveal reveal-delay-2">
         <div>
           <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">
-            Applied Observability refers to the proactive use of observable, insightful data from across systems and processes to drive faster, more informed decision-making. It's not just about collecting metrics â€” it's about creating visibility into complex, distributed systems in a way that leaders, engineers, and business units can act on.
+            Applied Observability refers to the proactive use of observable, insightful data from across systems and processes to drive faster, more informed decision-making. It's not just about collecting metrics, it's about creating visibility into complex, distributed systems in a way that leaders, engineers, and business units can act on.
           </p>
           <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;">
-            Modern systems are highly dynamic, scalable, and interconnected â€” and that complexity makes traditional monitoring insufficient. Observability goes deeper. It helps you understand what is happening, why it's happening, and what to do next. Most importantly, Applied Observability is about shortening the time between stakeholder actions and organizational responses, creating a more agile and intelligent enterprise.
+            Modern systems are highly dynamic, scalable, and interconnected, and that complexity makes traditional monitoring insufficient. Observability goes deeper. It helps you understand what is happening, why it's happening, and what to do next. Most importantly, Applied Observability is about shortening the time between stakeholder actions and organizational responses, creating a more agile and intelligent enterprise.
           </p>
         </div>
         <div style="background:var(--charcoal-700);border:1px solid var(--border);padding:36px;position:relative;">
@@ -299,15 +291,15 @@
           <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:16px;">Single-Pane-of-Glass Dashboard</div>
           <p style="font-size:0.82rem;color:var(--muted);line-height:1.85;margin-bottom:20px;">An interactive observability dashboard empowers stakeholders at all levels to:</p>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="font-size:0.8rem;color:var(--charcoal-800);padding-left:16px;position:relative;">
+            <div style="font-size:0.8rem;color:var(--white);padding-left:16px;position:relative;">
               <span style="position:absolute;left:0;top:6px;width:5px;height:5px;border:1px solid var(--gold-400);border-radius:50%;display:block;"></span>
               View real-time system health
             </div>
-            <div style="font-size:0.8rem;color:var(--charcoal-800);padding-left:16px;position:relative;">
+            <div style="font-size:0.8rem;color:var(--white);padding-left:16px;position:relative;">
               <span style="position:absolute;left:0;top:6px;width:5px;height:5px;border:1px solid var(--gold-400);border-radius:50%;display:block;"></span>
               Align OKRs (C-suite), KPIs (Directors), and operational metrics (Business Unit Leaders)
             </div>
-            <div style="font-size:0.8rem;color:var(--charcoal-800);padding-left:16px;position:relative;">
+            <div style="font-size:0.8rem;color:var(--white);padding-left:16px;position:relative;">
               <span style="position:absolute;left:0;top:6px;width:5px;height:5px;border:1px solid var(--gold-400);border-radius:50%;display:block;"></span>
               Make informed decisions grounded in data, not assumptions
             </div>
@@ -320,7 +312,7 @@
   <!-- 12 ENABLERS GRID -->
   <section class="section">
     <div class="section-inner">
-      <div class="section-label reveal">The 12 Observability Enablers</div>
+      <div class="section-label reveal">The Observability Enablers</div>
       <h2 class="section-title reveal reveal-delay-1">Chapters of the <em>Playbook</em></h2>
       <div class="cards-grid">
         <div class="card reveal reveal-delay-1">
@@ -328,80 +320,81 @@
           <div class="card-tag">Chapter 01</div>
           <div class="card-title">Improved System Understanding</div>
           <p class="card-body">Enhanced reliability, uptime visibility, and deeper behavioral insight across distributed systems.</p>
-          <a href="system-understanding.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter â†’</a>
+          <a href="system-understanding.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter</a>
         </div>
         <div class="card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
           <div class="card-tag">Chapter 02</div>
           <div class="card-title">Data-Driven Decision Making</div>
           <p class="card-body">Real-time and historical data trends that give leaders a clear picture of operational and strategic performance.</p>
-          <a href="datadriven-decisionmaking.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter â†’</a>
+          <a href="datadriven-decisionmaking.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter</a>
         </div>
         <div class="card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
           <div class="card-tag">Chapter 03</div>
           <div class="card-title">OKR &amp; KPI Management</div>
           <p class="card-body">Linking observability metrics directly to organizational goals â€” from system uptime to customer satisfaction and revenue growth.</p>
-          <a href="okr-kpi-management.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter â†’</a>
+          <a href="okr-kpi-management.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter</a>
         </div>
         <div class="card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           <div class="card-tag">Chapter 04</div>
           <div class="card-title">Capacity Planning &amp; Scalability</div>
           <p class="card-body">Merging demand forecasting, infrastructure strategy, and organizational goals into a cohesive, data-led roadmap.</p>
-          <a href="capacity-plan-and-scaling.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter â†’</a>
+          <a href="capacity-plan-and-scaling.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter</a>
         </div>
         <div class="card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           <div class="card-tag">Chapter 05</div>
           <div class="card-title">Improved User Experience</div>
-          <p class="card-body">User-centric metrics anchored in observability â€” RUM, web vitals, and XLOs that tie engineering KPIs to customer outcomes.</p>
-          <a href="improved-user-experience.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter â†’</a>
+          <p class="card-body">User-centric metrics anchored in observability, RUM, web vitals, and XLOs that tie engineering KPIs to customer outcomes.</p>
+          <a href="improved-user-experience.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter</a>
         </div>
         <div class="card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
           <div class="card-tag">Chapter 06</div>
           <div class="card-title">Cost Optimization</div>
           <p class="card-body">Using telemetry to eliminate waste, right-size infrastructure, and turn observability into a financial asset, not a cost center.</p>
-          <a href="cost-optimization.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter â†’</a>
+          <a href="cost-optimization.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter</a>
         </div>
         <div class="card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           <div class="card-tag">Chapter 07</div>
-          <div class="card-title">Faster Troubleshooting &amp; Resolution</div>
-          <p class="card-body">Reducing MTTD and MTTR through correlated traces, logs, metrics, and events â€” shifting from reactive firefighting to predictive detection.</p>
-          <a href="faster-troubleshooting-and-issue-resolution.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter â†’</a>
+          <div class="card-title">Open IT&amp;S Telemetry Adoption</div>
+          <p class="card-body">The organizational capability to instrument, collect, route, enrich, govern, and operationalize telemetry as a repeatable, governed decision input.</p>
+          <a href="its-telemetry-adoption.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter</a>
         </div>
         <div class="card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
           <div class="card-tag">Chapter 08</div>
-          <div class="card-title">Support for Continuous Deployment</div>
-          <p class="card-body">Telemetry as the safety net for CI/CD â€” enabling confident, high-frequency releases with automated rollback signals and deployment observability.</p>
+          <div class="card-title">Faster Troubleshooting &amp; Resolution</div>
+          <p class="card-body">Reducing MTTD and MTTR through correlated traces, logs, metrics, and events — shifting from reactive firefighting to predictive detection.</p>
+          <a href="faster-troubleshooting-and-issue-resolution.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter</a>
         </div>
         <div class="card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
           <div class="card-tag">Chapter 09</div>
-          <div class="card-title">Enhanced Collaboration Across Teams</div>
-          <p class="card-body">Shared dashboards that align Product, Engineering, Reliability, and Finance around common OKRs and a single source of operational truth.</p>
+          <div class="card-title">Support for Continuous Deployment</div>
+          <p class="card-body">Telemetry as the safety net for CI/CD — enabling confident, high-frequency releases with automated rollback signals and deployment observability.</p>
+          <a href="support-for-continuous-deployment.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter</a>
         </div>
         <div class="card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
           <div class="card-tag">Chapter 10</div>
-          <div class="card-title">Compliance &amp; Security Readiness</div>
-          <p class="card-body">Audit-ready telemetry pipelines with enforced schema, semantic conventions, and security signal integration across the enterprise stack.</p>
+          <div class="card-title">Enhanced Collaboration Across Teams</div>
+          <p class="card-body">Shared dashboards that align Product, Engineering, Reliability, and Finance around common OKRs and a single source of operational truth.</p>
         </div>
         <div class="card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <div class="card-tag">Chapter 11</div>
-          <div class="card-title">Proactive Issue Prevention</div>
-          <p class="card-body">Trend-based alerting and anomaly detection that surfaces symptoms before they become incidents â€” and before users ever notice.</p>
+          <div class="card-title">Compliance &amp; Security Readiness</div>
+          <p class="card-body">Audit-ready telemetry pipelines with enforced schema, semantic conventions, and security signal integration across the enterprise stack.</p>
         </div>
         <div class="card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
           <div class="card-tag">Chapter 12</div>
-          <div class="card-title">Open IT&amp;S Telemetry Adoption</div>
-          <p class="card-body">The organizational capability to instrument, collect, route, enrich, govern, and operationalize telemetry as a repeatable, governed decision input.</p>
-          <a href="its-telemetry-adoption.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-400);">Read Chapter â†’</a>
+          <div class="card-title">Proactive Issue Prevention</div>
+          <p class="card-body">Trend-based alerting and anomaly detection that surfaces symptoms before they become incidents — and before users ever notice.</p>
         </div>
       </div>
     </div>
@@ -417,10 +410,10 @@
   </div>  <section class="cta-section">
     <div class="cta-inner">
       <h2 class="reveal">Ready to Build Your<br><em>Observability Practice?</em></h2>
-      <p class="reveal reveal-delay-1">Whether you're starting from scratch or maturing an existing telemetry strategy â€” let's design the governance and architecture that makes observability actionable.</p>
+      <p class="reveal reveal-delay-1">Whether you're starting from scratch or maturing an existing telemetry strategy - let's design the governance and architecture that makes observability actionable.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
         <a href="index.html#contact" class="btn-gold">Get in Touch</a>
-        <a href="solutions-overview.html" class="btn-ghost">All Solutions</a>
+        <a href="solutions-overview.html" class="btn-gold">All Solutions</a>
       </div>
     </div>
   </section>
