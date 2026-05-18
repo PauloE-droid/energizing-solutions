@@ -31,7 +31,7 @@
     .mobile-menu.open{display:flex;}
     .mobile-menu a{font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:10px;}
     .mobile-menu a:hover{color:var(--gold-300);}
-    .mobile-close{position:absolute;top:24px;right:24px;font-size:1.6rem;cursor:pointer;color:var(--muted);}
+    .mobile-close{position:fixed;top:24px;right:24px;font-size:1.6rem;cursor:pointer;color:var(--white);z-index:1000;display:none;}
     .page-hero{position:relative;padding:calc(var(--nav-height) + 80px) 48px 64px;border-bottom:1px solid var(--border);}
     .page-hero::before{content:'';position:absolute;top:-120px;right:-80px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(201,168,76,0.06) 0%,transparent 70%);pointer-events:none;}
     .hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
@@ -89,8 +89,11 @@
     </ul>
     <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
-    <div class="mobile-menu" id="mobile-menu">
-    <span class="mobile-close" id="mobile-close">&#x2715;</span>
+  <!-- Mobile Close (outside menu so position:fixed works regardless of parent display) -->
+  <span class="mobile-close" id="mobile-close">&#x2715;</span>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
     <a href="index.html">Home</a>
 
     <div class="mobile-dropdown">
@@ -263,8 +266,8 @@
   <script>
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-    document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-menu').classList.add('open'));
-    document.getElementById('mobile-close').addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+    document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); document.getElementById('mobile-close').style.display = 'block'; });
+    document.getElementById('mobile-close').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('mobile-close').style.display = 'none'; });
       document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const parent = btn.parentElement;

@@ -69,7 +69,7 @@
     .mobile-menu.open { display: flex; }
     .mobile-menu > a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 10px; transition: color var(--transition); }
     .mobile-menu > a:hover { color: var(--gold-300); }
-    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--muted); }
+    .mobile-close { position: fixed; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--white); z-index: 1000; display: none; }
     .mobile-dropdown { width: 100%; text-align: center; }
     .mobile-dropdown-btn { width: 100%; background: none; border: none; font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: color var(--transition); }
     .mobile-dropdown-btn:hover { color: var(--gold-300); }
@@ -79,7 +79,6 @@
     .mobile-dropdown.open .mobile-dropdown-list { display: flex; }
     .mobile-dropdown-list a { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-400); padding: 6px 10px; transition: color var(--transition); }
     .mobile-dropdown-list a:hover { color: var(--gold-300); }
-    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--muted); }
 
     /* ===== HERO ===== */
     .page-hero { position: relative; padding: calc(var(--nav-height) + 80px) 48px 80px; overflow: hidden; }
@@ -272,8 +271,11 @@
     <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
 
-    <div class="mobile-menu" id="mobile-menu">
-    <span class="mobile-close" id="mobile-close">&#x2715;</span>
+  <!-- Mobile Close (outside menu so position:fixed works regardless of parent display) -->
+  <span class="mobile-close" id="mobile-close">&#x2715;</span>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
     <a href="index.html">Home</a>
 
     <div class="mobile-dropdown">
@@ -546,8 +548,8 @@
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileClose = document.getElementById('mobile-close');
-    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    hamburger.addEventListener('click', () => { mobileMenu.classList.add('open'); mobileClose.style.display = 'block'; });
+    mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); mobileClose.style.display = 'none'; });
 
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {

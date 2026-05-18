@@ -53,7 +53,7 @@
     .mobile-menu.open { display: flex; }
     .mobile-menu > a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 10px; transition: color var(--transition); }
     .mobile-menu > a:hover { color: var(--gold-300); }
-    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--muted); }
+    .mobile-close { position: fixed; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--white); z-index: 1000; display: none; }
     .mobile-dropdown { width: 100%; text-align: center; }
     .mobile-dropdown-btn { width: 100%; background: none; border: none; font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: color var(--transition); }
     .mobile-dropdown-btn:hover { color: var(--gold-300); }
@@ -63,7 +63,6 @@
     .mobile-dropdown.open .mobile-dropdown-list { display: flex; }
     .mobile-dropdown-list a { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-400); padding: 6px 10px; transition: color var(--transition); }
     .mobile-dropdown-list a:hover { color: var(--gold-300); }
-    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--muted); }
 
     .page-hero{position:relative;padding:calc(var(--nav-height) + 80px) 48px 80px;overflow:hidden;}
     .page-hero::before{content:'';position:absolute;top:-120px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
@@ -233,8 +232,11 @@
     <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
 
-    <div class="mobile-menu" id="mobile-menu">
-    <span class="mobile-close" id="mobile-close">&#x2715;</span>
+  <!-- Mobile Close (outside menu so position:fixed works regardless of parent display) -->
+  <span class="mobile-close" id="mobile-close">&#x2715;</span>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
     <a href="index.html">Home</a>
 
     <div class="mobile-dropdown">
@@ -683,8 +685,8 @@
   <script>
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-    document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-menu').classList.add('open'));
-    document.getElementById('mobile-close').addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+    document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); document.getElementById('mobile-close').style.display = 'block'; });
+    document.getElementById('mobile-close').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('mobile-close').style.display = 'none'; });
     const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}), {threshold:0.07,rootMargin:'0px 0px -40px 0px'});
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     (function(){
