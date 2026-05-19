@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Chapter 01 â€” Improved System Understanding â€” Energizing Solutions</title>
+  <title>Chapter 01 - Improved System Understanding - Energizing Solutions</title>
   <meta name="description" content="Enhanced system reliability, uptime visibility, and faster issue resolution through Applied Observability instrumentation."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -103,14 +103,14 @@
     .card:hover{background:var(--charcoal-700);}
     .card:hover::before{width:100%;}
     .card-tag{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;}
-    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--charcoal-800);line-height:1.2;margin-bottom:12px;}
+    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:12px;}
     .card-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
     .card-icon{width:36px;height:36px;color:var(--gold-400);margin-bottom:18px;opacity:0.85;}
     .outcomes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
     .outcome{background:var(--charcoal-900);padding:36px 40px;display:flex;gap:20px;align-items:flex-start;}
-    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(201,168,76,0.2);line-height:1;flex-shrink:0;width:48px;}
+    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(245, 211, 119, 0.959);line-height:1;flex-shrink:0;width:48px;}
     .outcome-content{}
-    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;}
+    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:8px;}
     .outcome-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
     .stats-band{padding:72px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
     .stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);}
@@ -136,7 +136,7 @@
     .footer-links{display:flex;gap:28px;flex-wrap:wrap;}
     .footer-links a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);}
     .footer-links a:hover{color:var(--gold-300);}
-    .footer-copy{font-size:0.7rem;color:rgba(138,138,138,0.5);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
+    .footer-copy{font-size:0.7rem;color:rgba(17, 17, 17, 0.932);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);}
     .reveal.visible{opacity:1;transform:translateY(0);}
     .reveal-delay-1{transition-delay:.1s;} .reveal-delay-2{transition-delay:.18s;}
@@ -144,6 +144,7 @@
     @media(max-width:1024px){.cards-grid{grid-template-columns:repeat(2,1fr);}.outcomes-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:repeat(2,1fr);}}
     @media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.page-hero{padding:calc(var(--nav-height) + 48px) 24px 56px;}.section{padding:64px 24px;}.chapter-nav{padding:0 24px;}.stats-band{padding:48px 24px;}.cta-section{padding:64px 24px;}footer{padding:32px 24px;}.footer-inner{flex-direction:column;align-items:flex-start;}}
     @media(max-width:580px){.cards-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:1fr;}}
+    
     /* ===== MUTED ON DARK BACKGROUNDS ===== */
     .dropdown-menu,
     .mobile-menu,
@@ -256,6 +257,8 @@
     </div>
 
     <a href="portfolio.html">Portfolio</a>
+    <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>    
   </div>
   <div class="chapter-nav" style="position:relative;">
     <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
@@ -277,8 +280,8 @@
   </div>
   <section class="page-hero">
     <div class="hero-inner">
-      <div class="hero-eyebrow reveal">Applied Observabilityâ„¢ â€” Chapter 01</div>
-      <h1 class="reveal reveal-delay-1">Improved<br><em>System Understanding</em></h1>
+      <div class="hero-eyebrow reveal">Applied Observability - Chapter 01</div>
+      <h1 class="reveal reveal-delay-1">Improved <em>System Understanding</em></h1>
       <p class="hero-desc reveal reveal-delay-2">Enhanced system reliability and availability through observability-driven insight. A deeper understanding of system behavior allows organizations to proactively address potential issues before they escalate.</p>
     </div>
   </section>
@@ -286,7 +289,7 @@
   <section class="section section-alt">
     <div class="section-inner">
       <div class="section-label reveal">Core Outcomes</div>
-      <h2 class="section-title reveal reveal-delay-1">What <em>System Understanding</em> Delivers</h2>
+      <h2 class="section-title reveal reveal-delay-1"><em>What System Understanding Delivers</em></h2>
       <div class="outcomes-grid">
         <div class="outcome reveal reveal-delay-1"><div class="outcome-num">01</div><div class="outcome-content"><div class="outcome-title">Enhanced System Reliability & Availability</div><p class="outcome-body">Reduced downtime and fewer outages ensure critical services remain operational. Predictive monitoring identifies and mitigates potential issues before they impact operations. Target: 99.9% uptime, 40% reduction in unplanned downtime.</p></div></div>
         <div class="outcome reveal reveal-delay-2"><div class="outcome-num">02</div><div class="outcome-content"><div class="outcome-title">Better Decision-Making</div><p class="outcome-body">Data-driven insights empower leaders to make informed decisions about technology strategy, investments, and resource allocation. Strategic alignment between IT initiatives and business goals increases organizational agility.</p></div></div>
@@ -298,7 +301,7 @@
   <section class="section">
     <div class="section-inner">
       <div class="section-label reveal">Strategic Levers</div>
-      <h2 class="section-title reveal reveal-delay-1">The CIO's <em>Observability Toolkit</em></h2>
+      <h2 class="section-title reveal reveal-delay-1"><em>The CIO's Observability Toolkit</em></h2>
       <div class="cards-grid">
         <div class="card reveal reveal-delay-1"><svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg><div class="card-tag">Reliability</div><div class="card-title">System Health Visibility</div><p class="card-body">A deeper understanding of system behavior allows organizations to proactively address potential issues. Achieve 95% detection of critical issues before they impact end-users.</p></div>
         <div class="card reveal reveal-delay-2"><svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg><div class="card-tag">Intelligence</div><div class="card-title">Executive Dashboards</div><p class="card-body">Ensure 90% of business units have access to observability dashboards tailored to their needs. Monthly executive reports showcasing observability's impact on business KPIs.</p></div>
@@ -317,10 +320,10 @@
   </div>  <section class="cta-section">
     <div class="cta-inner">
       <h2 class="reveal">Continue the<br><em>Chapter Journey</em></h2>
-      <p class="reveal reveal-delay-1">Explore the full Applied Observabilityâ„¢ framework â€” 12 enablers, one playbook.</p>
+      <p class="reveal reveal-delay-1">Explore the full Applied Observability framework, enablers, and playbook.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
         <a href="datadriven-decisionmaking.html" class="btn-gold">Next: Data-Driven Decisions</a>
-        <a href="applied-observability.html" class="btn-ghost">Back to Overview</a>
+        <a href="applied-observability.html" class="btn-gold">Back to Overview</a>
       </div>
     </div>
   </section>
