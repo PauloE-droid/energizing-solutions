@@ -83,6 +83,11 @@
     .ch-link{font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:16px 16px;white-space:nowrap;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition);flex-shrink:0;}
     .ch-link:hover{color:var(--charcoal-800);}
     .ch-link.active{color:var(--gold-300);border-bottom-color:var(--gold-400);}
+    .ch-nav-btn{position:absolute;top:0;bottom:0;width:48px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;color:var(--muted);font-size:1rem;z-index:10;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+    .ch-nav-btn.left{left:0;background:linear-gradient(to right,var(--charcoal-900) 55%,transparent);}
+    .ch-nav-btn.right{right:0;background:linear-gradient(to left,var(--charcoal-900) 55%,transparent);}
+    .ch-nav-btn.visible{opacity:1;pointer-events:auto;}
+    .ch-nav-btn:hover{color:var(--charcoal-800);}
     
     
     .section{position:relative;z-index:1;padding:96px 48px;}
@@ -198,6 +203,7 @@
           <li><a href="cost-optimization.html">Cost Optimization</a></li>
           <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
           <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+          <li><a href="support-for-continuous-deployment.html">Continuous Deployment</a></li>
         </ul>
       </li>
       <li><a href="portfolio.html">Portfolio</a></li>
@@ -245,23 +251,27 @@
         <a href="cost-optimization.html">Cost Optimization</a>
         <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
         <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+        <a href="support-for-continuous-deployment.html">Continuous Deployment</a>
       </div>
     </div>
 
     <a href="portfolio.html">Portfolio</a>
   </div>
-  <div class="chapter-nav">
-    <div class="chapter-nav-inner">
-      <span class="chapter-nav-label">Applied Observabilityâ„¢</span>
+  <div class="chapter-nav" style="position:relative;">
+    <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
+    <button class="ch-nav-btn right" id="ch-btn-right" aria-label="Scroll right">&#8594;</button>
+    <div class="chapter-nav-inner" id="ch-scroller">
+      <span class="chapter-nav-label">Applied Observability</span>
       <a href="applied-observability.html" class="ch-link">Overview</a>
       <a href="system-understanding.html" class="ch-link">Ch.1 System Understanding</a>
       <a href="datadriven-decisionmaking.html" class="ch-link">Ch.2 Data-Driven Decisions</a>
-      <a href="okr-kpi-management.html" class="ch-link">Ch.3 OKR & KPI</a>
+      <a href="okr-kpi-management.html" class="ch-link">Ch.3 OKR &amp; KPI</a>
       <a href="capacity-plan-and-scaling.html" class="ch-link">Ch.4 Capacity Planning</a>
       <a href="improved-user-experience.html" class="ch-link active">Ch.5 User Experience</a>
       <a href="cost-optimization.html" class="ch-link">Ch.6 Cost Optimization</a>
       <a href="its-telemetry-adoption.html" class="ch-link">Ch.7 Telemetry Adoption</a>
       <a href="faster-troubleshooting-and-issue-resolution.html" class="ch-link">Ch.8 Faster Troubleshooting</a>
+      <a href="support-for-continuous-deployment.html" class="ch-link">Ch.9 Continuous Deployment</a>
       
     </div>
   </div>
@@ -338,6 +348,20 @@
     document.getElementById('mobile-close').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('mobile-close').style.display = 'none'; });
     const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}), {threshold:0.07,rootMargin:'0px 0px -40px 0px'});
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    (function(){
+      const sc = document.getElementById('ch-scroller');
+      const bL = document.getElementById('ch-btn-left');
+      const bR = document.getElementById('ch-btn-right');
+      if(!sc||!bL||!bR) return;
+      function upd(){
+        bL.classList.toggle('visible', sc.scrollLeft > 4);
+        bR.classList.toggle('visible', sc.scrollLeft < sc.scrollWidth - sc.clientWidth - 4);
+      }
+      sc.addEventListener('scroll', upd, {passive:true});
+      bL.addEventListener('click', () => sc.scrollBy({left:-200, behavior:'smooth'}));
+      bR.addEventListener('click', () => sc.scrollBy({left:200, behavior:'smooth'}));
+      upd();
+    })();
       document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const parent = btn.parentElement;
