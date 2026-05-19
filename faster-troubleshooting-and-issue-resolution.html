@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Chapter 08 Faster Troubleshooting &amp; Issue Resolution â€” Energizing Solutions</title>
-  <meta name="description" content="Applied Observabilityâ„¢ Chapter 8: 13 plays for turning raw telemetry into the fastest possible path from 'something is wrong' to 'we fixed it, permanently.'"/>
+  <title>Chapter 08 Faster Troubleshooting &amp; Issue Resolution - Energizing Solutions</title>
+  <meta name="description" content="Applied Observability - Chapter 8: 13 plays for turning raw telemetry into the fastest possible path from 'something is wrong' to 'we fixed it, permanently.'"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -92,7 +92,7 @@
     .section-inner{max-width:1160px;margin:0 auto;}
     .section-label{display:inline-flex;align-items:center;gap:12px;font-size:0.65rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:16px;}
     .section-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold-400);}
-    .section-title{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:var(--charcoal-800);letter-spacing:-0.01em;margin-bottom:56px;}
+    .section-title{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:var(--white);letter-spacing:-0.01em;margin-bottom:56px;}
     .section-title em{font-style:italic;color:var(--gold-300);}
 
     .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
@@ -101,16 +101,16 @@
     .card:hover{background:var(--charcoal-700);}
     .card:hover::before{width:100%;}
     .card-tag{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;}
-    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--charcoal-800);line-height:1.2;margin-bottom:12px;}
+    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:12px;}
     .card-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
     .card-icon{width:36px;height:36px;color:var(--gold-400);margin-bottom:18px;opacity:0.85;}
     .card-hook{font-size:0.78rem;font-style:italic;color:var(--gold-300);margin-bottom:10px;line-height:1.5;}
 
     .outcomes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
     .outcome{background:var(--charcoal-900);padding:36px 40px;display:flex;gap:20px;align-items:flex-start;}
-    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(201,168,76,0.2);line-height:1;flex-shrink:0;width:48px;}
+    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(247, 246, 244, 0.2);line-height:1;flex-shrink:0;width:48px;}
     .outcome-content{}
-    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;}
+    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-400);margin-bottom:8px;}
     .outcome-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
 
     .sector-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
@@ -119,14 +119,14 @@
     .sector-cell:hover::before{width:100%;}
     .sector-label{font-size:0.62rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:8px;}
     .sector-problem{font-size:0.82rem;color:var(--muted);line-height:1.8;margin-bottom:16px;}
-    .sector-move-label{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:6px;}
-    .sector-move{font-size:0.8rem;color:var(--charcoal-800);line-height:1.8;}
+    .sector-move-label{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-400);margin-bottom:6px;}
+    .sector-move{font-size:0.8rem;color:var(--white);line-height:1.8;}
 
     .playbook-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
     .playbook-step{background:var(--charcoal-900);padding:32px 36px;display:flex;gap:20px;align-items:flex-start;}
-    .step-num{font-family:var(--font-display);font-size:2rem;font-weight:300;color:rgba(201,168,76,0.25);line-height:1;flex-shrink:0;width:40px;}
+    .step-num{font-family:var(--font-display);font-size:2rem;font-weight:300;color:rgba(247, 246, 244, 0.2);line-height:1;flex-shrink:0;width:40px;}
     .step-content{}
-    .step-title{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:6px;}
+    .step-title{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-400);margin-bottom:6px;}
     .step-body{font-size:0.8rem;color:var(--muted);line-height:1.8;}
 
     .stats-band{padding:72px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
@@ -153,7 +153,7 @@
     .footer-links{display:flex;gap:28px;flex-wrap:wrap;}
     .footer-links a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);}
     .footer-links a:hover{color:var(--gold-300);}
-    .footer-copy{font-size:0.7rem;color:rgba(138,138,138,0.5);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
+    .footer-copy{font-size:0.7rem;color:rgba(19, 19, 19, 0.938);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
 
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);}
     .reveal.visible{opacity:1;transform:translateY(0);}
@@ -189,6 +189,8 @@
 
 </head>
 <body>
+
+  <!-- NAV -->
   <nav id="main-nav">
     <a href="index.html" class="nav-logo">Energizing <span>Solutions</span></a>
     <ul class="nav-links">
@@ -225,6 +227,7 @@
           <li><a href="cost-optimization.html">Cost Optimization</a></li>
           <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
           <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+          <li><a href="support-for-continuous-deployment.html">Continuous Deployment</a></li>
         </ul>
       </li>
       <li><a href="portfolio.html">Portfolio</a></li>
@@ -233,7 +236,7 @@
   </nav>
 
   <!-- Mobile Close (outside menu so position:fixed works regardless of parent display) -->
-  <span class="mobile-close" id="mobile-close">&#x2715;</span>
+  <span class="mobile-close" id="mobile-close">✕</span>
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
@@ -262,7 +265,7 @@
     </div>
 
     <div class="mobile-dropdown">
-      <button class="mobile-dropdown-btn">Products <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <button class="mobile-dropdown-btn">Products <span class="mobile-dropdown-arrow">▼</span></button>
       <div class="mobile-dropdown-list">
         <a href="applied-observability.html">Applied Observability</a>
         <a href="system-understanding.html">System Understanding</a>
@@ -273,17 +276,20 @@
         <a href="cost-optimization.html">Cost Optimization</a>
         <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
         <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+        <a href="support-for-continuous-deployment.html">Continuous Deployment</a>
       </div>
     </div>
 
     <a href="portfolio.html">Portfolio</a>
+    <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
   </div>
 
   <div class="chapter-nav" style="position:relative;">
     <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
     <button class="ch-nav-btn right" id="ch-btn-right" aria-label="Scroll right">&#8594;</button>
     <div class="chapter-nav-inner" id="ch-scroller">
-      <span class="chapter-nav-label">Applied Observabilityâ„¢</span>
+      <span class="chapter-nav-label">Applied Observability</span>
       <a href="applied-observability.html" class="ch-link">Overview</a>
       <a href="system-understanding.html" class="ch-link">Ch.1 System Understanding</a>
       <a href="datadriven-decisionmaking.html" class="ch-link">Ch.2 Data-Driven Decisions</a>
@@ -293,15 +299,16 @@
       <a href="cost-optimization.html" class="ch-link">Ch.6 Cost Optimization</a>
       <a href="its-telemetry-adoption.html" class="ch-link">Ch.7 Telemetry Adoption</a>
       <a href="faster-troubleshooting-and-issue-resolution.html" class="ch-link active">Ch.8 Faster Troubleshooting</a>
+      <a href="support-for-continuous-deployment.html" class="ch-link">Ch.9 Continuous Deployment</a>
     </div>
   </div>
 
   <!-- HERO -->
   <section class="page-hero">
     <div class="hero-inner">
-      <div class="hero-eyebrow reveal">Applied Observabilityâ„¢ â€” Chapter 08</div>
+      <div class="hero-eyebrow reveal">Applied Observability — Chapter 08</div>
       <h1 class="reveal reveal-delay-1">Faster Troubleshooting &amp;<br><em>Issue Resolution</em></h1>
-      <p class="hero-desc reveal reveal-delay-2">The incident is not your problem. The hours you spent finding it are. Applied Observabilityâ„¢ closes the gap between when something breaks and when someone knows why â€” one playbook, 13 plays, zero patience for slow incident response.</p>
+      <p class="hero-desc reveal reveal-delay-2">The incident is not your problem. The hours you spent finding it are. Applied Observability closes the gap between when something breaks and when someone knows why — one playbook, 13 plays, zero patience for slow incident response.</p>
     </div>
   </section>
 
@@ -313,7 +320,7 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="reveal reveal-delay-2">
         <div>
           <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">Your monitoring systems are firing. Your on-call engineer is awake at 3 AM. Your customers are already tweeting about it. And your team is ninety minutes into a war room that should have taken eight minutes.</p>
-          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">That gap â€” between when something breaks and when someone knows why â€” is where revenue dies, reputations erode, and engineers quit. It is not a technology problem. It is a visibility problem wearing a technology problem's clothes.</p>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">That gap between when something breaks and when someone knows why is where revenue dies, reputations erode, and engineers quit. It is not a technology problem. It is a visibility problem wearing a technology problem's clothes.</p>
           <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;">The 2024 Logz.io Observability Pulse found over 80% of enterprise teams report MTTR exceeding multiple hours. Only 9% are satisfied with how fast they resolve incidents. That means 91% of organizations are paying full price for systems they cannot fix fast enough to protect the business they built.</p>
         </div>
         <div style="background:var(--charcoal-700);border:1px solid var(--border);padding:36px;position:relative;">
@@ -342,7 +349,7 @@
   <section class="section">
     <div class="section-inner">
       <div class="section-label reveal">Strategic Business Value</div>
-      <h2 class="section-title reveal reveal-delay-1">Outcomes by <em>Stakeholder</em></h2>
+      <h2 class="section-title reveal reveal-delay-1"><em>Outcomes by Stakeholder</em></h2>
       <div class="outcomes-grid">
         <div class="outcome reveal reveal-delay-1">
           <div class="outcome-num">Org</div>
@@ -355,7 +362,7 @@
           <div class="outcome-num">Exec</div>
           <div class="outcome-content">
             <div class="outcome-title">For Executives &amp; Leaders</div>
-            <p class="outcome-body">Insight into real-time operations turns executives into proactive strategists. SLO dashboards give executives a real-time view of reliability as a business metric, not a technical abstraction. CIOs and CTOs gain credibility by preventing crises â€” tying technical reliability directly to business goals.</p>
+            <p class="outcome-body">Insight into real-time operations turns executives into proactive strategists. SLO dashboards give executives a real-time view of reliability as a business metric, not a technical abstraction. CIOs and CTOs gain credibility by preventing crises by tying technical reliability directly to business goals.</p>
           </div>
         </div>
         <div class="outcome reveal reveal-delay-3">
@@ -369,7 +376,7 @@
           <div class="outcome-num">B2C</div>
           <div class="outcome-content">
             <div class="outcome-title">For Consumers</div>
-            <p class="outcome-body">Services that stay up longer and faster. When problems do occur, fixes happen faster â€” meaning fewer user frustrations. MTTR under 15 minutes for P0 incidents is the new expectation. Customers get the seamless experience they expect: no abandoned checkouts, no login failures.</p>
+            <p class="outcome-body">Services that stay up longer and faster. When problems do occur, fixes happen faster, meaning fewer user frustrations. MTTR under 15 minutes for P0 incidents is the new expectation. Customers get the seamless experience they expect: no abandoned checkouts, no login failures.</p>
           </div>
         </div>
       </div>
@@ -379,45 +386,45 @@
   <!-- 13 SUBCHAPTERS -->
   <section class="section section-alt">
     <div class="section-inner">
-      <div class="section-label reveal">The 13 Plays</div>
-      <h2 class="section-title reveal reveal-delay-1">Chapter 8 Subchapters:<br><em>The Full Troubleshooting Playbook</em></h2>
+      <div class="section-label reveal">The Plays</div>
+      <h2 class="section-title reveal reveal-delay-1"><em>The Full Troubleshooting Playbook</em></h2>
       <div class="cards-grid">
 
         <div class="card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          <div class="card-tag">Play 8.1</div>
+          <div class="card-tag">Play.1</div>
           <div class="card-title">Comprehensive Telemetry</div>
           <p class="card-hook">Your Monitoring System Has Three Blind Spots. You Just Do Not Know Which Three.</p>
-          <p class="card-body">Metrics, Events, Logs, and Traces â€” the MELT model â€” is the minimum viable signal set for understanding internal system state from external outputs. Miss any one and you are flying with a partially functional instrument panel. OpenTelemetry (76% adoption) is the industry answer to telemetry fragmentation.</p>
+          <p class="card-body">Metrics, Events, Logs, and Traces - the MELT model - is the minimum viable signal set for understanding internal system state from external outputs. Miss any one and you are flying with a partially functional instrument panel. OpenTelemetry (76% adoption) is the industry answer to telemetry fragmentation.</p>
         </div>
 
         <div class="card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          <div class="card-tag">Play 8.2</div>
+          <div class="card-tag">Play.2</div>
           <div class="card-title">Real-time Analytics &amp; AI Automation</div>
           <p class="card-hook">Your Engineers Are Not Slow. Your Data Pipeline Is.</p>
-          <p class="card-body">AIOps correlates CPU spikes, error log patterns, and deployment timestamps within 90 seconds of anomaly detection. AIOps adopters see 15â€“45% reduction in high-priority incidents and 70â€“90% less investigation time. BigPanda reports up to 95% alert volume reduction through intelligent correlation.</p>
+          <p class="card-body">AIOps correlates CPU spikes, error log patterns, and deployment timestamps within 90 seconds of anomaly detection. AIOps adopters see 15-45% reduction in high-priority incidents and 70-90% less investigation time. BigPanda reports up to 95% alert volume reduction through intelligent correlation.</p>
         </div>
 
         <div class="card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-          <div class="card-tag">Play 8.3</div>
+          <div class="card-tag">Play.3</div>
           <div class="card-title">Automated Alerting &amp; Incident Workflows</div>
           <p class="card-hook">Runbooks Are Not Bureaucracy. They Are the 10-Minute Fix vs. the 3-Hour War Room.</p>
-          <p class="card-body">The gap between knowing something is wrong and knowing what to do about it is where most MTTR lives. Industry leaders target P1 MTTR under 15 minutes â€” not through exceptional engineers, but through pre-built runbooks and automated triage workflows designed before the crisis, not during it.</p>
+          <p class="card-body">The gap between knowing something is wrong and knowing what to do about it is where most MTTR lives. Industry leaders target P1 MTTR under 15 minutes - not through exceptional engineers, but through pre-built runbooks and automated triage workflows designed before the crisis, not during it.</p>
         </div>
 
         <div class="card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          <div class="card-tag">Play 8.4</div>
+          <div class="card-tag">Play.4</div>
           <div class="card-title">Chaos Engineering &amp; Resilience Testing</div>
           <p class="card-hook">Your Next Outage Is Already Designed. You Just Have Not Run the Experiment Yet.</p>
-          <p class="card-body">Chaos engineering is the discipline of finding your failures before your customers do. 59% of organizations now deploy it as a core SRE practice. The chaos engineering market reached $843M in 2025, on a trajectory to $3.5B by 2030. The July 2024 CrowdStrike failure proved: chaos engineering is not expensive â€” not doing it is.</p>
+          <p class="card-body">Chaos engineering is the discipline of finding your failures before your customers do. 59% of organizations now deploy it as a core SRE practice. The chaos engineering market reached $843M in 2025, on a trajectory to $3.5B by 2030. The July 2024 CrowdStrike failure proved: chaos engineering is not expensive - not doing it is.</p>
         </div>
 
         <div class="card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-          <div class="card-tag">Play 8.5</div>
+          <div class="card-tag">Play.5</div>
           <div class="card-title">Root-Cause Analysis &amp; Diagnostic Tools</div>
           <p class="card-hook">You Did Not Fix the Problem. You Fixed the Symptom. It Will Be Back.</p>
           <p class="card-body">RCA is the discipline that breaks the loop â€” not by finding what is wrong, but by finding why it is wrong, permanently. Studies show observability reduces MTTR by up to 45% through better diagnostic tooling. The trace-to-log-to-metric correlation that takes hours in fragmented tooling takes minutes in a unified platform.</p>
@@ -425,7 +432,7 @@
 
         <div class="card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          <div class="card-tag">Play 8.6</div>
+          <div class="card-tag">Play.6</div>
           <div class="card-title">Cross-Functional Collaboration &amp; Culture</div>
           <p class="card-hook">You Do Not Have a Communication Problem. You Have a Context Problem.</p>
           <p class="card-body">The most underestimated enabler of fast troubleshooting is shared context â€” when every stakeholder looks at the same observability data, the conversation shifts from "whose fault is this" to "where is this and how do we fix it together." 85% of DevOps teams use multiple monitoring tools; 52% are moving to unified platforms to resolve fragmentation.</p>
@@ -433,15 +440,15 @@
 
         <div class="card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          <div class="card-tag">Play 8.7</div>
+          <div class="card-tag">Play.7</div>
           <div class="card-title">Infrastructure &amp; Cloud Observability</div>
           <p class="card-hook">Your Cloud Provider Has an SLA. Your Architecture Does Not.</p>
-          <p class="card-body">The cloud does not fail uniformly. It fails in ways your provider's SLA does not cover â€” network partitions between availability zones, control plane API slowdowns, noisy neighbors degrading connection pools. 89% of large enterprises run multi-cloud. Every cloud boundary is a potential blind spot. Infrastructure observability closes them.</p>
+          <p class="card-body">The cloud does not fail uniformly. It fails in ways your provider's SLA does not cover network partitions between availability zones, control plane API slowdowns, noisy neighbors degrading connection pools. 89% of large enterprises run multi-cloud. Every cloud boundary is a potential blind spot. Infrastructure observability closes them.</p>
         </div>
 
         <div class="card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
-          <div class="card-tag">Play 8.8</div>
+          <div class="card-tag">Play.8</div>
           <div class="card-title">Application &amp; Microservices Observability</div>
           <p class="card-hook">Your Application Is Observable. Your Business Logic Is Not.</p>
           <p class="card-body">Monitoring tells you the API responds in 200ms. Observability tells you the 0.01% of requests taking 8 seconds are all from mobile users in Southeast Asia, hitting a database shard with a missing index introduced eleven days ago. High-cardinality attributes let you slice telemetry by user cohort, tenant, feature flag, and geography.</p>
@@ -449,15 +456,15 @@
 
         <div class="card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-          <div class="card-tag">Play 8.9</div>
+          <div class="card-tag">Play.9</div>
           <div class="card-title">Business &amp; Financial Observability</div>
           <p class="card-hook">If Your Engineers Cannot See the Revenue Impact of an Incident, They Are Optimizing in the Dark.</p>
-          <p class="card-body">Revenue, cloud cost, conversion rate, churn risk â€” all observable. Applied Observability treats business metrics as first-class telemetry signals. The FinOps Foundation documents $805B in cloud spend under active management, most still optimized through monthly billing review rather than real-time telemetry alerting. That gap is the opportunity.</p>
+          <p class="card-body">Revenue, cloud cost, conversion rate, churn risk - all observable. Applied Observability treats business metrics as first-class telemetry signals. The FinOps Foundation documents $805B in cloud spend under active management, most still optimized through monthly billing review rather than real-time telemetry alerting. That gap is the opportunity.</p>
         </div>
 
         <div class="card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          <div class="card-tag">Play 8.10</div>
+          <div class="card-tag">Play.10</div>
           <div class="card-title">UX / End-User Observability</div>
           <p class="card-hook">Your p99 Latency Is Fine. Your Users Are Gone.</p>
           <p class="card-body">Backend engineers celebrate when the API responds in 45ms. Meanwhile, the mobile user on a 4G connection experienced 8 seconds of loading and abandoned checkout. Real User Monitoring, synthetic testing, and user journey SLOs close the gap between what systems report and what users experience. Organizations with mature UX observability report 85% faster incident resolution on user-facing performance issues.</p>
@@ -465,7 +472,7 @@
 
         <div class="card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-          <div class="card-tag">Play 8.11</div>
+          <div class="card-tag">Play.11</div>
           <div class="card-title">Security Observability &amp; Compliance</div>
           <p class="card-hook">Every Breach Has a Telemetry Trail. The Question Is Whether You Were Looking.</p>
           <p class="card-body">Security anomalies and performance anomalies look identical in telemetry. A DDoS manifests as a latency spike. Credential stuffing manifests as an authentication error surge. Data exfiltration manifests as unusual API call patterns. Unified observability makes the full picture visible to security and performance teams simultaneously. Average breach cost: $4.88M.</p>
@@ -473,18 +480,18 @@
 
         <div class="card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-          <div class="card-tag">Play 8.12</div>
+          <div class="card-tag">Play.12</div>
           <div class="card-title">Governance, Compliance &amp; Data Ethics</div>
           <p class="card-hook">Observability Without Governance Is a GDPR Violation with Good Intentions.</p>
-          <p class="card-body">The same telemetry that enables fast troubleshooting can, if mishandled, create the data breach you were trying to prevent. EU DORA, the EU AI Act (fines up to EUR 35M or 7% of global turnover), and GDPR are not optional obligations. Governance is not bureaucracy layered on observability â€” it is the architecture that makes observability trustworthy.</p>
+          <p class="card-body">The same telemetry that enables fast troubleshooting can, if mishandled, create the data breach you were trying to prevent. EU DORA, the EU AI Act (fines up to EUR 35M or 7% of global turnover), and GDPR are not optional obligations. Governance is not bureaucracy layered on observability, it is the architecture that makes observability trustworthy.</p>
         </div>
 
         <div class="card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          <div class="card-tag">Play 8.13</div>
+          <div class="card-tag">Play.13</div>
           <div class="card-title">Observability Culture &amp; Continuous Improvement</div>
           <p class="card-hook">Observability Is Not a Tool. It Is a Habit. And Most Organizations Have Not Formed It Yet.</p>
-          <p class="card-body">You can buy the best observability platform, instrument every service, and build stunning dashboards â€” and engineers will still resolve incidents by SSHing into the box and grepping logs, because nobody made the dashboard the faster path until the culture changed. The Dynatrace State of Observability 2025: 70% of organizations increased observability budgets. The budget is not the problem. The culture is.</p>
+          <p class="card-body">You can buy the best observability platform, instrument every service, and build stunning dashboards, and engineers will still resolve incidents by SSHing into the box and grepping logs, because nobody made the dashboard the faster path until the culture changed. The Dynatrace State of Observability 2025: 70% of organizations increased observability budgets. The budget is not the problem. The culture is.</p>
         </div>
 
       </div>
@@ -495,7 +502,7 @@
   <section class="section">
     <div class="section-inner">
       <div class="section-label reveal">Sector Lens</div>
-      <h2 class="section-title reveal reveal-delay-1">Where the <em>Plays Get Real</em></h2>
+      <h2 class="section-title reveal reveal-delay-1"><em>Where the Plays Get Real</em></h2>
       <p style="font-size:0.9rem;color:var(--muted);max-width:640px;line-height:1.85;margin-bottom:48px;" class="reveal reveal-delay-2">Every industry feels this pain differently. The playbook adapts.</p>
       <div class="sector-grid">
 
@@ -559,8 +566,8 @@
   <section class="section section-alt">
     <div class="section-inner">
       <div class="section-label reveal">The Playmakers</div>
-      <h2 class="section-title reveal reveal-delay-1">The 12-Step Playbook for<br><em>Institutionalizing Applied Observability</em></h2>
-      <p style="font-size:0.9rem;color:var(--muted);max-width:640px;line-height:1.85;margin-bottom:48px;" class="reveal reveal-delay-2">Building on all 13 enablers above, here is the step-by-step playbook for organizations looking to institutionalize Applied Observabilityâ„¢. Together these plays form a feedback loop of Measure â†’ Analyze â†’ Fix â†’ Automate.</p>
+      <h2 class="section-title reveal reveal-delay-1">The Playbook for<br><em>Institutionalizing Applied Observability</em></h2>
+      <p style="font-size:0.9rem;color:var(--muted);max-width:640px;line-height:1.85;margin-bottom:48px;" class="reveal reveal-delay-2">Building on the 13 enablers above, here is the step-by-step playbook for organizations looking to institutionalize Applied Observability. Together these plays form a feedback loop of Measure > Analyze > Fix > Automate.</p>
       <div class="playbook-steps">
 
         <div class="playbook-step reveal reveal-delay-1">
@@ -591,7 +598,7 @@
           <div class="step-num">04</div>
           <div class="step-content">
             <div class="step-title">Build Dashboards &amp; Alerts</div>
-            <p class="step-body">Single pane of glass for incident investigation. MTTR reduction begins the moment correlation replaces manual triangulation. 50â€“95% alert volume reduction within 90 days through AI-driven prioritization.</p>
+            <p class="step-body">Single pane of glass for incident investigation. MTTR reduction begins the moment correlation replaces manual triangulation. 50-95% alert volume reduction within 90 days through AI-driven prioritization.</p>
           </div>
         </div>
 
@@ -655,7 +662,7 @@
           <div class="step-num">12</div>
           <div class="step-content">
             <div class="step-title">Plan for the Future (Quantum, AI)</div>
-            <p class="step-body">Extend OTel pipelines to accept quantum telemetry. Define qubit-fidelity SLOs. Chaos engineering at quantum-classical handoff points. Observability pipeline architecture-agnostic â€” ready for hybrid classical-quantum workloads without a full reinstrumentation project.</p>
+            <p class="step-body">Extend OTel pipelines to accept quantum telemetry. Define qubit-fidelity SLOs. Chaos engineering at quantum-classical handoff points. Observability pipeline architecture-agnostic - ready for hybrid classical-quantum workloads without a full reinstrumentation project.</p>
           </div>
         </div>
 
@@ -670,7 +677,7 @@
       <p class="reveal reveal-delay-1">Applied Observabilityâ„¢: The Playmaker's Framework â€” Chapter 8 is one of twelve chapters across three volumes. Five years of enterprise IT program leadership across Fortune 500 environments. One playbook. Zero patience for the idea that slow incident response is a cost of doing business.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
         <a href="index.html#contact" class="btn-gold">Schedule a Discovery Call</a>
-        <a href="applied-observability.html" class="btn-ghost">Back to Overview</a>
+        <a href="applied-observability.html" class="btn-gold">Back to Overview</a>
       </div>
     </div>
   </section>
