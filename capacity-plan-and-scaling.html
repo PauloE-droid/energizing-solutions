@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Chapter 04 â€” Capacity Planning & Scalability â€” Energizing Solutions</title>
+  <title>Chapter 04 - Capacity Planning & Scalability - Energizing Solutions</title>
   <meta name="description" content="Strategic capacity planning powered by observability â€” merging demand forecasting, infrastructure strategy, and organizational goals."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -106,9 +106,9 @@
     .card-icon{width:36px;height:36px;color:var(--gold-400);margin-bottom:18px;opacity:0.85;}
     .outcomes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
     .outcome{background:var(--charcoal-900);padding:36px 40px;display:flex;gap:20px;align-items:flex-start;}
-    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(201,168,76,0.2);line-height:1;flex-shrink:0;width:48px;}
+    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(250, 217, 126, 0.822);line-height:1;flex-shrink:0;width:48px;}
     .outcome-content{}
-    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;}
+    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:8px;}
     .outcome-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
     .stats-band{padding:72px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
     .stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);}
@@ -252,6 +252,8 @@
     </div>
 
     <a href="portfolio.html">Portfolio</a>
+    <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>    
   </div>
   <div class="chapter-nav" style="position:relative;">
     <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
@@ -273,16 +275,16 @@
   </div>
   <section class="page-hero">
     <div class="hero-inner">
-      <div class="hero-eyebrow reveal">Applied Observabilityâ„¢ â€” Chapter 04</div>
-      <h1 class="reveal reveal-delay-1">Capacity Planning<br>&amp; <em>Scalability</em></h1>
-      <p class="hero-desc reveal reveal-delay-2">Strategic capacity planning is not a checklist item â€” it's a core business function. Merging demand forecasting, infrastructure strategy, and organizational goals into a cohesive roadmap. Observe, forecast, plan, scale, refine.</p>
+      <div class="hero-eyebrow reveal">Applied Observability - Chapter 04</div>
+      <h1 class="reveal reveal-delay-1">Capacity Planning &amp; <em>Scalability</em></h1>
+      <p class="hero-desc reveal reveal-delay-2">Strategic capacity planning is not a checklist item, it's a core business function. Merging demand forecasting, infrastructure strategy, and organizational goals into a cohesive roadmap. Observe, forecast, plan, scale, refine.</p>
     </div>
   </section>
 
   <section class="section section-alt">
     <div class="section-inner">
       <div class="section-label reveal">Strategic Foundation</div>
-      <h2 class="section-title reveal reveal-delay-1">Strategic vs. Tactical:<br><em>Two Vital Perspectives</em></h2>
+      <h2 class="section-title reveal reveal-delay-1"><em>Strategic vs. Tactical: Two Vital Perspectives</em></h2>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);" class="reveal reveal-delay-2">
         <div style="background:var(--charcoal-700);padding:36px 32px;position:relative;"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));"></div><div style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-300);margin-bottom:12px;">Strategic</div><div style="font-family:var(--font-display);font-size:0.9rem;color:var(--muted);margin-bottom:8px;">Long Horizon (Years)</div><p style="font-size:0.8rem;color:var(--muted);line-height:1.8;">Guiding investments and preparing for market expansion. Ensures systems evolve harmoniously with business goals.</p></div>
         <div style="background:var(--charcoal-700);padding:36px 32px;"><div style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-300);margin-bottom:12px;">Tactical</div><div style="font-family:var(--font-display);font-size:0.9rem;color:var(--muted);margin-bottom:8px;">Medium Horizon (Months)</div><p style="font-size:0.8rem;color:var(--muted);line-height:1.8;">Fine-tuning budgeted capacity aligned with upcoming events. Reactive adjustments within approved budgets.</p></div>
@@ -293,7 +295,7 @@
   <section class="section">
     <div class="section-inner">
       <div class="section-label reveal">The Feedback Loop</div>
-      <h2 class="section-title reveal reveal-delay-1">Observe â†’ Forecast â†’<br><em>Plan â†’ Scale â†’ Refine</em></h2>
+      <h2 class="section-title reveal reveal-delay-1">Observe > Forecast > <em> Plan > Scale > Refine</em></h2>
       <div class="outcomes-grid">
         <div class="outcome reveal reveal-delay-1"><div class="outcome-num">01</div><div class="outcome-content"><div class="outcome-title">Observability as Input</div><p class="outcome-body">Real-time and historical telemetry provide the data foundation. Metrics and trends show where we've been and how fast we're growing. Logs and traces pinpoint bottlenecks â€” slow queries, memory saturation â€” that long-term planning must address.</p></div></div>
         <div class="outcome reveal reveal-delay-2"><div class="outcome-num">02</div><div class="outcome-content"><div class="outcome-title">Forecast & Plan</div><p class="outcome-body">Historical consumption patterns enable accurate forecasting. Capacity planning functions as a strategic discipline â€” not a checklist â€” merging demand forecasting, infrastructure strategy, and organizational goals into a cohesive roadmap.</p></div></div>
@@ -315,8 +317,8 @@
       <h2 class="reveal">Continue the<br><em>Chapter Journey</em></h2>
       <p class="reveal reveal-delay-1">Next chapter explores how observability improves user experience through RUM and XLOs.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
-        <a href="improved-user-experience.html" class="btn-gold">Next: User Experience</a>
-        <a href="applied-observability.html" class="btn-ghost">Back to Overview</a>
+        <a href="improved-user-experience.html" class="btn-gold">Next: Improved User Experience</a>
+        <a href="applied-observability.html" class="btn-gold">Back to Overview</a>
       </div>
     </div>
   </section>
