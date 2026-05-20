@@ -98,7 +98,7 @@
     .hero-creds { display: flex; gap: 10px; flex-wrap: wrap; }
     .hero-cred { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.12em; padding: 4px 12px; border: 1px solid var(--border); color: var(--muted); }
     .hero-right { display: flex; flex-direction: column; gap: 2px; background: var(--border); }
-    .hero-stat-card { background: var(--charcoal-900); padding: 36px 40px; position: relative; overflow: hidden; transition: background var(--transition); }
+    .hero-stat-card { background: var(--charcoal-900); padding: 16px 40px; position: relative; overflow: hidden; transition: background var(--transition); }
     .hero-stat-card:hover { background: var(--charcoal-700); }
     .hero-stat-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--gold-400); transition: width 0.4s ease; }
     .hero-stat-card:hover::before { width: 2px; }
@@ -404,46 +404,6 @@
     </div>
   </section><br />
 
-  <!-- CLIENTS STRIP -->
-  <div class="clients-strip reveal">
-    <div class="clients-inner">
-      <span class="section-label reveal">Notable Engagements:</span>
-        <div class="clients-list">
-          <div class="clients-group">
-            <span class="section-label reveal">Energy/Utilities:</span>
-              <span>British Gas / Centrica</span>
-              <div class="clients-dot"></div>
-              <span>Engie / Cofely UK</span>
-              <div class="clients-dot"></div>
-              <span>Puget Sound Energy</span>
-              <div class="clients-dot"></div>
-              <span>ENSA EPM Group</span>
-              <div class="clients-dot"></div>
-              <span>DTE Energy</span>
-          </div>
-          <br />
-          <div class="clients-group">
-            <span class="section-label reveal">Manufacturing:</span>
-              <span>Honda Manufacturing</span>
-              <div class="clients-dot"></div>
-              <span>John Deere</span>
-              <div class="clients-dot"></div>
-              <span>Stanley Black n Decker</span>
-          <div class="clients-separator"></div>
-          <br />
-          <div class="clients-group">
-            <span class="section-label reveal">Aviation:</span>
-              <span>Northrop Grumman</span>
-              <div class="clients-dot"></div>
-              <span>FlightSafety</span>
-              <div class="clients-dot"></div>
-              <span>Gulfstream</span>
-          </div>
-          </div>
-        </div>
-    </div>
-  </div>
-
   <!-- SERVICES -->
   <section id="services" class="section">
     <div class="section-inner">
@@ -503,24 +463,6 @@
           <div class="about-placeholder">
             <img src="Images/ChatGPT Image Jun 25, 2025, 11_27_55 AM.png" alt="Paul Esteves" style="width:75%;height:75%;object-fit:cover;display:block;" />
           </div>
-          <div class="about-stats">
-            <div class="about-stat">
-              <div class="about-stat-num">20+</div>
-              <div class="about-stat-label">Years Enterprise IT Leadership</div>
-            </div>
-            <div class="about-stat">
-              <div class="about-stat-num">$300M</div>
-              <div class="about-stat-label">ROI Delivered</div>
-            </div>
-            <div class="about-stat">
-              <div class="about-stat-num">$1.0B</div>
-              <div class="about-stat-label">Enterprise Value Creation</div>
-            </div>
-            <div class="about-stat">
-              <div class="about-stat-num">38+</div>
-              <div class="about-stat-label">Major Clients</div>
-            </div>
-          </div>
         </div>
         <div class="about-right reveal reveal-delay-1">
           <div class="section-label">About</div>
@@ -542,6 +484,43 @@
       </div>
     </div>
   </section>
+
+  <!-- CLIENTS STRIP -->
+  <div class="clients-strip reveal">
+    <div class="clients-inner">
+      <span class="section-label reveal">Notable Engagements:</span>
+        <div class="clients-list">
+          <div class="clients-group">
+            <span class="section-label reveal">Energy/Utilities:</span>
+              <span>British Gas / Centrica</span>
+              <div class="clients-dot"></div>
+              <span>Engie / Cofely UK</span>
+              <div class="clients-dot"></div>
+              <span>Puget Sound Energy</span>
+              <div class="clients-dot"></div>
+              <span>ENSA EPM Group</span>
+              <div class="clients-dot"></div>
+              <span>DTE Energy</span>
+          </div>
+          <div class="clients-group">
+            <span class="section-label reveal">Manufacturing:</span>
+              <span>Honda Manufacturing</span>
+              <div class="clients-dot"></div>
+              <span>John Deere</span>
+              <div class="clients-dot"></div>
+              <span>Stanley Black n Decker</span>
+          </div>
+          <div class="clients-group">
+            <span class="section-label reveal">Aviation:</span>
+              <span>Northrop Grumman</span>
+              <div class="clients-dot"></div>
+              <span>FlightSafety</span>
+              <div class="clients-dot"></div>
+              <span>Gulfstream</span><br />
+          </div>
+        </div>
+    </div>
+  </div>
 
   <!-- TESTIMONIALS -->
   <section id="testimonials" class="section">
@@ -605,20 +584,12 @@
     <div class="section-inner">
       <div class="contact-inner">
         <div class="section-label reveal" style="justify-content:center;">Let's Talk</div>
-        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:20px;">Start a <em>Conversation</em></h2>
+        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:20px;"><em>Start a Conversation</em></h2>
         <p class="contact-sub reveal reveal-delay-2">Whether you're navigating a program at risk, standing up a PMO, or need an experienced operator to lead a complex transformation â€” let's find out if we're a fit.</p>
-        <div class="contact-links reveal reveal-delay-3">
-          <a href="mailto:paul.esteves@energizing-solutions.com" class="contact-link">
-            <span class="contact-icon">email</span>
-            <span>paul.esteves@energizing-solutions.com</span>
-          </a>
-          <a href="https://github.com/PauloE-droid" target="_blank" rel="noopener" class="contact-link">
-            <span class="contact-icon">github</span>
-            <span>github.com/PauloE-droid</span>
-          </a>
-        </div>
         <div class="reveal reveal-delay-4">
           <a href="mailto:paul.esteves@energizing-solutions.com" class="btn-gold">Get In Touch</a>
+          <a href="https://calendly.com/paesteves/30min" class="btn-gold">Schedule a Call</a>
+          <a href="https://github.com/PauloE-droid" class="btn-gold">View My Work</a>
         </div>
       </div>
     </div>
