@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project &amp; Program Management â€” Energizing Solutions</title>
-  <meta name="description" content="Enterprise project and program management services by Energizing Solutions â€” strategic alignment, governance, risk management, and program delivery excellence." />
+  <title>Transformation Management Office — Energizing Solutions</title>
+  <meta name="description" content="Energizing Solutions establishes, governs, and sustains enterprise Transformation Management Offices — observable, accountability-driven, outcomes-first." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -86,7 +86,7 @@
     .dropdown-menu a:hover { color: var(--gold-300); background: rgba(201,168,76,0.06); }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); }
-        .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal-900); z-index: 999; flex-direction: column; align-items: center; justify-content: flex-start; overflow-y: auto; padding: 88px 24px 48px; gap: 0; }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal-900); z-index: 999; flex-direction: column; align-items: center; justify-content: flex-start; overflow-y: auto; padding: 88px 24px 48px; gap: 0; }
     .mobile-menu.open { display: flex; }
     .mobile-menu > a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 10px; transition: color var(--transition); }
     .mobile-menu > a:hover { color: var(--gold-300); }
@@ -100,7 +100,6 @@
     .mobile-dropdown.open .mobile-dropdown-list { display: flex; }
     .mobile-dropdown-list a { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-400); padding: 6px 10px; transition: color var(--transition); }
     .mobile-dropdown-list a:hover { color: var(--gold-300); }
-
 
     /* =============================
        PAGE HERO
@@ -162,11 +161,35 @@
       color: var(--gold-300);
     }
     .hero-desc {
-      max-width: 620px;
+      max-width: 640px;
       font-size: 1rem;
       font-weight: 300;
       color: var(--muted);
       line-height: 1.8;
+    }
+    .hero-meta {
+      margin-top: 40px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-meta-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+    }
+    .hero-meta-value {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--charcoal-800);
     }
 
     /* =============================
@@ -214,6 +237,15 @@
       font-style: italic;
       color: var(--gold-300);
     }
+    .section-intro {
+      max-width: 720px;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-top: -32px;
+      margin-bottom: 56px;
+    }
 
     /* =============================
        SERVICE CARDS GRID
@@ -223,6 +255,9 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
       background: var(--border);
+    }
+    .services-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .service-card {
@@ -276,11 +311,200 @@
       color: var(--muted);
     }
     .card-body ul li::before {
-      content: 'â€”';
+      content: '—';
       position: absolute;
       left: 0;
       color: var(--gold-400);
       font-size: 0.7rem;
+    }
+
+    /* =============================
+       THREE-PHASE ARC
+    ============================= */
+    .phase-section {
+      background: var(--charcoal-900);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 96px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .phase-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .phase-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .phase-header {
+      margin-bottom: 72px;
+    }
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .phase-connector {
+      position: absolute;
+      top: 40px;
+      left: calc(33.333% - 10px);
+      right: calc(33.333% - 10px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold-400), transparent, var(--gold-400));
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .phase-card {
+      padding: 40px 36px;
+      position: relative;
+      z-index: 1;
+      border-right: 1px solid var(--border);
+    }
+    .phase-card:last-child { border-right: none; }
+    .phase-number {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--gold-400);
+      opacity: 0.25;
+      position: absolute;
+      top: 28px; right: 28px;
+      letter-spacing: -0.03em;
+    }
+    .phase-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .phase-label::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--gold-400);
+    }
+    .phase-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .phase-title em {
+      font-style: italic;
+      color: var(--gold-300);
+    }
+    .phase-body {
+      font-size: 0.83rem;
+      font-weight: 300;
+      color: rgba(245, 244, 240, 0.65);
+      line-height: 1.9;
+    }
+    .phase-body ul {
+      padding-left: 0;
+      margin-top: 14px;
+    }
+    .phase-body ul li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+    }
+    .phase-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold-400);
+      font-size: 0.65rem;
+      top: 2px;
+    }
+
+    /* =============================
+       OBSERVABILITY BRIDGE BAND
+    ============================= */
+    .obs-bridge {
+      padding: 72px 48px;
+      background: linear-gradient(135deg, rgba(7,42,108,0.04) 0%, transparent 60%);
+      border-bottom: 1px solid var(--border);
+    }
+    .obs-bridge-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .obs-bridge-text h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--charcoal-800);
+      margin-bottom: 20px;
+    }
+    .obs-bridge-text h3 em {
+      font-style: italic;
+      color: var(--gold-300);
+    }
+    .obs-bridge-text p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+    .obs-bridge-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pillar-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: var(--charcoal-900);
+      padding: 20px 24px;
+      transition: background var(--transition);
+    }
+    .pillar-row:hover { background: var(--charcoal-700); }
+    .pillar-icon {
+      width: 32px; height: 32px;
+      flex-shrink: 0;
+      color: var(--gold-400);
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+    .pillar-content {}
+    .pillar-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .pillar-desc {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(245, 244, 240, 0.6);
+      line-height: 1.7;
     }
 
     /* =============================
@@ -477,19 +701,6 @@
       color: var(--gold-300);
     }
     .footer-logo span { color: var(--charcoal-800); font-weight: 300; }
-    .footer-links {
-      display: flex;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
-    .footer-links a {
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color var(--transition);
-    }
-    .footer-links a:hover { color: var(--gold-300); }
     .footer-copy {
       font-size: 0.7rem;
       color: rgba(138,138,138,0.5);
@@ -526,7 +737,12 @@
     ============================= */
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .phase-grid { grid-template-columns: 1fr; }
+      .phase-connector { display: none; }
+      .phase-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .phase-card:last-child { border-bottom: none; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .obs-bridge-inner { grid-template-columns: 1fr; gap: 48px; }
     }
     @media (max-width: 768px) {
       nav { padding: 0 24px; }
@@ -535,20 +751,21 @@
       .page-hero { padding: calc(var(--nav-height) + 48px) 24px 56px; }
       .section { padding: 64px 24px; }
       .services-grid { grid-template-columns: 1fr; }
+      .services-grid-2 { grid-template-columns: 1fr; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .creds-inner { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
       .creds-divider { display: none; }
       .stats-band { padding: 48px 24px; }
+      .phase-section { padding: 64px 24px; }
+      .obs-bridge { padding: 48px 24px; }
       .cta-section { padding: 64px 24px; }
       footer { padding: 32px 24px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
+      .hero-meta { gap: 24px; }
     }
     @media (max-width: 480px) {
       .stats-inner { grid-template-columns: 1fr; }
     }
-  
-    /* ===== SCROLL ANCHOR OFFSET ===== */
-    section[id], div[id] { scroll-margin-top: calc(var(--nav-height) + 16px); }
 
     /* ===== MUTED ON DARK BACKGROUNDS ===== */
     .dropdown-menu,
@@ -558,6 +775,7 @@
     .creds-section,
     .cred-tag,
     .stat-cell,
+    .phase-section,
     nav.scrolled { --muted: var(--white); }
   </style>
 
@@ -588,8 +806,8 @@
         </a>
         <ul class="dropdown-menu">
           <li><a href="services-overview.html">Services Overview</a></li>
-          <li><a href="transformation-management-office.html">Transformation Management Office</a></li>
-          <li><a href="project-management.html" class="active">Project Management</a></li>
+          <li><a href="transformation-management-office.html" class="active">Transformation Management Office</a></li>
+          <li><a href="project-management.html">Project Management Office</a></li>
           <li><a href="operational-devops.html">Operational DevOps</a></li>
           <li><a href="digital-evolution.html">Digital Evolution</a></li>
         </ul>
@@ -623,6 +841,7 @@
           <li><a href="cost-optimization.html">Cost Optimization</a></li>
           <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
           <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+          <li><a href="support-for-continuous-deployment.html">Continuous Deployment</a></li>
         </ul>
       </li>
       <li><a href="portfolio.html">Portfolio</a></li>
@@ -633,7 +852,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Close (outside menu so position:fixed works regardless of parent display) -->
+  <!-- Mobile Close -->
   <span class="mobile-close" id="mobile-close">&#x2715;</span>
 
   <!-- Mobile Menu -->
@@ -645,7 +864,7 @@
       <div class="mobile-dropdown-list">
         <a href="services-overview.html">Services Overview</a>
         <a href="transformation-management-office.html">Transformation Mgmt Office</a>
-        <a href="project-management.html">Project Management</a>
+        <a href="project-management.html">Project Management Office</a>
         <a href="operational-devops.html">Operational DevOps</a>
         <a href="digital-evolution.html">Digital Evolution</a>
       </div>
@@ -675,6 +894,7 @@
         <a href="cost-optimization.html">Cost Optimization</a>
         <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
         <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+        <a href="support-for-continuous-deployment.html">Continuous Deployment</a>
       </div>
     </div>
 
@@ -687,97 +907,114 @@
   <section class="page-hero">
     <div class="hero-inner">
       <div class="hero-eyebrow reveal">Services</div>
-      <h1 class="reveal reveal-delay-1">Project &amp; Program<br /><em>Management Services</em></h1>
+      <h1 class="reveal reveal-delay-1">Transformation<br /><em>Management Office</em></h1>
       <p class="hero-desc reveal reveal-delay-2">
-        Strategic program governance, enterprise delivery, and stakeholder alignment â€” 
-        built on 20 years of leading complex, high-stakes initiatives across regulated 
-        industries and large enterprise clients.
+        Enterprise transformation fails not from lack of vision — but from lack of 
+        visibility. We establish, instrument, and govern the TMO function so your 
+        transformation is observable, accountable, and built to outlast the program that launched it.
       </p>
+      <div class="hero-meta reveal reveal-delay-3">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Framework</span>
+          <span class="hero-meta-value">Applied Observability™</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Delivery Model</span>
+          <span class="hero-meta-value">Establish · Operate · Evolve</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Audience</span>
+          <span class="hero-meta-value">CIO · CTO · CFO</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- =============================
-       CORE DISCIPLINES
+       CORE TMO DISCIPLINES
   ============================= -->
   <section class="section">
     <div class="section-inner">
       <div class="section-header">
         <div class="section-label reveal">Core Disciplines</div>
         <h2 class="section-title reveal reveal-delay-1">
-          End-to-End Program<br /><em>Delivery Excellence</em>
+          The Six Pillars of<br /><em>TMO Excellence</em>
         </h2>
       </div>
+      <p class="section-intro reveal reveal-delay-2">
+        A TMO without observability is a governance structure that can't see what it's governing. Every discipline below is instrumented — producing signals, not just reports — so the executive layer can make decisions grounded in execution reality.
+      </p>
 
       <div class="services-grid">
 
-        <!-- Card 1 -->
+        <!-- Card 1 — Transformation Strategy -->
         <div class="service-card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-            <line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>
+            <path d="M3 3h18v18H3z" rx="2"/><path d="M3 9h18M9 21V9"/>
           </svg>
-          <div class="card-title">Strategic Project Management</div>
+          <div class="card-title">Transformation Strategy &amp; Roadmapping</div>
           <div class="card-body">
-            Led the strategic alignment of enterprise systems project goals with the client's overarching strategic vision, crafting comprehensive program plans that encompass scope, schedule, budget, resources, and risk management.
+            Translate executive ambition into a governed, sequenced transformation roadmap. We align strategic intent with portfolio capacity, define measurable outcomes at each horizon, and ensure every workstream has a clear line of sight to the enterprise target state — not just a slide in the kick-off deck.
           </div>
         </div>
 
-        <!-- Card 2 -->
+        <!-- Card 2 — Executive Governance -->
         <div class="service-card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <path d="M9 9h6M9 12h6M9 15h4"/>
+          </svg>
+          <div class="card-title">Executive Sponsorship &amp; Governance Design</div>
+          <div class="card-body">
+            Build the governance architecture — steering committees, decision rights, escalation pathways, and accountability structures — that makes transformation sponsorship more than a title on a org chart. When decisions stall, we make the blockage visible so the right authority can act without delay.
+          </div>
+        </div>
+
+        <!-- Card 3 — Portfolio Orchestration -->
+        <div class="service-card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          </svg>
+          <div class="card-title">Portfolio &amp; Program Orchestration</div>
+          <div class="card-body">
+            Manage the interdependencies, resource contention, and sequencing logic across the full transformation portfolio. We apply the Playmaker's Framework to coordinate workstreams as a system — not a collection of projects that happen to share a sponsor.
+          </div>
+        </div>
+
+        <!-- Card 4 — Change Management -->
+        <div class="service-card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
             <circle cx="9" cy="7" r="4"/>
             <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
           </svg>
-          <div class="card-title">Client Engagement &amp; Trust-Building</div>
+          <div class="card-title">Change Management &amp; Adoption</div>
           <div class="card-body">
-            Cultivate robust, trust-based relationships with key stakeholders, positioning as the principal advisor on enterprise solutions and ensuring services align with client business objectives.
+            Strategy without adoption is theater. We design and run change management programs that measure behavioral shift — not training completion. Resistance patterns are treated as diagnostic signals, not HR problems. Adoption velocity is tracked as a first-class transformation metric alongside cost and schedule.
           </div>
         </div>
 
-        <!-- Card 3 -->
+        <!-- Card 5 — Risk & Issue -->
+        <div class="service-card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <div class="card-title">Risk Intelligence &amp; Issue Escalation</div>
+          <div class="card-body">
+            Risks that live in spreadsheets don't get resolved — they get inherited by the next program. We instrument the risk landscape so that emerging issues surface before they become program-killers. Escalation paths are pre-defined, ownership is unambiguous, and the OOCEMR decision framework ensures every response is traceable.
+          </div>
+        </div>
+
+        <!-- Card 6 — Value Realization -->
         <div class="service-card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
-          <div class="card-title">Business Development &amp; Growth</div>
+          <div class="card-title">Value Realization &amp; Benefits Tracking</div>
           <div class="card-body">
-            Drive the Go-To-Market strategy for enterprise solutions, identifying new opportunities and securing contracts to expand client footprint in the enterprise solutions domain.
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="service-card reveal reveal-delay-1">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="12" y1="8" x2="12" y2="12"/>
-            <line x1="12" y1="16" x2="12.01" y2="16"/>
-          </svg>
-          <div class="card-title">Industry Thought Leadership</div>
-          <div class="card-body">
-            Serve as the enterprise solutions thought leader, keeping abreast of industry trends and technological advancements to inform strategy and offerings across regulated and complex environments.
-          </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="service-card reveal reveal-delay-2">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-          <div class="card-title">Digital Strategy &amp; Innovation</div>
-          <div class="card-body">
-            Collaborate with Digital Enterprise Architects to develop and execute digital strategies that leverage enterprise solutions to transform client businesses and create competitive advantage.
-          </div>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="service-card reveal reveal-delay-3">
-          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          <div class="card-title">Team Leadership &amp; Collaboration</div>
-          <div class="card-body">
-            Lead and motivate multi-functional teams, ensuring seamless execution of enterprise projects and fostering a culture of innovation and excellence across distributed organizations.
+            Transformation is not complete at go-live — it completes when the promised business value is realized and sustained. We define benefit ownership, instrument leading indicators, and hold the program accountable to outcomes long after the delivery team has moved on. No vanishing acts. No orphaned ROI.
           </div>
         </div>
 
@@ -786,10 +1023,147 @@
   </section>
 
   <!-- =============================
-       TECHNICAL EXCELLENCE
+       THREE-PHASE ARC
   ============================= -->
-  <section class="section" style="padding-top: 0;">
-    <div class="section-inner">
+  <div class="phase-section">
+    <div class="phase-inner">
+      <div class="phase-header">
+        <div class="section-label reveal" style="color: var(--gold-400);">Delivery Model</div>
+        <h2 class="section-title reveal reveal-delay-1" style="color: var(--white); margin-bottom: 0;">
+          Three Phases.<br /><em>One Continuous Arc.</em>
+        </h2>
+      </div>
+
+      <div class="phase-grid">
+        <div class="phase-connector"></div>
+
+        <!-- Phase 1: Establish -->
+        <div class="phase-card reveal reveal-delay-1">
+          <div class="phase-number">01</div>
+          <div class="phase-label">Phase One</div>
+          <div class="phase-title"><em>Establish</em></div>
+          <div class="phase-body">
+            Stand up the TMO infrastructure from first principles — not a template. We design governance structures, tooling, reporting cadences, and decision frameworks specific to your transformation's scale, risk profile, and stakeholder landscape.
+            <ul>
+              <li>TMO charter, mandate, and operating model</li>
+              <li>Governance committee design and accountability matrix</li>
+              <li>Observability instrumentation: dashboards, telemetry, KPI baselines</li>
+              <li>Portfolio intake and prioritization process</li>
+              <li>Stakeholder alignment and executive briefing cadence</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 2: Operate -->
+        <div class="phase-card reveal reveal-delay-2">
+          <div class="phase-number">02</div>
+          <div class="phase-label">Phase Two</div>
+          <div class="phase-title"><em>Operate</em></div>
+          <div class="phase-body">
+            Run the TMO as a high-performance function — actively managing the portfolio, resolving escalations, and keeping transformation on-track against the original strategic intent. This is where governance meets execution reality.
+            <ul>
+              <li>Weekly portfolio health reviews with real-time signal data</li>
+              <li>Cross-workstream dependency and risk management</li>
+              <li>Change management and adoption tracking</li>
+              <li>Executive status reporting: outcomes, not activities</li>
+              <li>Vendor and system integrator performance oversight</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 3: Evolve -->
+        <div class="phase-card reveal reveal-delay-3">
+          <div class="phase-number">03</div>
+          <div class="phase-label">Phase Three</div>
+          <div class="phase-title"><em>Evolve</em></div>
+          <div class="phase-body">
+            Mature the TMO from a program management function into a strategic enterprise capability. The goal is institutionalized transformation competency — so your organization doesn't need an external TMO for the next one.
+            <ul>
+              <li>Capability transfer and internal leadership development</li>
+              <li>TMO playbook documentation and knowledge repository</li>
+              <li>Benefits realization tracking and post-program audit</li>
+              <li>Lessons-learned integration into future portfolio cycles</li>
+              <li>Applied Observability™ maturity model advancement</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================
+       OBSERVABILITY BRIDGE
+  ============================= -->
+  <div class="obs-bridge">
+    <div class="obs-bridge-inner">
+
+      <div class="obs-bridge-text reveal">
+        <div class="section-label" style="margin-bottom: 20px;">The Differentiation</div>
+        <h3>Governance is only as strong as<br /><em>what it can see.</em></h3>
+        <p>
+          Most TMOs produce governance theater — steering decks that describe where the transformation was, not where it is. The Applied Observability™ framework changes the instrumentation layer first: real-time telemetry, signal-based dashboards, and traceable decision logs that give the executive layer a live view of execution reality.
+        </p>
+        <p>
+          The result is a TMO that governs by fact, not feel — and a C-suite that can act on current information rather than last week's status report.
+        </p>
+      </div>
+
+      <div class="obs-bridge-pillars reveal reveal-delay-2">
+
+        <div class="pillar-row">
+          <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <div class="pillar-content">
+            <div class="pillar-title">Execution Visibility</div>
+            <div class="pillar-desc">Live telemetry surfaces program health signals before they appear in status reports — or post-mortems.</div>
+          </div>
+        </div>
+
+        <div class="pillar-row">
+          <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <div class="pillar-content">
+            <div class="pillar-title">Governance by Fact</div>
+            <div class="pillar-desc">Decision logs, traceable escalations, and observable accountability structures replace opinion-driven governance.</div>
+          </div>
+        </div>
+
+        <div class="pillar-row">
+          <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <div class="pillar-content">
+            <div class="pillar-title">Outcome-Linked Metrics</div>
+            <div class="pillar-desc">OKRs and KPIs are instrumented — not just declared. Value realization is tracked, not assumed.</div>
+          </div>
+        </div>
+
+        <div class="pillar-row">
+          <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polyline points="23 4 23 10 17 10"/>
+            <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+          </svg>
+          <div class="pillar-content">
+            <div class="pillar-title">Continuous Calibration</div>
+            <div class="pillar-desc">The Playmaker's Framework allows the TMO to adapt strategy in-flight without losing strategic coherence or portfolio alignment.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================
+       GOVERNANCE EXECUTION GRID
+  ============================= -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="section-inner" style="padding: 80px 0;">
       <div class="section-header">
         <div class="section-label reveal">Execution Framework</div>
         <h2 class="section-title reveal reveal-delay-1">
@@ -799,24 +1173,24 @@
 
       <div class="services-grid">
 
-        <!-- Card 7 â€” Technical Excellence -->
+        <!-- Card 7 — Program Architecture -->
         <div class="service-card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
           </svg>
-          <div class="card-title">Technical &amp; PM Excellence</div>
+          <div class="card-title">Program Architecture &amp; Integration Design</div>
           <div class="card-body">
             <ul>
-              <li>Manage multiple enterprise implementation and integration projects from inception to successful delivery</li>
-              <li>Extensive business and technical acumen across enterprise architecture, data analysis, and business modeling</li>
-              <li>Demonstrate mastery over end-to-end solutions, aligning configurations with project and business objectives</li>
-              <li>Employ leadership skills to influence outcomes and coordinate cross-functional team activities</li>
-              <li>Orchestrate steering committee and stakeholder management aligned with business outcomes</li>
+              <li>Design integration architectures that align workstream outputs with enterprise target state</li>
+              <li>Define cross-program data flows, system dependencies, and shared infrastructure ownership</li>
+              <li>Establish integration test strategies across vendor and internal delivery boundaries</li>
+              <li>Apply OpenTelemetry standards to make transformation execution observable at the platform layer</li>
+              <li>Coordinate architectural decisions across steering, delivery, and enterprise architecture functions</li>
             </ul>
           </div>
         </div>
 
-        <!-- Card 8 â€” Governance -->
+        <!-- Card 8 — Governance & Compliance -->
         <div class="service-card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
@@ -824,27 +1198,30 @@
             <line x1="9" y1="12" x2="15" y2="12"/>
             <line x1="9" y1="15" x2="11" y2="15"/>
           </svg>
-          <div class="card-title">Governance, Risk &amp; QA</div>
+          <div class="card-title">Regulatory Compliance &amp; Audit Readiness</div>
           <div class="card-body">
             <ul>
-              <li>Proactively identify and mitigate risks, ensuring the integrity of the enterprise programs</li>
-              <li>Uphold quality standards across all project outputs, aligning with program objectives</li>
-              <li>Establish governance frameworks that provide structured oversight and clear decision pathways</li>
+              <li>Map transformation activities to applicable regulatory frameworks — EU AI Act, DORA, SOX, HIPAA</li>
+              <li>Build audit-ready decision trails from TMO governance logs and change management records</li>
+              <li>Establish risk registers with traceable ownership, resolution status, and escalation history</li>
+              <li>Align TMO reporting cadences with board-level disclosure requirements</li>
             </ul>
           </div>
         </div>
 
-        <!-- Card 9 â€” Change Management -->
+        <!-- Card 9 — Vendor Oversight -->
         <div class="service-card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <polyline points="23 4 23 10 17 10"/>
-            <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+            <path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/>
+            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
           </svg>
-          <div class="card-title">Change Management &amp; Program Closure</div>
+          <div class="card-title">Vendor &amp; Partner Performance Oversight</div>
           <div class="card-body">
             <ul>
-              <li>Navigate project scope, schedule, and resource changes with judicious assessment and approval processes</li>
-              <li>Conclude programs effectively, capturing lessons learned and communicating successes to stakeholders and the broader organization</li>
+              <li>Define SLA frameworks and performance metrics for all external delivery partners</li>
+              <li>Conduct structured vendor health reviews with observable performance data — not relationship anecdotes</li>
+              <li>Manage contract change orders, scope disputes, and delivery gap resolution</li>
+              <li>Maintain vendor risk registers with escalation triggers pre-defined and governance-approved</li>
             </ul>
           </div>
         </div>
@@ -867,40 +1244,39 @@
 
       <div class="services-grid">
 
-        <!-- Card 10 â€” Data Analytics -->
+        <!-- Card 10 -->
         <div class="service-card reveal reveal-delay-1">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <line x1="18" y1="20" x2="18" y2="10"/>
             <line x1="12" y1="20" x2="12" y2="4"/>
             <line x1="6" y1="20" x2="6" y2="14"/>
           </svg>
-          <div class="card-title">Data Analytics</div>
+          <div class="card-title">Transformation Analytics &amp; Intelligence</div>
           <div class="card-body">
-            Harness the power of data to gain insights and make informed decisions. Collect, analyze, and visualize data to uncover trends, patterns, and opportunities that drive strategic program outcomes.
+            Instrument transformation portfolios with real-time analytics that surface velocity, risk concentration, adoption drag, and value realization gaps. Dashboards built for C-suite consumption — not program managers who already know the numbers.
           </div>
         </div>
 
-        <!-- Card 11 â€” Software Development -->
+        <!-- Card 11 -->
         <div class="service-card reveal reveal-delay-2">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <polyline points="16 18 22 12 16 6"/>
-            <polyline points="8 6 2 12 8 18"/>
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
           </svg>
-          <div class="card-title">Software Development</div>
+          <div class="card-title">TMO Maturity &amp; Capability Assessment</div>
           <div class="card-body">
-            Custom software development services to build scalable and reliable applications. Design, develop, test, and deploy solutions tailored to your specific enterprise needs.
+            Assess your existing transformation governance against the Applied Observability™ maturity model. Identify the specific gaps — instrumentation, accountability, decision architecture — that separate a functional TMO from a high-performing one.
           </div>
         </div>
 
-        <!-- Card 12 â€” IT Strategy -->
+        <!-- Card 12 -->
         <div class="service-card reveal reveal-delay-3">
           <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <circle cx="12" cy="12" r="3"/>
             <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
           </svg>
-          <div class="card-title">IT Strategy Consulting</div>
+          <div class="card-title">Applied Observability™ Integration</div>
           <div class="card-body">
-            Align technology investments with business goals. Develop a roadmap for digital transformation, optimize IT operations, and identify new opportunities for enterprise growth and efficiency.
+            Connect the TMO's governance layer directly to the Applied Observability™ framework — so that every workstream, every decision point, and every executive briefing is grounded in observable execution data rather than curated status updates.
           </div>
         </div>
 
@@ -923,6 +1299,7 @@
         <span class="cred-tag">Lean Six Sigma</span>
         <span class="cred-tag">Azure Fundamentals</span>
         <span class="cred-tag">Gen AI Prompt Engineering</span>
+        <span class="cred-tag">Applied Observability™</span>
       </div>
     </div>
   </div>
@@ -956,13 +1333,12 @@
   ============================= -->
   <section class="cta-section">
     <div class="cta-inner">
-      <h2 class="reveal">Ready to <em>Energize</em><br />Your Next Program?</h2>
+      <h2 class="reveal">Ready to Make Your<br /><em>Transformation Observable?</em></h2>
       <p class="reveal reveal-delay-1">
-        Let's discuss how governance-first PMO leadership can prevent failure 
-        before it starts â€” and deliver outcomes that actually move the needle.
+        Let's assess your current transformation governance posture and define what an Applied Observability™-powered TMO would look like for your enterprise.
       </p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
-        <a href="index.html#contact" class="btn-gold">Get in Touch</a>
+        <a href="index.html#contact" class="btn-gold">Start the Conversation</a>
         <a href="services-overview.html" class="btn-ghost">All Services</a>
       </div>
     </div>
@@ -975,7 +1351,7 @@
     <div class="footer-inner">
       <div class="footer-logo">Energizing <span>Solutions</span></div>
     </div>
-    <p class="footer-copy">Â© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+    <p class="footer-copy">&copy; 2026 Energizing Solutions LLC. All Rights Reserved.</p>
   </footer>
 
   <!-- =============================
@@ -1006,7 +1382,9 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
-      document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+
+    // Mobile dropdowns
+    document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const parent = btn.parentElement;
         const isOpen = parent.classList.contains('open');
@@ -1014,11 +1392,7 @@
         if (!isOpen) parent.classList.add('open');
       });
     });
-    </script>
+  </script>
 
 </body>
 </html>
-
-
-
-
