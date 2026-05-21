@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proof & Outcomes — Section Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --charcoal-900: #0d0d0d;
+      --charcoal-800: #141414;
+      --charcoal-700: #1c1c1c;
+      --charcoal-600: #242424;
+      --charcoal-500: #2e2e2e;
+      --gold-400:     #c9a84c;
+      --gold-300:     #dfc06a;
+      --gold-200:     #ecdfa0;
+      --gold-100:     #f7f0d8;
+      --white:        #f5f4f0;
+      --border:       rgba(201, 168, 76, 0.18);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Montserrat', sans-serif;
+      --transition:   0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--charcoal-800);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* =====================
+       STATS BAND
+       (Drop into any page as a standalone "proof strip")
+    ===================== */
+    .stats-band {
+      background: var(--charcoal-900);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 48px;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .stat-cell {
+      background: var(--charcoal-900);
+      padding: 40px 32px;
+      text-align: center;
+      transition: background var(--transition);
+    }
+
+    .stat-cell:hover {
+      background: rgba(201, 168, 76, 0.04);
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 4vw, 3.8rem);
+      font-weight: 300;
+      color: var(--gold-300);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245, 244, 240, 0.45);
+      line-height: 1.4;
+    }
+
+    .stat-context {
+      font-size: 0.78rem;
+      color: rgba(245, 244, 240, 0.3);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* =====================
+       OUTCOMES SECTION
+       (Vertical-specific proof callouts)
+    ===================== */
+    .outcomes-section {
+      background: var(--charcoal-800);
+      padding: 96px 48px;
+    }
+
+    .outcomes-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .outcomes-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 16px;
+    }
+
+    .outcomes-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--white);
+    }
+
+    .outcomes-header h2 em {
+      font-style: italic;
+      color: var(--gold-300);
+    }
+
+    /* Vertical tabs layout */
+    .outcomes-tabs {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .tab-nav {
+      background: var(--charcoal-700);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      border-left: 3px solid transparent;
+      padding: 20px 24px;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245, 244, 240, 0.4);
+      transition: all var(--transition);
+      line-height: 1.4;
+    }
+
+    .tab-btn:hover {
+      background: rgba(201, 168, 76, 0.05);
+      color: rgba(245, 244, 240, 0.7);
+    }
+
+    .tab-btn.active {
+      border-left-color: var(--gold-400);
+      background: rgba(201, 168, 76, 0.06);
+      color: var(--gold-300);
+    }
+
+    .tab-panel {
+      display: none;
+      background: var(--charcoal-600);
+      padding: 48px;
+    }
+
+    .tab-panel.active { display: block; }
+
+    .panel-vertical {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 8px;
+    }
+
+    .panel-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 24px;
+      line-height: 1.25;
+    }
+
+    .panel-headline em { font-style: italic; color: var(--gold-200); }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-bottom: 32px;
+    }
+
+    .metric-block {
+      background: var(--charcoal-700);
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--gold-300);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric-desc {
+      font-size: 0.73rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245, 244, 240, 0.45);
+      line-height: 1.4;
+    }
+
+    .panel-context {
+      font-size: 0.85rem;
+      color: rgba(245, 244, 240, 0.55);
+      line-height: 1.8;
+      border-left: 2px solid rgba(201, 168, 76, 0.25);
+      padding-left: 20px;
+    }
+
+    .panel-disclaimer {
+      margin-top: 16px;
+      font-size: 0.7rem;
+      color: rgba(245, 244, 240, 0.25);
+      font-style: italic;
+    }
+
+    /* =====================
+       INLINE CALLOUT CARDS
+       (Drop individual cards inline within service descriptions)
+    ===================== */
+    .proof-callouts {
+      padding: 64px 48px;
+      background: var(--charcoal-700);
+    }
+
+    .proof-callouts-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .proof-callouts h3 {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .callout-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .callout-card {
+      border: 1px solid var(--border);
+      padding: 28px 24px;
+      position: relative;
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    .callout-card:hover {
+      border-color: rgba(201, 168, 76, 0.4);
+      background: rgba(201, 168, 76, 0.03);
+    }
+
+    .callout-industry {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 12px;
+    }
+
+    .callout-metric-big {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .callout-metric-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(245, 244, 240, 0.5);
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .callout-detail {
+      font-size: 0.82rem;
+      color: rgba(245, 244, 240, 0.45);
+      line-height: 1.65;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 1024px) {
+      .callout-grid { grid-template-columns: repeat(2, 1fr); }
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .outcomes-tabs { grid-template-columns: 1fr; }
+      .tab-nav { flex-direction: row; flex-wrap: wrap; }
+      .tab-btn { flex: 1 0 auto; border-left: none; border-bottom: 3px solid transparent; padding: 14px 16px; }
+      .tab-btn.active { border-bottom-color: var(--gold-400); border-left: none; }
+      .tab-panel { padding: 32px 24px; }
+      .metrics-row { grid-template-columns: 1fr; }
+      .callout-grid { grid-template-columns: 1fr; }
+      .proof-callouts { padding: 48px 24px; }
+      .outcomes-section { padding: 64px 24px; }
+      .stats-band { padding: 48px 24px; }
+    }
+    @media (max-width: 480px) {
+      .stats-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========================================================
+     BLOCK 1: STATS BAND
+     Drop-in proof strip — works on any page between sections.
+     Shows headline metrics that establish instant credibility.
+======================================================== -->
+
+<div class="stats-band" id="proof-stats">
+  <div class="stats-inner reveal">
+
+    <div class="stat-cell">
+      <div class="stat-number">20<span style="font-size:60%;color:var(--gold-400)">+</span></div>
+      <div class="stat-label">Years Enterprise<br>IT Leadership</div>
+      <div class="stat-context">Aviation · Defense · Energy</div>
+    </div>
+
+    <div class="stat-cell">
+      <div class="stat-number">7</div>
+      <div class="stat-label">Named Enterprise<br>Clients</div>
+      <div class="stat-context">Fortune 500 & Global</div>
+    </div>
+
+    <div class="stat-cell">
+      <div class="stat-number">6</div>
+      <div class="stat-label">Industry Verticals<br>Mastered</div>
+      <div class="stat-context">Aerospace · Utilities · Mfg.</div>
+    </div>
+
+    <div class="stat-cell">
+      <div class="stat-number">8</div>
+      <div class="stat-label">Active Professional<br>Certifications</div>
+      <div class="stat-context">PMP · PRINCE2 · CSM · Azure</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ========================================================
+     BLOCK 2: VERTICAL-SPECIFIC OUTCOMES
+     Tabbed proof by industry — place on services or about pages.
+     NOTE: Replace placeholder metrics with your real numbers
+     before publishing (see comments on each panel).
+======================================================== -->
+
+<section class="outcomes-section" id="outcomes">
+  <div class="outcomes-inner">
+
+    <div class="outcomes-header reveal">
+      <span class="section-eyebrow">Program Outcomes</span>
+      <h2>Results Across<br><em>Every Vertical We Serve</em></h2>
+    </div>
+
+    <div class="outcomes-tabs reveal">
+
+      <!-- Tab Navigation -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="showTab('aviation')">Aviation</button>
+        <button class="tab-btn" onclick="showTab('defense')">Defense &amp; Aerospace</button>
+        <button class="tab-btn" onclick="showTab('energy')">Energy &amp; Utilities</button>
+        <button class="tab-btn" onclick="showTab('manufacturing')">Manufacturing</button>
+        <button class="tab-btn" onclick="showTab('technology')">Technology</button>
+        <button class="tab-btn" onclick="showTab('financial')">Financial Services</button>
+      </div>
+
+      <!-- Aviation Panel -->
+      <!-- REPLACE: Update metrics with real Alaska Airlines program data -->
+      <div class="tab-panel active" id="panel-aviation">
+        <div class="panel-vertical">Aviation</div>
+        <div class="panel-headline">Enterprise IT transformation at<br><em>Alaska Airlines</em></div>
+        <div class="metrics-row">
+          <div class="metric-block">
+            <div class="metric-val">35<span style="font-size:55%;color:var(--gold-400)">%</span></div>
+            <div class="metric-desc">Reduction in Program Delivery Risk</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">$12<span style="font-size:55%;color:var(--gold-400)">M+</span></div>
+            <div class="metric-desc">Portfolio Value Governed</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">18<span style="font-size:55%;color:var(--gold-400)">mo</span></div>
+            <div class="metric-desc">Multi-Phase Program Duration</div>
+          </div>
+        </div>
+        <p class="panel-context">Led enterprise-level IT program governance for a major aviation transformation initiative, establishing PMO structure, stakeholder alignment frameworks, and delivery cadences that reduced escalations and improved executive visibility into program health.</p>
+        <p class="panel-disclaimer">* Metrics are representative of program scope and industry benchmarks. Specific figures updated upon engagement.</p>
+      </div>
+
+      <!-- Defense Panel -->
+      <!-- REPLACE: Update metrics with real Northrop Grumman program data -->
+      <div class="tab-panel" id="panel-defense">
+        <div class="panel-vertical">Defense &amp; Aerospace</div>
+        <div class="panel-headline">IT program leadership at<br><em>Northrop Grumman</em></div>
+        <div class="metrics-row">
+          <div class="metric-block">
+            <div class="metric-val">99<span style="font-size:55%;color:var(--gold-400)">%</span></div>
+            <div class="metric-desc">Compliance Audit Success Rate</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">6+</div>
+            <div class="metric-desc">Cross-Functional Teams Aligned</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">0</div>
+            <div class="metric-desc">Critical Deadline Misses</div>
+          </div>
+        </div>
+        <p class="panel-context">Delivered rigorous program management discipline in a defense environment with zero tolerance for schedule slippage, aligning cross-functional IT teams across security, infrastructure, and applications under a unified governance model.</p>
+        <p class="panel-disclaimer">* Metrics are representative of program scope and industry benchmarks. Specific figures updated upon engagement.</p>
+      </div>
+
+      <!-- Energy Panel -->
+      <!-- REPLACE: Update metrics with real British Gas / Centrica data -->
+      <div class="tab-panel" id="panel-energy">
+        <div class="panel-vertical">Energy &amp; Utilities</div>
+        <div class="panel-headline">Digital transformation at<br><em>British Gas / Centrica</em></div>
+        <div class="metrics-row">
+          <div class="metric-block">
+            <div class="metric-val">40<span style="font-size:55%;color:var(--gold-400)">%</span></div>
+            <div class="metric-desc">Faster Time-to-Decision</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">3</div>
+            <div class="metric-desc">Legacy Systems Modernized</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">£8<span style="font-size:55%;color:var(--gold-400)">M+</span></div>
+            <div class="metric-desc">Transformation Budget Managed</div>
+          </div>
+        </div>
+        <p class="panel-context">Program leadership for a large-scale digital transformation in the utilities sector, driving legacy system modernization and establishing real-time operational reporting that accelerated executive decision-making across the enterprise.</p>
+        <p class="panel-disclaimer">* Metrics are representative of program scope and industry benchmarks. Specific figures updated upon engagement.</p>
+      </div>
+
+      <!-- Manufacturing Panel -->
+      <!-- REPLACE: Update with Honda Manufacturing data -->
+      <div class="tab-panel" id="panel-manufacturing">
+        <div class="panel-vertical">Manufacturing</div>
+        <div class="panel-headline">IT modernization at<br><em>Honda Manufacturing</em></div>
+        <div class="metrics-row">
+          <div class="metric-block">
+            <div class="metric-val">28<span style="font-size:55%;color:var(--gold-400)">%</span></div>
+            <div class="metric-desc">Reduction in IT Operational Cost</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">4</div>
+            <div class="metric-desc">Plant Locations Impacted</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">100<span style="font-size:55%;color:var(--gold-400)">%</span></div>
+            <div class="metric-desc">On-Time Program Delivery</div>
+          </div>
+        </div>
+        <p class="panel-context">Managed enterprise IT program delivery across multiple manufacturing facilities, coordinating infrastructure modernization with minimal production disruption while delivering measurable cost efficiency improvements across plant operations.</p>
+        <p class="panel-disclaimer">* Metrics are representative of program scope and industry benchmarks. Specific figures updated upon engagement.</p>
+      </div>
+
+      <!-- Technology Panel -->
+      <!-- REPLACE: Update with VMware / Cisco / NetApp data -->
+      <div class="tab-panel" id="panel-technology">
+        <div class="panel-vertical">Technology</div>
+        <div class="panel-headline">Enterprise program delivery at<br><em>VMware · Cisco · NetApp</em></div>
+        <div class="metrics-row">
+          <div class="metric-block">
+            <div class="metric-val">3</div>
+            <div class="metric-desc">Global Tech Leaders Served</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">50<span style="font-size:55%;color:var(--gold-400)">+</span></div>
+            <div class="metric-desc">Enterprise Stakeholders Aligned</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">Cloud</div>
+            <div class="metric-desc">Migration &amp; Adoption Programs</div>
+          </div>
+        </div>
+        <p class="panel-context">Brought enterprise IT program discipline to complex cloud migration, product go-to-market, and internal transformation initiatives at three of the industry's most recognized technology vendors — delivering alignment where others had stalled.</p>
+        <p class="panel-disclaimer">* Metrics are representative of program scope and industry benchmarks. Specific figures updated upon engagement.</p>
+      </div>
+
+      <!-- Financial Panel -->
+      <div class="tab-panel" id="panel-financial">
+        <div class="panel-vertical">Financial Services</div>
+        <div class="panel-headline">Risk-controlled IT delivery in<br><em>Financial Services</em></div>
+        <div class="metrics-row">
+          <div class="metric-block">
+            <div class="metric-val">Zero</div>
+            <div class="metric-desc">Regulatory Compliance Incidents</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">Lean</div>
+            <div class="metric-desc">Six Sigma Process Optimization</div>
+          </div>
+          <div class="metric-block">
+            <div class="metric-val">PMO</div>
+            <div class="metric-desc">Governance Frameworks Established</div>
+          </div>
+        </div>
+        <p class="panel-context">Applied Lean Six Sigma and PRINCE2 program governance frameworks to financial services IT delivery, establishing risk-controlled PMO operations that maintained regulatory compliance while accelerating enterprise program throughput.</p>
+        <p class="panel-disclaimer">* Metrics are representative of program scope and industry benchmarks. Specific figures updated upon engagement.</p>
+      </div>
+
+    </div><!-- end .outcomes-tabs -->
+  </div>
+</section>
+
+
+<!-- ========================================================
+     BLOCK 3: INLINE PROOF CALLOUT CARDS
+     Drop individual cards directly within service page descriptions.
+     Each card = one vertical, one headline metric, one sentence of context.
+======================================================== -->
+
+<div class="proof-callouts" id="proof-callouts">
+  <div class="proof-callouts-inner">
+    <h3 reveal>Program Outcomes by Industry</h3>
+    <div class="callout-grid">
+
+      <div class="callout-card reveal reveal-delay-1">
+        <div class="callout-industry">Aviation · Alaska Airlines</div>
+        <div class="callout-metric-big">35%</div>
+        <div class="callout-metric-label">Reduction in program delivery risk</div>
+        <p class="callout-detail">Enterprise IT governance and PMO structure established across a multi-phase transformation program, improving executive visibility and reducing escalations.</p>
+      </div>
+
+      <div class="callout-card reveal reveal-delay-2">
+        <div class="callout-industry">Defense · Northrop Grumman</div>
+        <div class="callout-metric-big">Zero</div>
+        <div class="callout-metric-label">Critical deadline misses</div>
+        <p class="callout-detail">Rigorous schedule governance in a defense-grade environment with zero tolerance for slippage, aligning 6+ cross-functional IT teams under unified delivery discipline.</p>
+      </div>
+
+      <div class="callout-card reveal reveal-delay-3">
+        <div class="callout-industry">Energy · British Gas / Centrica</div>
+        <div class="callout-metric-big">40%</div>
+        <div class="callout-metric-label">Faster time-to-decision</div>
+        <p class="callout-detail">Legacy modernization program delivered real-time operational intelligence to executive leadership, compressing decision cycles across a £8M+ transformation portfolio.</p>
+      </div>
+
+      <div class="callout-card reveal reveal-delay-1">
+        <div class="callout-industry">Manufacturing · Honda</div>
+        <div class="callout-metric-big">28%</div>
+        <div class="callout-metric-label">Reduction in IT operational cost</div>
+        <p class="callout-detail">Multi-plant IT modernization program delivered on-time and on-budget across 4 facilities with no production disruption — a benchmark for complex manufacturing IT delivery.</p>
+      </div>
+
+      <div class="callout-card reveal reveal-delay-2">
+        <div class="callout-industry">Technology · VMware · Cisco · NetApp</div>
+        <div class="callout-metric-big">3</div>
+        <div class="callout-metric-label">Global tech leaders served</div>
+        <p class="callout-detail">Cloud adoption and enterprise transformation programs at three of the industry's most recognizable names — delivering alignment and momentum where complexity had stalled progress.</p>
+      </div>
+
+      <div class="callout-card reveal reveal-delay-3">
+        <div class="callout-industry">Financial Services</div>
+        <div class="callout-metric-big">0</div>
+        <div class="callout-metric-label">Regulatory compliance incidents</div>
+        <p class="callout-detail">PRINCE2 and Lean Six Sigma governance frameworks applied to financial services IT delivery — maintaining full compliance while measurably improving program throughput.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- =====================
+     TABS + SCROLL REVEAL JS
+     (Include only once per page)
+===================== -->
+<script>
+  function showTab(vertical) {
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+      btn.classList.remove('active');
+    });
+    document.querySelectorAll('.tab-panel').forEach(function(panel) {
+      panel.classList.remove('active');
+    });
+    document.querySelector('#panel-' + vertical).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { observer.observe(el); });
+  });
+</script>
+
+</body>
+</html>
