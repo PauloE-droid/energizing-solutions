@@ -127,6 +127,40 @@
     .eng-tags { display: flex; gap: 8px; flex-wrap: wrap; }
     .eng-tag { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; padding: 3px 10px; background: var(--charcoal-600); color: var(--muted); border: 1px solid rgba(255,255,255,0.05); }
 
+    /* ===== CASE STUDY CARD ===== */
+    .cs-featured { background: var(--charcoal-900); border: 1px solid var(--gold-400); position: relative; overflow: hidden; margin-bottom: 2px; }
+    .cs-featured::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--gold-400), var(--gold-200)); }
+    .cs-featured-badge { position: absolute; top: 0; right: 0; background: var(--gold-400); color: var(--charcoal-900); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 14px; }
+    .cs-meta { padding: 28px 36px; border-bottom: 1px solid var(--border); display: flex; flex-direction: row; align-items: center; gap: 20px; flex-wrap: wrap; cursor: pointer; }
+    .cs-meta:hover { background: rgba(201,168,76,0.04); }
+    .cs-client { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--white); line-height: 1.1; }
+    .cs-client-sub { font-size: 1rem; font-weight: 300; }
+    .cs-role-label { font-size: 0.65rem; letter-spacing: 0.12em; color: var(--muted); }
+    .cs-sector { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-400); padding: 3px 10px; border: 1px solid var(--border); }
+    .cs-toggle { background: none; border: none; color: var(--gold-400); cursor: pointer; margin-left: auto; padding: 4px; display: flex; align-items: center; flex-shrink: 0; }
+    .cs-toggle svg { width: 22px; height: 22px; fill: currentColor; transition: transform var(--transition); }
+    .cs-featured.expanded .cs-toggle svg { transform: rotate(180deg); }
+    .cs-body { padding: 0 36px; overflow: hidden; max-height: 0; transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), padding 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .cs-featured.expanded .cs-body { max-height: 1400px; padding-top: 36px; padding-bottom: 36px; }
+    .cs-metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); margin-bottom: 32px; }
+    .cs-metric { background: var(--charcoal-700); padding: 20px 24px; }
+    .cs-metric-val { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--gold-300); line-height: 1; margin-bottom: 4px; }
+    .cs-metric-lbl { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); line-height: 1.45; }
+    .cs-section-lbl { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 10px; }
+    .cs-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.9; margin-bottom: 28px; }
+    .cs-roles-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .cs-role-tag { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; padding: 4px 12px; background: var(--charcoal-600); color: var(--muted); border: 1px solid rgba(255,255,255,0.05); }
+    .cs-signals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); margin-bottom: 28px; }
+    .cs-signal { background: var(--charcoal-700); padding: 24px 20px; }
+    .cs-signal-num { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: rgba(201,168,76,0.5); line-height: 1; margin-bottom: 8px; }
+    .cs-signal-head { font-size: 0.78rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; margin-bottom: 8px; line-height: 1.4; }
+    .cs-signal-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.75; }
+    .cs-quote { border-left: 2px solid var(--gold-400); padding: 14px 20px; margin-bottom: 24px; background: rgba(201,168,76,0.04); }
+    .cs-quote p { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; font-weight: 300; color: var(--white); line-height: 1.6; margin-bottom: 6px; }
+    .cs-quote cite { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--gold-400); font-style: normal; }
+    .cs-skill-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .cs-skill-tag { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; padding: 3px 10px; background: var(--charcoal-600); color: var(--muted); border: 1px solid rgba(255,255,255,0.05); }
+
     /* ===== GOVERNANCE EXAMPLE BAND ===== */
     .governance-band { background: var(--charcoal-900); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 48px; }
     .governance-inner { max-width: 1160px; margin: 0 auto; }
@@ -204,10 +238,15 @@
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .eng-meta { padding: 20px 24px; gap: 12px; }
       .engagement.expanded .eng-body { padding-left: 24px; padding-right: 24px; }
+      .cs-meta { padding: 20px 24px; gap: 12px; }
+      .cs-featured.expanded .cs-body { padding-left: 24px; padding-right: 24px; }
+      .cs-metrics-row { grid-template-columns: repeat(2, 1fr); }
+      .cs-signals { grid-template-columns: 1fr; }
     }
     @media (max-width: 580px) {
       .gov-grid { grid-template-columns: 1fr; }
       .stats-inner { grid-template-columns: 1fr; }
+      .cs-metrics-row { grid-template-columns: 1fr 1fr; }
     }
 
     /* ===== MUTED ON DARK BACKGROUNDS ===== */
@@ -217,6 +256,9 @@
     .engagement,
     .engagement:hover,
     .eng-tag,
+    .cs-featured,
+    .cs-metric,
+    .cs-signal,
     .governance-band,
     .gov-card,
     .stat-cell,
@@ -347,6 +389,103 @@
     <div class="section-inner">
       <div class="section-label reveal">Client Engagements</div>
       <h2 class="section-title reveal reveal-delay-1">Program Project Governance <em>Sample Portfolio</em></h2>
+
+      <!-- CASE STUDIES LABEL -->
+      <div class="section-label reveal" style="margin-bottom: 20px;">Case Studies</div>
+
+      <!-- JOHN DEERE FLAGSHIP CASE STUDY -->
+      <div class="cs-featured reveal" id="case-study-john-deere">
+        <div class="cs-featured-badge">Flagship Engagement</div>
+        <div class="cs-meta">
+          <div class="cs-client">John Deere <span class="cs-client-sub">/ Basis Technologies</span></div>
+          <div class="cs-role-label">Sole Solution Lead &middot; Architect &middot; TPM &middot; Change Manager</div>
+          <div class="cs-sector">AgriTech / Enterprise SAP</div>
+          <button type="button" class="cs-toggle" aria-label="Toggle details">
+            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
+        </div>
+        <div class="cs-body">
+          <div class="cs-metrics-row">
+            <div class="cs-metric">
+              <div class="cs-metric-val">66%</div>
+              <div class="cs-metric-lbl">Faster time to market</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val">32%</div>
+              <div class="cs-metric-lbl">Reduced SAP developer cycle time</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val">1,300+</div>
+              <div class="cs-metric-lbl">Hours recovered in year one</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val">5 min</div>
+              <div class="cs-metric-lbl">Production deploy cadence achieved</div>
+            </div>
+          </div>
+
+          <div class="cs-section-lbl">The Situation</div>
+          <p class="cs-desc">John Deere &mdash; $44B revenue, 75,000+ employees, SAP as enterprise backbone &mdash; had committed to an Agile Operating Model. The constraint was immediate: SAP change management was manual, batch-driven, and opaque. No integrated toolchain. No governance architecture. No DevOps pipeline. I was the sole Basis Technologies resource brought in to design and deliver the solution end-to-end across a 127-system landscape, on the company&rsquo;s largest Basis contract to date.</p>
+
+          <div class="cs-section-lbl">My Role</div>
+          <div class="cs-roles-row">
+            <span class="cs-role-tag">Solution Architect</span>
+            <span class="cs-role-tag">Technical Program Manager</span>
+            <span class="cs-role-tag">Business Analyst</span>
+            <span class="cs-role-tag">Change Manager</span>
+            <span class="cs-role-tag">Governance Lead</span>
+            <span class="cs-role-tag">Stakeholder Executive</span>
+            <span class="cs-role-tag">DevOps Pipeline Integrator</span>
+            <span class="cs-role-tag">Cross-BU Expansion Lead</span>
+          </div>
+
+          <div class="cs-section-lbl">What I Built</div>
+          <p class="cs-desc">I designed and delivered the end-to-end integrated pipeline &mdash; ActiveControl, ITSM, Jenkins CI, OIDC, and webhook engine &mdash; from architecture through go-live. Every layer was mine: technical design, stakeholder alignment, governance framework, testing, and change adoption. I managed engineers, SAP Basis SMEs, system administrators, testers, BU leaders, a steering committee, and C-suite simultaneously, as the single point of accountability on the Basis side. When a separate STPM running a BU-level S/4HANA migration wanted to join the initiative, I re-architected the pipeline mid-flight to absorb his deployments &mdash; expanding scope without disrupting the running program.</p>
+
+          <div class="cs-section-lbl">Proof Points Beyond the Metrics</div>
+          <div class="cs-signals">
+            <div class="cs-signal">
+              <div class="cs-signal-num">01</div>
+              <div class="cs-signal-head">The German TPM stood down</div>
+              <div class="cs-signal-desc">John Deere&rsquo;s client-side TPM &mdash; known for exacting standards and meticulous attention to detail &mdash; formally removed himself from program oversight after observing my governance discipline firsthand. He had seen enough to trust the structure completely.</div>
+            </div>
+            <div class="cs-signal">
+              <div class="cs-signal-num">02</div>
+              <div class="cs-signal-head">CIO flew in to meet me</div>
+              <div class="cs-signal-desc">The client delivery leader was so impressed he phoned the CIO mid-travel to come to Moline, IL headquarters specifically to meet with me onsite and discuss John Deere&rsquo;s DevOps expansion strategy. That is not a scheduled meeting. That is earned credibility.</div>
+            </div>
+            <div class="cs-signal">
+              <div class="cs-signal-num">03</div>
+              <div class="cs-signal-head">S/4HANA migration absorbed mid-flight</div>
+              <div class="cs-signal-desc">A separate STPM delivering a BU-level SAP S/4HANA migration requested inclusion in the DevOps initiative. I architected the integration of his deployments through the existing toolchain &mdash; expanding scope and delivering cross-BU value without disrupting the live program.</div>
+            </div>
+          </div>
+
+          <div class="cs-quote">
+            <p>&ldquo;This wasn&rsquo;t a team effort with my name on the slide. I was the architect, the program manager, the change lead, the governance framework, and the stakeholder relationship &mdash; all at once, on the company&rsquo;s largest Basis contract. The outcomes belong to that structure.&rdquo;</p>
+            <cite>&mdash; Paul Esteves, President &middot; Energizing Solutions LLC</cite>
+          </div>
+
+          <div class="cs-section-lbl">Capability Tags</div>
+          <div class="cs-skill-tags">
+            <span class="cs-skill-tag">SAP DevOps</span>
+            <span class="cs-skill-tag">ActiveControl</span>
+            <span class="cs-skill-tag">CI/CD Integration</span>
+            <span class="cs-skill-tag">Agile Operating Model</span>
+            <span class="cs-skill-tag">Value Stream Mapping</span>
+            <span class="cs-skill-tag">ITSM Automation</span>
+            <span class="cs-skill-tag">Jenkins / OIDC</span>
+            <span class="cs-skill-tag">Cross-functional Delivery</span>
+            <span class="cs-skill-tag">127-System Landscape</span>
+            <span class="cs-skill-tag">C-Suite Engagement</span>
+            <span class="cs-skill-tag">Change Management</span>
+            <span class="cs-skill-tag">Pipeline Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLIENT ENGAGEMENTS LABEL -->
+      <div class="section-label reveal" style="margin: 40px 0 20px;">Client Engagements</div>
 
       <div class="engagements">
 
@@ -631,6 +770,12 @@
     document.querySelectorAll('.eng-meta').forEach(meta => {
       meta.addEventListener('click', () => {
         meta.closest('.engagement').classList.toggle('expanded');
+      });
+    });
+
+    document.querySelectorAll('.cs-meta').forEach(meta => {
+      meta.addEventListener('click', () => {
+        meta.closest('.cs-featured').classList.toggle('expanded');
       });
     });
 
