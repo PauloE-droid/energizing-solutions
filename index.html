@@ -496,7 +496,7 @@
     .testimonial-card { background: var(--charcoal-900); padding: 44px 36px; position: relative; }
     .t-quote-mark { font-family: var(--font-display); font-size: 4rem; line-height: 0.8; color: var(--gold-400); opacity: 0.3; margin-bottom: 16px; }
     .t-text { font-size: 0.85rem; color: var(--muted); line-height: 1.85; margin-bottom: 28px; font-style: italic; }
-    .t-author-name { font-size: 0.78rem; font-weight: 600; color: var(--charcoal-800); letter-spacing: 0.06em; margin-bottom: 4px; }
+    .t-author-name { font-size: 0.78rem; font-weight: 600; color: var(--white); letter-spacing: 0.06em; margin-bottom: 4px; }
     .t-author-title { font-size: 0.68rem; color: var(--muted); }
     .t-placeholder { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--charcoal-600); border: 1px solid var(--border); font-size: 0.7rem; color: var(--muted); margin-bottom: 12px; }
 
@@ -932,7 +932,7 @@
     <!-- CTA -->
     <div class="why-cta reveal">
       <p>Ready to work with someone who's already been where you're going?</p>
-      <a href="contact.html" class="btn-gold">Schedule a Discovery Call</a>
+      <a href="https://calendly.com/paesteves/30min" class="btn-gold">Schedule a Discovery Call</a>
     </div>
 
   </div>
@@ -992,31 +992,13 @@
       <div class="section-label reveal">Client Voices</div>
       <h2 class="section-title reveal reveal-delay-1"><em>Testimonials</em></h2>
       
-      <!-- Client Voice Image Gallery -->
+      <!-- Client Voice Testimonial Cards -->
       <div class="cv-gallery reveal reveal-delay-2">
         <div class="cv-gallery-label">Letters of Recommendation &amp; Praise</div>
-        <div class="cv-slider">
-          <button class="cv-arrow" id="cvPrev" aria-label="Previous recommendation">&#8592;</button>
-          <div class="cv-frame">
-            <img class="cv-img" id="cvImg"
-              src="Images/Client-Voice/MimiSpurPraise-2022.jpg"
-              alt="Mimi Spur Praise 2022" />
-          </div>
-          <button class="cv-arrow" id="cvNext" aria-label="Next recommendation">&#8594;</button>
-        </div>
-        <div class="cv-counter"><span id="cvCurrent">1</span> / 15</div>
-        <div class="cv-dots" id="cvDots"></div>
       </div>
       
       <div class="testimonials-grid">
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="t-quote-mark">"</div>
-          <P class="t-text">"Paul has successfully managed two large scopes of work as part of the VMware EAO engagement. He is a wonderful teammate and does a great job building relationships with our clients. I truly appreciate Paul's willingness to learn and grow while navigating a complex client dynamic. And he always keeps a positive attitude! Thank you, Paul!"
-          <P class="t-text">"Paul led areas of our project that were very challending and had a great deal of client visibility. His work was critical to the success of the VMware EAO engagement."
-          <div class="t-placeholder">?</div>
-          <div class="t-author-name">Ms. M.W.</div>
-          <div class="t-author-title">Director, Business Operations Consulting, Spur Reply</div>
-        </div>
+        
         <div class="testimonial-card reveal reveal-delay-2">
           <div class="t-quote-mark">"</div>
           <p class="t-text">"Paul, whatever you are doing with Nav, you're doing it right, I'm super happy that Nav has turned the corner, fantastic work!"
@@ -1034,10 +1016,40 @@
         </div>
         <div class="testimonial-card reveal reveal-delay-3">
           <div class="t-quote-mark">"</div>
-          <p class="t-text">"Paul I just want to thank you so much for your partnership. We would'nt be where we are without Spur quite frankly, over the last two years that I've been here. Thank you for your partnership and thank you for all your support, we really appreciate it for getting us this far.
+          <p class="t-text">Quote from VMware SLT lead to Paul at the close of the assumed last meeting sync. "I want to say on behalf of the team, Thank you! You have been super helpful, herding cats, conducting the ducky circus. I appreciate your hard work and dedication and focus on this. Thank you. The team were integral in bringing it closer to the finish line."
           <div class="t-placeholder">?</div>
-          <div class="t-author-name">Ms. T-A.P.</div>
-          <div class="t-author-title">VP, Partner Programs and Experience, VMware</div>
+          <div class="t-author-name">Ms. J.N.</div>
+          <div class="t-author-title">VP WW Commercial Sales & Partner GTM, VMware</div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="t-quote-mark">"</div>
+          <p class="t-text">"I want to thank Paul and M.W, especially Paul, we've had some interesting moments along the way, it's not easy working with a heard-of-cats, and I appreciate you always being on point. We got off to a little bit of a shakey start and I appreciate all the work that you did. Thank you for that!"
+          <div class="t-placeholder">?</div>
+          <div class="t-author-name">Mr. J.V.</div>
+          <div class="t-author-title">Head of Partner Ecosystem GTM Strategy and Planning, VMware</div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="t-quote-mark">"</div>
+          <p class="t-text">"Having professional project managers step into an environment where you didn't have a lot of clarity around the objectives, milestones and deliverables, you guys adapted to us and once you saw where we were going we had your full support. I want to extend my thanks to the team!"
+          <div class="t-placeholder">?</div>
+          <div class="t-author-name">Ms. E.G.</div>
+          <div class="t-author-title">Director, VMware</div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="t-quote-mark">"</div>
+          <p class="t-text">Quote from PMO to Paul inline with Ms. J.N.'s thanks. "I've been here less than a quarter, it has improved tremendously, you've got the cadence down, everyone taking ownership of the broader changes. I think it's much better than what it was."
+          <div class="t-placeholder">?</div>
+          <div class="t-author-name">Ms. K.B.</div>
+          <div class="t-author-title">Director Business Models - Partner Programs & GTM, VMware</div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="t-quote-mark">"</div>
+          <P class="t-text">"Paul has successfully managed two large scopes of work as part of the VMware engagement. He is a wonderful teammate and does a great job building relationships with our clients. I truly appreciate Paul's willingness to learn and grow while navigating a complex client dynamic. And he always keeps a positive attitude! Thank you, Paul!"
+          <P class="t-text">"Paul led areas of our project that were very challending and had a great deal of client visibility. His work was critical to the success of the VMware EAO engagement."
+            <p class="t-text">Paul, Thank you so much for your great work and contriutions! In a short period of time you've built strong client support and brought a lot o expertise to our team. Thank you for being a terific team mate!
+          <div class="t-placeholder">?</div>
+          <div class="t-author-name">Ms. M.W.</div>
+          <div class="t-author-title">Director, Business Operations Consulting, Spur Reply</div>
         </div>
       </div>
     </div>
