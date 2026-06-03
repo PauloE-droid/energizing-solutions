@@ -377,7 +377,7 @@
       font-weight: 300;
       line-height: 1;
       color: var(--gold-400);
-      opacity: 0.15;
+      opacity: 1;
       position: absolute;
       top: 28px; right: 28px;
       letter-spacing: -0.03em;
@@ -417,17 +417,21 @@
       color: rgba(245, 244, 240, 0.65);
       line-height: 1.9;
     }
-    .phase-body ul {
+    .phase-body ul,
+    .phase-collapsible ul {
       padding-left: 0;
       margin-top: 14px;
     }
-    .phase-body ul li {
+    .phase-body ul li,
+    .phase-collapsible ul li {
       position: relative;
       padding-left: 16px;
       margin-bottom: 10px;
       font-size: 0.8rem;
+      color: rgba(245, 244, 240, 0.65);
     }
-    .phase-body ul li::before {
+    .phase-body ul li::before,
+    .phase-collapsible ul li::before {
       content: '—';
       position: absolute;
       left: 0;
@@ -435,6 +439,12 @@
       font-size: 0.65rem;
       top: 2px;
     }
+    .phase-toggle { background: none; border: 1px solid var(--gold-400); color: var(--gold-400); cursor: pointer; padding: 4px 6px; display: flex; align-items: center; margin: 14px 0 0; transition: border-color var(--transition), background var(--transition); }
+    .phase-toggle:hover { background: rgba(201,168,76,0.15); }
+    .phase-toggle svg { width: 18px; height: 18px; fill: currentColor; transition: transform var(--transition); }
+    .phase-card.expanded .phase-toggle svg { transform: rotate(180deg); }
+    .phase-collapsible { overflow: hidden; max-height: 0; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .phase-card.expanded .phase-collapsible { max-height: 600px; }
 
     /* =============================
        OBSERVABILITY BRIDGE BAND
@@ -918,7 +928,7 @@
       <div class="hero-meta reveal reveal-delay-3">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Framework</span>
-          <span class="hero-meta-value">Applied Observability™</span>
+          <span class="hero-meta-value">Applied Observability™: The Playmaker's Framework</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Delivery Model</span>
@@ -926,7 +936,7 @@
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Audience</span>
-          <span class="hero-meta-value">CIO · CTO · CFO</span>
+          <span class="hero-meta-value">C-Suite · Leadership</span>
         </div>
       </div>
     </div>
@@ -944,7 +954,7 @@
         </h2>
       </div>
       <p class="section-intro reveal reveal-delay-2">
-        A TMO without observability is a governance structure that can't see what it's governing. Every discipline below is instrumented — producing signals, not just reports — so the executive layer can make decisions grounded in execution reality.
+        A TMO without observability is a governance structure that can't see what it's governing. Every discipline below is instrumented, producing signals not just reports, so the executive layer can make decisions grounded in execution reality.
       </p>
 
       <div class="services-grid">
@@ -1046,6 +1056,9 @@
           <div class="phase-title"><em>Establish</em></div>
           <div class="phase-body">
             Stand up the TMO infrastructure from first principles, not a template. We design governance structures, tooling, reporting cadences, and decision frameworks specific to your transformation's scale, risk profile, and stakeholder landscape.
+          </div>
+          <button type="button" class="phase-toggle" aria-label="Toggle description"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+          <div class="phase-collapsible">
             <ul>
               <li>TMO charter, mandate, and operating model</li>
               <li>Governance committee design and accountability matrix</li>
@@ -1063,6 +1076,9 @@
           <div class="phase-title"><em>Operate</em></div>
           <div class="phase-body">
             Run the TMO as a high-performance function, actively managing the portfolio, resolving escalations, and keeping transformation on-track against the original strategic intent. This is where governance meets execution reality.
+          </div>
+          <button type="button" class="phase-toggle" aria-label="Toggle description"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+          <div class="phase-collapsible">
             <ul>
               <li>Weekly portfolio health reviews with real-time signal data</li>
               <li>Cross-workstream dependency and risk management</li>
@@ -1080,6 +1096,9 @@
           <div class="phase-title"><em>Evolve</em></div>
           <div class="phase-body">
             Mature the TMO from a program management function into a strategic enterprise capability. The goal is institutionalized transformation competency, so your organization doesn't need an external TMO for the next one.
+          </div>
+          <button type="button" class="phase-toggle" aria-label="Toggle description"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+          <div class="phase-collapsible">
             <ul>
               <li>Capability transfer and internal leadership development</li>
               <li>TMO playbook documentation and knowledge repository</li>
@@ -1345,6 +1364,13 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
+
+    // Phase card collapsibles
+    document.querySelectorAll('.phase-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.phase-card').classList.toggle('expanded');
+      });
+    });
 
     // Mobile dropdowns
     document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {

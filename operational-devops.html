@@ -173,14 +173,14 @@
       font-family: var(--font-display);
       font-size: 3.5rem;
       font-weight: 300;
-      color: rgba(201,168,76,0.1);
+      color: rgba(201, 168, 76, 0.87);
       line-height: 1;
       margin-bottom: 16px;
     }
     .cap-icon { width: 36px; height: 36px; color: var(--gold-400); margin-bottom: 20px; opacity: 0.85; }
-    .cap-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--charcoal-800); line-height: 1.2; margin-bottom: 16px; }
+    .cap-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
     .cap-body { font-size: 0.85rem; font-weight: 300; color: var(--muted); line-height: 1.85; }
-    .cap-body strong { color: var(--charcoal-800); font-weight: 500; }
+    .cap-body strong { color: var(--gold-400); font-weight: 500; }
 
     /* ===== PIPELINE DIAGRAM ===== */
     .pipeline-section {
@@ -217,7 +217,7 @@
       font-family: var(--font-display);
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--charcoal-800);
+      color: var(--white);
       line-height: 1.2;
       margin-bottom: 10px;
     }
@@ -246,7 +246,7 @@
     .tools-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-400); white-space: nowrap; }
     .tools-divider { width: 1px; height: 32px; background: var(--border); flex-shrink: 0; }
     .tools-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-    .tool-tag { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal-800); background: var(--charcoal-600); border: 1px solid var(--border); padding: 6px 14px; border-radius: 2px; transition: border-color var(--transition), color var(--transition); }
+    .tool-tag { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--charcoal-600); border: 1px solid var(--border); padding: 6px 14px; border-radius: 2px; transition: border-color var(--transition), color var(--transition); }
     .tool-tag:hover { border-color: var(--gold-400); color: var(--gold-300); }
 
     /* ===== STATS ===== */
@@ -276,7 +276,7 @@
     .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
     .footer-links a { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); }
     .footer-links a:hover { color: var(--gold-300); }
-    .footer-copy { font-size: 0.7rem; color: rgba(138,138,138,0.5); text-align: center; padding-top: 24px; border-top: 1px solid var(--border); max-width: 1160px; margin: 24px auto 0; }
+    .footer-copy { font-size: 0.7rem; color: rgba(10, 10, 10, 0.932); text-align: center; padding-top: 24px; border-top: 1px solid var(--border); max-width: 1160px; margin: 24px auto 0; }
 
     /* ===== REVEAL ===== */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
@@ -378,6 +378,7 @@
           <li><a href="cost-optimization.html">Cost Optimization</a></li>
           <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
           <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+          <li><a href="support-for-continuous-deployment.html">Continuous Deployment</a></li>
         </ul>
       </li>
       <li><a href="portfolio.html">Portfolio</a></li>
@@ -427,10 +428,13 @@
         <a href="cost-optimization.html">Cost Optimization</a>
         <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
         <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+        <a href="support-for-continuous-deployment.html">Continuous Deployment</a>
       </div>
     </div>
 
     <a href="portfolio.html">Portfolio</a>
+    <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -439,8 +443,8 @@
       <div class="hero-eyebrow reveal">Services</div>
       <h1 class="reveal reveal-delay-1">Operational<br /><em>DevOps</em></h1>
       <p class="hero-desc reveal reveal-delay-2">
-        Transforming development and operations into a seamless, resilient ecosystem 
-        â€” built for high efficiency, regulatory compliance, and continuous improvement 
+        Transforming development and operations into a seamless, resilient ecosystem, 
+         built for high efficiency, regulatory compliance, and continuous improvement 
         across enterprise environments.
       </p>
     </div>
@@ -456,7 +460,7 @@
         Drawing on 20 years of enterprise leadership experience, this Operational DevOps 
         solution focuses on unifying development and operations into a high-performance 
         delivery machine. Every engagement is built around your specific goals, regulatory 
-        environment, and organizational structure â€” not a generic playbook. The result is 
+        environment, and organizational structure, not a generic playbook. The result is 
         faster time-to-market, reduced downtime, and embedded practices that sustain 
         operational excellence long after delivery.
       </div>
@@ -483,7 +487,7 @@
           <div class="cap-title">CI/CD Pipeline Design</div>
           <div class="cap-body">
             Leveraging <strong>continuous integration and deployment (CI/CD)</strong> practices, 
-            I design tailored pipelines that optimize deployment workflows â€” ensuring faster 
+            I design tailored pipelines that optimize deployment workflows - ensuring faster 
             time-to-market and minimizing downtime. Each pipeline is reinforced with 
             <strong>automated testing</strong> and real-time monitoring for consistent reliability 
             across every release cycle.
@@ -502,7 +506,7 @@
             Implementing <strong>IaC and operational automation</strong> to keep client systems 
             agile and scalable. This enables rapid scaling and deployment while maintaining 
             consistency across environments, reducing manual intervention, and ensuring 
-            security â€” using tools like <strong>Terraform</strong> and <strong>Ansible</strong> 
+            security - using tools like <strong>Terraform</strong> and <strong>Ansible</strong> 
             adapted to each client's context.
           </div>
         </div>
@@ -517,8 +521,8 @@
           <div class="cap-body">
             Integrating <strong>compliance measures directly into pipelines</strong> provides a 
             standardized yet adaptable approach aligned with each client's regulatory needs. 
-            Security, audit trails, and policy enforcement are embedded at the pipeline level â€” 
-            not bolted on afterward â€” ensuring governance without slowing delivery velocity.
+            Security, audit trails, and policy enforcement are embedded at the pipeline level - 
+            not bolted on afterward - ensuring governance without slowing delivery velocity.
           </div>
         </div>
 
@@ -535,7 +539,7 @@
             In collaboration with cross-functional teams, I bring <strong>accountability and best 
             practices</strong> to sustain long-term operational excellence. By focusing on 
             knowledge transfer and mentorship, I ensure that DevOps practices are embedded and 
-            scalable within the organization â€” supporting continuous improvement for reliable, 
+            scalable within the organization - supporting continuous improvement for reliable, 
             streamlined, and secure IT operations.
           </div>
         </div>
@@ -587,18 +591,18 @@
       <div class="tools-label">Tooling &amp; Platforms</div>
       <div class="tools-divider"></div>
       <div class="tools-tags">
-        <span class="tool-tag">Terraform</span>
-        <span class="tool-tag">Ansible</span>
+        <span class="tool-tag">ActiveControl</span>
+        <span class="tool-tag">Elipse</span>
         <span class="tool-tag">Jenkins</span>
-        <span class="tool-tag">GitHub Actions</span>
+        <span class="tool-tag">GitHub</span>
         <span class="tool-tag">Azure DevOps</span>
-        <span class="tool-tag">Docker</span>
+        <span class="tool-tag">GitLab</span>
         <span class="tool-tag">Kubernetes</span>
         <span class="tool-tag">Prometheus</span>
         <span class="tool-tag">Grafana</span>
         <span class="tool-tag">ServiceNow</span>
         <span class="tool-tag">Jira</span>
-        <span class="tool-tag">SonarQube</span>
+        <span class="tool-tag">Klario</span>
       </div>
     </div>
   </div>
@@ -620,34 +624,26 @@
       </div>
       <div class="stat-cell reveal reveal-delay-4">
         <div class="stat-number">0</div>
-        <div class="stat-label">Bolt-On Compliance â€” Built In</div>
+        <div class="stat-label">Bolt-On Compliance - Built In</div>
       </div>
     </div>
   </div>
 
-  <!-- CTA -->
-  <section class="cta-section">
+  <!-- FOOTER -->
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
     <div class="cta-inner">
       <h2 class="reveal">Ready to Build a <em>Resilient</em><br />DevOps Ecosystem?</h2>
       <p class="reveal reveal-delay-1">
         Let's design a pipeline and operational model that's built for your 
         environment â€” compliant, scalable, and owned by your team from day one.
       </p>
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
-        <a href="index.html#contact" class="btn-gold">Get in Touch</a>
-        <a href="services-overview.html" class="btn-ghost">All Services</a>
-      </div>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <!-- CONTACT -->
-  <section id="contact" class="section section-alt">
     <div class="section-inner">
       <div class="contact-inner">
         <div class="section-label reveal" style="justify-content:center;">Let's Talk</div>
         <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:20px;"><em>Start a Conversation</em></h2>
-        <p class="contact-sub reveal reveal-delay-2">Whether you're navigating a program at risk, standing up a PMO, or need an experienced operator to lead a complex transformation â€” let's find out if we're a fit.</p>
+        <p class="contact-sub reveal reveal-delay-2">Whether you're navigating a program at risk, standing up a PMO, or need an experienced operator to lead a complex transformation - let's find out if we're a fit.</p>
         <div class="reveal reveal-delay-4">
           <a href="mailto:paul.esteves@energizing-solutions.com" class="btn-gold">Get In Touch</a>
           <a href="https://calendly.com/paesteves/30min" class="btn-gold">Schedule a Call</a>
@@ -661,7 +657,7 @@
     <div class="footer-inner">
       <div class="footer-logo">Energizing <span>Solutions</span></div>
     </div>
-    <p class="footer-copy">Â© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+    <p class="footer-copy">© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
   </footer>
 
   <script>

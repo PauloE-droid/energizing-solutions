@@ -110,11 +110,11 @@
     .clusters-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
     .cluster-card { background: var(--charcoal-700); padding: 48px 40px; position: relative; overflow: hidden; }
     .cluster-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold-400), var(--gold-200)); }
-    .cluster-number { font-family: var(--font-display); font-size: 4rem; font-weight: 300; color: rgba(201,168,76,0.1); line-height: 1; margin-bottom: 8px; letter-spacing: -0.04em; }
+    .cluster-number { font-family: var(--font-display); font-size: 4rem; font-weight: 300; color: rgba(201, 168, 76, 0.877); line-height: 1; margin-bottom: 8px; letter-spacing: -0.04em; }
     .cluster-title { font-family: var(--font-display); font-size: 1.9rem; font-weight: 600; color: var(--gold-300); margin-bottom: 16px; letter-spacing: 0.02em; }
     .cluster-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.85; margin-bottom: 28px; }
     .cluster-tags { display: flex; flex-direction: column; gap: 10px; }
-    .cluster-tag { display: flex; align-items: center; gap: 10px; font-size: 0.74rem; font-weight: 500; color: var(--charcoal-800); letter-spacing: 0.04em; }
+    .cluster-tag { display: flex; align-items: center; gap: 10px; font-size: 0.74rem; font-weight: 500; color: var(--white); letter-spacing: 0.04em; }
     .cluster-tag::before { content: ''; display: block; width: 6px; height: 6px; border: 1px solid var(--gold-400); border-radius: 50%; flex-shrink: 0; }
 
     /* ===== SOLUTION PANELS ===== */
@@ -125,7 +125,7 @@
     .panel-visual { background: var(--charcoal-900); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; min-height: 360px; }
     .panel-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%); }
     .panel-visual-inner { position: relative; z-index: 1; text-align: center; padding: 40px; }
-    .panel-numeral { font-family: var(--font-display); font-size: 7rem; font-weight: 300; color: rgba(201,168,76,0.12); line-height: 1; letter-spacing: -0.04em; }
+    .panel-numeral { font-family: var(--font-display); font-size: 7rem; font-weight: 300; color: rgba(201, 168, 76, 0.884); line-height: 1; letter-spacing: -0.04em; }
     .panel-icon { color: var(--gold-400); opacity: 0.6; margin-top: -20px; }
     .panel-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 14px; }
     .panel-title { font-family: var(--font-display); font-size: clamp(1.8rem, 2.5vw, 2.4rem); font-weight: 300; color: var(--charcoal-800); line-height: 1.2; margin-bottom: 20px; }
@@ -162,7 +162,7 @@
     .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
     .footer-links a { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); }
     .footer-links a:hover { color: var(--gold-300); }
-    .footer-copy { font-size: 0.7rem; color: rgba(138,138,138,0.5); text-align: center; padding-top: 24px; border-top: 1px solid var(--border); max-width: 1160px; margin: 24px auto 0; }
+    .footer-copy { font-size: 0.7rem; color: rgba(8, 8, 8, 0.932); text-align: center; padding-top: 24px; border-top: 1px solid var(--border); max-width: 1160px; margin: 24px auto 0; }
 
     /* ===== REVEAL ===== */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
@@ -257,6 +257,7 @@
           <li><a href="cost-optimization.html">Cost Optimization</a></li>
           <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
           <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+          <li><a href="support-for-continuous-deployment.html">Continuous Deployment</a></li>
         </ul>
       </li>
       <li><a href="portfolio.html">Portfolio</a></li>
@@ -306,10 +307,13 @@
         <a href="cost-optimization.html">Cost Optimization</a>
         <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
         <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+        <a href="support-for-continuous-deployment.html">Continuous Deployment</a>
       </div>
     </div>
 
     <a href="portfolio.html">Portfolio</a>
+    <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -318,7 +322,7 @@
       <div class="hero-eyebrow reveal">Solutions</div>
       <h1 class="reveal reveal-delay-1">Innovative Information<br /><em>Systems Solutions</em></h1>
       <p class="hero-desc reveal reveal-delay-2">
-        Organizational Digital Evolution â€” technology trends translated into 
+        Organizational Digital Evolution - technology trends translated into 
         business outcomes. From full-stack transformation to intelligent enterprise 
         operations, our solution frameworks deliver structured paths to digital maturity.
       </p>
@@ -386,7 +390,7 @@
   <div class="solution-panel reveal">
     <div class="panel-content">
       <div class="panel-tag">Solution 01</div>
-      <h2 class="panel-title">Digital<br /><em>Transformation</em></h2>
+      <h2 class="panel-title">Digital <em>Transformation</em></h2>
       <p class="panel-body">
         The comprehensive integration of digital technologies into all aspects of an 
         organization, fundamentally changing how business operates, delivers value, 
@@ -422,10 +426,10 @@
     </div>
     <div class="panel-content">
       <div class="panel-tag">Solution 02</div>
-      <h2 class="panel-title">Intelligent<br /><em>Enterprise</em></h2>
+      <h2 class="panel-title">Intelligent <em>Enterprise</em></h2>
       <p class="panel-body">
-        Leveraging advanced technologies â€” artificial intelligence, machine learning, 
-        data science, analytics, and automation â€” to gain insights, make informed 
+        Leveraging advanced technologies - artificial intelligence, machine learning, 
+        data science, analytics, and automation - to gain insights, make informed 
         decisions, and optimize operations. Our solution offerings deliver the 
         components needed for a complete intelligent enterprise journey.
       </p>
@@ -440,7 +444,7 @@
   <div class="solution-panel reveal">
     <div class="panel-content">
       <div class="panel-tag">Solution 03</div>
-      <h2 class="panel-title">Experience<br /><em>Economy</em></h2>
+      <h2 class="panel-title">Experience <em>Economy</em></h2>
       <p class="panel-body">
         Delivering memorable and meaningful experiences to customers. The Experience 
         Economy emphasizes emotional connections, personalized interactions, and 
@@ -476,9 +480,9 @@
     </div>
     <div class="panel-content">
       <div class="panel-tag">Solution 04</div>
-      <h2 class="panel-title">Digital to<br /><em>the Core</em></h2>
+      <h2 class="panel-title">Digital to <em>the Core</em></h2>
       <p class="panel-body">
-        Leaders must embrace digital transformation fully â€” understanding its impact 
+        Leaders must embrace digital transformation fully - understanding its impact 
         and adapting strategically to thrive in an ever-changing landscape. It's a 
         strategic approach where organizations build a rock-solid foundation of core 
         systems to enable digital evolution. Business leaders face multi-dimensional 
@@ -496,7 +500,7 @@
   <div class="solution-panel reveal">
     <div class="panel-content">
       <div class="panel-tag">Solution 05</div>
-      <h2 class="panel-title">DevOps<br /><em>for SAP</em></h2>
+      <h2 class="panel-title">DevOps <em>for SAP</em></h2>
       <p class="panel-body">
         Applying DevOps principles to SAP environments to improve efficiency, quality, 
         and delivery speed. Automated processes and improved collaboration allow 
@@ -533,10 +537,10 @@
     </div>
     <div class="panel-content">
       <div class="panel-tag">Solution 06</div>
-      <h2 class="panel-title">Applied<br /><em>Observability</em></h2>
+      <h2 class="panel-title">Applied <em>Observability</em></h2>
       <p class="panel-body">
         An organizational continuous improvement solution that enables shortening 
-        the time between stakeholder actions and organizational reactions â€” in a 
+        the time between stakeholder actions and organizational reactions - in a 
         highly orchestrated digital evolutionary journey. Transform telemetry into 
         intelligence, and intelligence into decisive action across your entire 
         enterprise stack.
@@ -548,23 +552,15 @@
     </div>
   </div>
 
-  <!-- CTA -->
-  <section class="cta-section">
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
     <div class="cta-inner">
       <h2 class="reveal">Ready to Start Your<br /><em>Evolution Journey?</em></h2>
       <p class="reveal reveal-delay-1">
         Every transformation starts with a conversation. Tell us where you are 
-        and where you need to go â€” we'll build the path.
+        and where you need to go - we'll build the path.
       </p>
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
-        <a href="index.html#contact" class="btn-gold">Get in Touch</a>
-        <a href="services-overview.html" class="btn-ghost">View Services</a>
-      </div>
     </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section section-alt">
     <div class="section-inner">
       <div class="contact-inner">
         <div class="section-label reveal" style="justify-content:center;">Let's Talk</div>
@@ -574,6 +570,7 @@
           <a href="mailto:paul.esteves@energizing-solutions.com" class="btn-gold">Get In Touch</a>
           <a href="https://calendly.com/paesteves/30min" class="btn-gold">Schedule a Call</a>
           <a href="https://github.com/PauloE-droid" class="btn-gold">View My Work</a>
+          <a href="services-overview.html" class="btn-gold">View Services</a>
         </div>
       </div>
     </div>
@@ -584,7 +581,7 @@
     <div class="footer-inner">
       <div class="footer-logo">Energizing <span>Solutions</span></div>
     </div>
-    <p class="footer-copy">Â© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+    <p class="footer-copy">© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
   </footer>
 
   <script>

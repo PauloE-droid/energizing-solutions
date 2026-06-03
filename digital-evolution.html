@@ -118,7 +118,7 @@
     .cap-card:hover::before { width: 100%; }
     .cap-icon { width: 36px; height: 36px; color: var(--gold-400); margin-bottom: 18px; opacity: 0.85; }
     .cap-tag { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 10px; }
-    .cap-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--charcoal-800); line-height: 1.2; margin-bottom: 12px; }
+    .cap-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--white); line-height: 1.2; margin-bottom: 12px; }
     .cap-body { font-size: 0.82rem; font-weight: 300; color: var(--muted); line-height: 1.85; }
 
     /* ===== FULL-SPECTRUM BAND ===== */
@@ -144,8 +144,8 @@
       cursor: default;
     }
     .spectrum-item:hover { background: var(--charcoal-600); }
-    .spectrum-item-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--charcoal-800); line-height: 1.4; }
-    .spectrum-item-sub { font-size: 0.65rem; color: var(--muted); margin-top: 4px; }
+    .spectrum-item-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-400); line-height: 1.4; }
+    .spectrum-item-sub { font-size: 0.65rem; color: var(--gold-200); margin-top: 4px; }
 
     /* ===== STATS ===== */
     .stats-band { padding: 72px 48px; border-bottom: 1px solid var(--border); }
@@ -174,7 +174,7 @@
     .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
     .footer-links a { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); }
     .footer-links a:hover { color: var(--gold-300); }
-    .footer-copy { font-size: 0.7rem; color: rgba(138,138,138,0.5); text-align: center; padding-top: 24px; border-top: 1px solid var(--border); max-width: 1160px; margin: 24px auto 0; }
+    .footer-copy { font-size: 0.7rem; color: rgba(10, 10, 10, 0.897); text-align: center; padding-top: 24px; border-top: 1px solid var(--border); max-width: 1160px; margin: 24px auto 0; }
 
     /* ===== REVEAL ===== */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
@@ -273,6 +273,7 @@
           <li><a href="cost-optimization.html">Cost Optimization</a></li>
           <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
           <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+          <li><a href="support-for-continuous-deployment.html">Continuous Deployment</a></li>
         </ul>
       </li>
       <li><a href="portfolio.html">Portfolio</a></li>
@@ -322,10 +323,13 @@
         <a href="cost-optimization.html">Cost Optimization</a>
         <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
         <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+        <a href="support-for-continuous-deployment.html">Continuous Deployment</a>
       </div>
     </div>
 
     <a href="portfolio.html">Portfolio</a>
+        <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -334,8 +338,8 @@
       <div class="hero-eyebrow reveal">Services</div>
       <h1 class="reveal reveal-delay-1">Digital<br /><em>Evolution Solutions</em></h1>
       <p class="hero-desc reveal reveal-delay-2">
-        A full spectrum of emerging technology capabilities â€” from AI and cloud to 
-        sustainable tech and the metaverse â€” woven into cohesive digital transformation 
+        A full spectrum of emerging technology capabilities - from AI and cloud to 
+        sustainable tech and the metaverse - woven into cohesive digital transformation 
         strategy that moves enterprises from ambition to execution.
       </p>
     </div>
@@ -357,9 +361,11 @@
           </svg>
           <div class="cap-tag">Observability</div>
           <div class="cap-title">Applied Observability</div>
+          <div class="spectrum-item-sub">Telemetry — Decisions</div>
+          <br/>
           <div class="cap-body">
             Transform raw telemetry into actionable intelligence. Applied Observability 
-            connects logs, metrics, and traces into a unified decision layer â€” giving 
+            connects logs, metrics, and traces into a unified decision layer - giving 
             leadership real-time visibility into system health, business outcomes, and 
             emerging risk across the entire enterprise stack.
           </div>
@@ -372,11 +378,13 @@
           </svg>
           <div class="cap-tag">Resilience</div>
           <div class="cap-title">Digital Immune System</div>
+          <div class="spectrum-item-sub">Self-Healing Architecture</div>
+          <br/>
           <div class="cap-body">
             Build self-healing, self-protecting systems that withstand disruption. 
             The Digital Immune System approach weaves observability, AI-augmented testing, 
             chaos engineering, and automated remediation into a cohesive resilience 
-            architecture â€” reducing failures before they reach production.
+            architecture - reducing failures before they reach production.
           </div>
         </div>
 
@@ -387,8 +395,10 @@
           </svg>
           <div class="cap-tag">AI Governance</div>
           <div class="cap-title">AI TRiSM</div>
+          <div class="spectrum-item-sub">AI Governance</div>
+          <br/>
           <div class="cap-body">
-            AI Trust, Risk, and Security Management â€” building the governance frameworks 
+            AI Trust, Risk, and Security Management - building the governance frameworks 
             needed to deploy AI responsibly at scale. Covers model explainability, bias 
             detection, data lineage, adversarial resilience, and regulatory compliance 
             so AI initiatives can move fast without creating liability.
@@ -401,10 +411,12 @@
           </svg>
           <div class="cap-tag">Cloud Strategy</div>
           <div class="cap-title">Industry Cloud Platforms</div>
+          <div class="spectrum-item-sub">Vertical Cloud Strategy</div>
+          <br/>
           <div class="cap-body">
             Move beyond generic cloud infrastructure to industry-specific platforms 
             purpose-built for your regulatory environment, data requirements, and 
-            competitive context â€” whether financial services, healthcare, manufacturing, 
+            competitive context - whether financial services, healthcare, manufacturing, 
             or defense-adjacent operations.
           </div>
         </div>
@@ -415,10 +427,12 @@
           </svg>
           <div class="cap-tag">Infrastructure</div>
           <div class="cap-title">Cloud Platform Engineering</div>
+          <div class="spectrum-item-sub">Foundation Infrastructure</div>
+          <br/>
           <div class="cap-body">
             Design, build, and operate cloud platforms that are secure, scalable, and 
             developer-ready from day one. From landing zone architecture and FinOps 
-            integration to platform teams and internal developer portals â€” engineering 
+            integration to platform teams and internal developer portals - engineering 
             the foundation that all digital products run on.
           </div>
         </div>
@@ -429,8 +443,10 @@
           </svg>
           <div class="cap-tag">Connectivity</div>
           <div class="cap-title">Wireless-Value Realization</div>
+          <div class="spectrum-item-sub">5G / IoT / Edge</div>
+          <br/>
           <div class="cap-body">
-            Harness the business value locked inside wireless infrastructure â€” 5G, 
+            Harness the business value locked inside wireless infrastructure - 5G, 
             Wi-Fi 6, IoT sensor networks, and edge computing. Translate connectivity 
             investments into measurable operational outcomes: reduced latency, 
             real-time asset tracking, and new revenue-generating services.
@@ -443,10 +459,12 @@
           </svg>
           <div class="cap-tag">Product Strategy</div>
           <div class="cap-title">SuperApps</div>
+          <div class="spectrum-item-sub">Unified Experiences</div>
+          <br/>
           <div class="cap-body">
             Design unified application experiences that consolidate multiple services 
             into a single, cohesive platform. SuperApps reduce friction, increase 
-            engagement, and create ecosystem lock-in â€” applicable to both 
+            engagement, and create ecosystem lock-in - applicable to both 
             customer-facing products and internal enterprise tooling.
           </div>
         </div>
@@ -457,11 +475,13 @@
           </svg>
           <div class="cap-tag">AI Architecture</div>
           <div class="cap-title">Adaptive AI</div>
+          <div class="spectrum-item-sub">Continuous Learning</div>
+          <br/>
           <div class="cap-body">
             Implement AI systems that learn and adapt in production rather than degrading 
             over time. Adaptive AI architectures combine continuous learning pipelines, 
-            feedback loops, and model monitoring to keep intelligence fresh â€” and 
-            decisions reliable â€” as business conditions shift.
+            feedback loops, and model monitoring to keep intelligence fresh - and 
+            decisions reliable - as business conditions shift.
           </div>
         </div>
 
@@ -471,10 +491,12 @@
           </svg>
           <div class="cap-tag">Sustainability</div>
           <div class="cap-title">Sustainable Technology</div>
+          <div class="spectrum-item-sub">ESG &amp; Green IT</div>
+          <br/>
           <div class="cap-body">
             Align technology investment with ESG commitments. Sustainable Technology 
             practice covers green cloud architecture, carbon-aware workload scheduling, 
-            e-waste strategy, and sustainability reporting infrastructure â€” turning 
+            e-waste strategy, and sustainability reporting infrastructure - turning 
             compliance obligations into competitive positioning.
           </div>
         </div>
@@ -486,47 +508,11 @@
   <!-- FULL SPECTRUM BAND -->
   <div class="spectrum-band">
     <div class="spectrum-inner reveal">
-      <div class="spectrum-label">Full Capability Spectrum â€” All 15 Digital Evolution Domains</div>
+      <div class="spectrum-label">Full Capability Spectrum — 6 Digital Evolution Domains</div>
       <div class="spectrum-grid">
-        <div class="spectrum-item">
-          <div class="spectrum-item-label">Applied Observability</div>
-          <div class="spectrum-item-sub">Telemetry â†’ Decisions</div>
-        </div>
-        <div class="spectrum-item">
-          <div class="spectrum-item-label">Digital Immune System</div>
-          <div class="spectrum-item-sub">Self-Healing Architecture</div>
-        </div>
-        <div class="spectrum-item">
-          <div class="spectrum-item-label">AI TRiSM</div>
-          <div class="spectrum-item-sub">AI Governance</div>
-        </div>
-        <div class="spectrum-item">
-          <div class="spectrum-item-label">Industry Cloud Platforms</div>
-          <div class="spectrum-item-sub">Vertical Cloud Strategy</div>
-        </div>
-        <div class="spectrum-item">
-          <div class="spectrum-item-label">Cloud Platform Engineering</div>
-          <div class="spectrum-item-sub">Foundation Infrastructure</div>
-        </div>
-        <div class="spectrum-item">
-          <div class="spectrum-item-label">Wireless-Value Realization</div>
-          <div class="spectrum-item-sub">5G / IoT / Edge</div>
-        </div>
-        <div class="spectrum-item">
-          <div class="spectrum-item-label">SuperApps</div>
-          <div class="spectrum-item-sub">Unified Experiences</div>
-        </div>
-        <div class="spectrum-item">
-          <div class="spectrum-item-label">Adaptive AI</div>
-          <div class="spectrum-item-sub">Continuous Learning</div>
-        </div>
         <div class="spectrum-item">
           <div class="spectrum-item-label">Metaverse</div>
           <div class="spectrum-item-sub">Immersive Enterprise</div>
-        </div>
-        <div class="spectrum-item">
-          <div class="spectrum-item-label">Sustainable Technology</div>
-          <div class="spectrum-item-sub">ESG &amp; Green IT</div>
         </div>
         <div class="spectrum-item">
           <div class="spectrum-item-label">DevOps</div>
@@ -556,7 +542,7 @@
   <div class="stats-band">
     <div class="stats-inner">
       <div class="stat-cell reveal reveal-delay-1">
-        <div class="stat-number">15</div>
+        <div class="stat-number">6</div>
         <div class="stat-label">Digital Evolution Domains</div>
       </div>
       <div class="stat-cell reveal reveal-delay-2">
@@ -564,8 +550,8 @@
         <div class="stat-label">Years Enterprise IT Leadership</div>
       </div>
       <div class="stat-cell reveal reveal-delay-3">
-        <div class="stat-number">$160B</div>
-        <div class="stat-label">Total Addressable Market</div>
+        <div class="stat-number">$1.0B</div>
+        <div class="stat-label">Value Creation</div>
       </div>
       <div class="stat-cell reveal reveal-delay-4">
         <div class="stat-number">$300M</div>
@@ -574,8 +560,9 @@
     </div>
   </div>
 
-  <!-- CTA -->
-  <section class="cta-section">
+  <!-- FOOTER -->
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
     <div class="cta-inner">
       <h2 class="reveal">Ready to <em>Evolve</em><br />Your Digital Strategy?</h2>
       <p class="reveal reveal-delay-1">
@@ -583,16 +570,7 @@
         or a full-spectrum digital transformation roadmap â€” let's build something 
         that moves the needle.
       </p>
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
-        <a href="mailto:paul.esteves@energizing-solutions.com" class="btn-gold">Get In Touch</a>
-        <a href="services-overview.html" class="btn-ghost">All Services</a>
-      </div>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <!-- CONTACT -->
-  <section id="contact" class="section section-alt">
     <div class="section-inner">
       <div class="contact-inner">
         <div class="section-label reveal" style="justify-content:center;">Let's Talk</div>
@@ -602,6 +580,7 @@
           <a href="mailto:paul.esteves@energizing-solutions.com" class="btn-gold">Get In Touch</a>
           <a href="https://calendly.com/paesteves/30min" class="btn-gold">Schedule a Call</a>
           <a href="https://github.com/PauloE-droid" class="btn-gold">View My Work</a>
+          <a href="services-overview.html" class="btn-gold">All Services</a>
         </div>
       </div>
     </div>
@@ -611,7 +590,7 @@
     <div class="footer-inner">
       <div class="footer-logo">Energizing <span>Solutions</span></div>
     </div>
-    <p class="footer-copy">Â© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+    <p class="footer-copy">© 2026 Energizing Solutions LLC. All Rights Reserved.</p>
   </footer>
 
   <script>
