@@ -103,6 +103,15 @@
     .section-title { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.15; color: var(--charcoal-800); letter-spacing: -0.01em; margin-bottom: 56px; }
     .section-title em { font-style: italic; color: var(--gold-300); }
 
+    /* ===== SOLUTIONS NAV ===== */
+    .sol-nav{background:var(--charcoal-900);border-bottom:1px solid var(--border);padding:0 48px;position:sticky;top:var(--nav-height);z-index:900;}
+    .sol-nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;}
+    .sol-nav-inner::-webkit-scrollbar{display:none;}
+    .sol-nav-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);white-space:nowrap;padding-right:24px;border-right:1px solid var(--border);margin-right:24px;flex-shrink:0;}
+    .sol-link{font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:16px 16px;white-space:nowrap;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition);flex-shrink:0;}
+    .sol-link:hover{color:var(--charcoal-800);}
+    .sol-link.active{color:var(--gold-300);border-bottom-color:var(--gold-400);}
+
     /* ===== CLUSTERS â€” Optimize / Scale / Pioneer ===== */
     .clusters-band { background: var(--charcoal-900); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 48px; }
     .clusters-inner { max-width: 1160px; margin: 0 auto; }
@@ -185,6 +194,7 @@
     }
     @media (max-width: 768px) {
       nav { padding: 0 24px; }
+      .sol-nav { padding: 0 24px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .page-hero { padding: calc(var(--nav-height) + 48px) 24px 56px; }
@@ -208,6 +218,7 @@
     .cluster-card,
     .panel-visual,
     .stat-cell,
+    .sol-nav,
     nav.scrolled { --muted: var(--white); }
   </style>
 
@@ -318,6 +329,18 @@
     <a href="portfolio.html">Portfolio</a>
     <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
     <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
+  </div>
+
+  <div class="sol-nav">
+    <div class="sol-nav-inner">
+      <span class="sol-nav-label">Solutions</span>
+      <a href="solutions-overview.html" class="sol-link active">Overview</a>
+      <a href="digital-transformation.html" class="sol-link">Digital Transformation</a>
+      <a href="experience-economy.html" class="sol-link">Experience Economy</a>
+      <a href="digital-to-the-core.html" class="sol-link">Digital to the Core</a>
+      <a href="devops-for-sap.html" class="sol-link">DevOps for SAP</a>
+      <a href="intelligent-enterprise.html" class="sol-link">Intelligent Enterprise</a>
+    </div>
   </div>
 
   <!-- HERO -->
