@@ -85,6 +85,9 @@
     .page-hero::before { content: ''; position: absolute; top: -120px; right: -80px; width: 600px; height: 600px; background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%); pointer-events: none; }
     .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
     .hero-inner { max-width: 1160px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-cols { display: flex; gap: 80px; align-items: flex-start; }
+    .hero-col { flex: 1; }
+    .hero-col .hero-desc { max-width: none; }
     .hero-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 20px; }
     .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold-400); }
     .page-hero h1 { font-family: var(--font-display); font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.01em; color: var(--charcoal-800); margin-bottom: 24px; }
@@ -105,7 +108,7 @@
     .clusters-inner { max-width: 1160px; margin: 0 auto; }
     .clusters-heading { text-align: center; margin-bottom: 56px; }
     .clusters-heading .section-label { display: inline-flex; }
-    .clusters-heading h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; color: var(--charcoal-800); margin-top: 12px; }
+    .clusters-heading h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; color: var(--white); margin-top: 12px; }
     .clusters-heading h2 em { font-style: italic; color: var(--gold-300); }
     .clusters-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
     .cluster-card { background: var(--charcoal-700); padding: 48px 40px; position: relative; overflow: hidden; }
@@ -145,7 +148,7 @@
     /* ===== CTA ===== */
     .cta-section { padding: 96px 48px; text-align: center; position: relative; overflow: hidden; }
     .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 350px; background: radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; }
-    .cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+    .cta-inner { max-width: 840px; margin: 0 auto; position: relative; z-index: 1; }
     .cta-inner h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.2; margin-bottom: 20px; }
     .cta-inner h2 em { font-style: italic; color: var(--gold-300); }
     .cta-inner p { font-size: 0.9rem; color: var(--charcoal-800); margin-bottom: 40px; line-height: 1.8; }
@@ -185,6 +188,7 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .page-hero { padding: calc(var(--nav-height) + 48px) 24px 56px; }
+      .hero-cols { flex-direction: column; gap: 32px; }
       .section { padding: 64px 24px; }
       .clusters-band { padding: 56px 24px; }
       .stats-band { padding: 48px 24px; }
@@ -320,12 +324,24 @@
   <section class="page-hero">
     <div class="hero-inner">
       <div class="hero-eyebrow reveal">Solutions</div>
-      <h1 class="reveal reveal-delay-1">Innovative Information<br /><em>Systems Solutions</em></h1>
-      <p class="hero-desc reveal reveal-delay-2">
-        Organizational Digital Evolution - technology trends translated into 
-        business outcomes. From full-stack transformation to intelligent enterprise 
-        operations, our solution frameworks deliver structured paths to digital maturity.
-      </p>
+          <h1 class="reveal reveal-delay-1">Innovative Information <em>Systems Solutions</em></h1>
+      <div class="hero-cols">
+        <div class="hero-col">
+          <p class="hero-desc reveal reveal-delay-2">
+            Organizational Digital Evolution - technology trends translated into
+            business outcomes. From full-stack transformation to intelligent enterprise
+            operations, our solution frameworks deliver structured paths to digital maturity.
+          </p>
+        </div>
+        <div class="hero-col">
+          <p class="hero-desc reveal reveal-delay-2">
+            The comprehensive integration of digital technologies into all aspects of an
+            organization, fundamentally changing how business operates, delivers value,
+            and interacts with stakeholders. Our solution offerings delve into the aspects
+            and components required to deliver a complete digital evolution journey.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -383,34 +399,35 @@
       </div>
     </div>
   </div>
+<br/>
 
   <!-- SOLUTION PANELS -->
 
-  <!-- 1. Digital Transformation -->
-  <div class="solution-panel reveal">
-    <div class="panel-content">
-      <div class="panel-tag">Solution 01</div>
-      <h2 class="panel-title">Digital <em>Transformation</em></h2>
-      <p class="panel-body">
-        The comprehensive integration of digital technologies into all aspects of an 
-        organization, fundamentally changing how business operates, delivers value, 
-        and interacts with stakeholders. Our solution offerings delve into the aspects 
-        and components required to deliver a complete digital evolution journey.
-      </p>
-      <a href="digital-transformation.html" class="btn-link">
-        Explore Solution
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
+    <!-- 1. Applied Observability -->
+  <div class="solution-panel reverse reveal">
     <div class="panel-visual">
       <div class="panel-visual-inner">
         <div class="panel-numeral">01</div>
         <svg class="panel-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-          <line x1="12" y1="22.08" x2="12" y2="12"/>
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
         </svg>
       </div>
+    </div>
+    <div class="panel-content">
+      <div class="panel-tag">Solution 01</div>
+      <h2 class="panel-title">Applied <em>Observability</em></h2>
+      <p class="panel-body">
+        An organizational continuous improvement solution that enables shortening 
+        the time between stakeholder actions and organizational reactions - in a 
+        highly orchestrated digital evolutionary journey. Transform telemetry into 
+        intelligence, and intelligence into decisive action across your entire 
+        enterprise stack.
+      </p>
+      <a href="applied-observability.html" class="btn-link">
+        Explore Solution
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </div>
 
@@ -466,11 +483,39 @@
     </div>
   </div>
 
-  <!-- 4. Digital to the Core -->
-  <div class="solution-panel reverse reveal">
+    <!-- 4. DevOps for SAP -->
+  <div class="solution-panel reveal">
+    <div class="panel-content">
+      <div class="panel-tag">Solution 04</div>
+      <h2 class="panel-title">DevOps <em>for SAP</em></h2>
+      <p class="panel-body">
+        Applying DevOps principles to SAP environments to improve efficiency, quality, 
+        and delivery speed. Automated processes and improved collaboration allow 
+        organizations to deliver SAP applications faster. Continuous testing and 
+        monitoring identify issues early, automation and version control reduce errors, 
+        and DevOps practices keep organizations responsive to changing business needs.
+      </p>
+      <a href="devops-for-sap.html" class="btn-link">
+        Explore Solution
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
     <div class="panel-visual">
       <div class="panel-visual-inner">
         <div class="panel-numeral">04</div>
+        <svg class="panel-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <polyline points="16 18 22 12 16 6"/>
+          <polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Digital to the Core -->
+  <div class="solution-panel reverse reveal">
+    <div class="panel-visual">
+      <div class="panel-visual-inner">
+        <div class="panel-numeral">05</div>
         <svg class="panel-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
           <circle cx="12" cy="12" r="10"/>
           <circle cx="12" cy="12" r="6"/>
@@ -479,7 +524,7 @@
       </div>
     </div>
     <div class="panel-content">
-      <div class="panel-tag">Solution 04</div>
+      <div class="panel-tag">Solution 05</div>
       <h2 class="panel-title">Digital to <em>the Core</em></h2>
       <p class="panel-body">
         Leaders must embrace digital transformation fully - understanding its impact 
@@ -496,76 +541,19 @@
     </div>
   </div>
 
-  <!-- 5. DevOps for SAP -->
-  <div class="solution-panel reveal">
-    <div class="panel-content">
-      <div class="panel-tag">Solution 05</div>
-      <h2 class="panel-title">DevOps <em>for SAP</em></h2>
-      <p class="panel-body">
-        Applying DevOps principles to SAP environments to improve efficiency, quality, 
-        and delivery speed. Automated processes and improved collaboration allow 
-        organizations to deliver SAP applications faster. Continuous testing and 
-        monitoring identify issues early, automation and version control reduce errors, 
-        and DevOps practices keep organizations responsive to changing business needs.
-      </p>
-      <a href="devops-for-sap.html" class="btn-link">
-        Explore Solution
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-    <div class="panel-visual">
-      <div class="panel-visual-inner">
-        <div class="panel-numeral">05</div>
-        <svg class="panel-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <polyline points="16 18 22 12 16 6"/>
-          <polyline points="8 6 2 12 8 18"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6. Applied Observability -->
-  <div class="solution-panel reverse reveal">
-    <div class="panel-visual">
-      <div class="panel-visual-inner">
-        <div class="panel-numeral">06</div>
-        <svg class="panel-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-        </svg>
-      </div>
-    </div>
-    <div class="panel-content">
-      <div class="panel-tag">Solution 06</div>
-      <h2 class="panel-title">Applied <em>Observability</em></h2>
-      <p class="panel-body">
-        An organizational continuous improvement solution that enables shortening 
-        the time between stakeholder actions and organizational reactions - in a 
-        highly orchestrated digital evolutionary journey. Transform telemetry into 
-        intelligence, and intelligence into decisive action across your entire 
-        enterprise stack.
-      </p>
-      <a href="applied-observability.html" class="btn-link">
-        Explore Solution
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-  </div>
-
   <!-- CONTACT -->
   <section id="contact" class="section section-alt">
     <div class="cta-inner">
-      <h2 class="reveal">Ready to Start Your<br /><em>Evolution Journey?</em></h2>
+      <h2 class="reveal">Ready to Start Your<em>Evolution Journey?</em></h2>
       <p class="reveal reveal-delay-1">
-        Every transformation starts with a conversation. Tell us where you are 
-        and where you need to go - we'll build the path.
+        Every transformation starts with a conversation. Tell us where you are and where you need to go - we'll build the path.
       </p>
     </div>
     <div class="section-inner">
       <div class="contact-inner">
         <div class="section-label reveal" style="justify-content:center;">Let's Talk</div>
         <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:20px;"><em>Start a Conversation</em></h2>
-        <p class="contact-sub reveal reveal-delay-2">Whether you're navigating a program at risk, standing up a PMO, or need an experienced operator to lead a complex transformation â€” let's find out if we're a fit.</p>
+        <p class="contact-sub reveal reveal-delay-2">Whether you're navigating a program at risk, standing up a PMO, or need an experienced operator to lead a complex transformation - let's find out if we're a fit.</p>
         <div class="reveal reveal-delay-4">
           <a href="mailto:paul.esteves@energizing-solutions.com" class="btn-gold">Get In Touch</a>
           <a href="https://calendly.com/paesteves/30min" class="btn-gold">Schedule a Call</a>
