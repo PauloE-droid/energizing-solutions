@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Chapter 11 – Governance, Compliance and Security Readiness – Energizing Solutions</title>
+  <meta name="description" content="Applied Observability™ Chapter 11: 12 interdependent enablers that turn governance from a PDF and a prayer into a continuously instrumented operating system — Playmaker's Framework for governance, compliance and security readiness."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --charcoal-900: #072A6C; --charcoal-800: #141414;
+      --charcoal-700: #1c1c1c; --charcoal-600: #242424;
+      --gold-400: #c9a84c;     --gold-300: #dfc06a;
+      --gold-200: #ecdfa0;     --white: #f5f4f0;
+      --muted:        #1c1c1c;        --border: rgba(201,168,76,0.18);
+      --nav-height: 72px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Montserrat', sans-serif;
+      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--white);color:var(--charcoal-800);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden;}
+    a{color:inherit;text-decoration:none;} ul{list-style:none;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+
+    section[id], div[id] { scroll-margin-top: calc(var(--nav-height) + 16px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
+    nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-300); white-space: nowrap; }
+    .nav-logo span { color: var(--charcoal-800); font-weight: 300; transition: color var(--transition); }
+    nav.scrolled .nav-logo span { color: #ffffff; }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links > li > a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); position: relative; cursor: pointer; }
+    .nav-links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold-400); transition: width var(--transition); }
+    .nav-links > li > a:hover { color: var(--charcoal-800); }
+    .nav-links > li > a:hover::after { width: 100%; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 5px; }
+    .nav-dropdown > a svg { width: 10px; height: 10px; fill: currentColor; transition: transform var(--transition); }
+    .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+    .dropdown-menu { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-6px); min-width: 220px; background: var(--charcoal-700); border: 1px solid var(--border); border-radius: 4px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity var(--transition), transform var(--transition); }
+    .dropdown-menu::before { content: ''; position: absolute; top: -20px; left: -10px; right: -10px; height: 20px; }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu a { display: block; padding: 10px 20px; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); transition: color var(--transition), background var(--transition); }
+    .dropdown-menu a:hover { color: var(--gold-300); background: rgba(201,168,76,0.06); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal-900); z-index: 999; flex-direction: column; align-items: center; justify-content: flex-start; overflow-y: auto; padding: 88px 24px 48px; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu > a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 10px; transition: color var(--transition); }
+    .mobile-menu > a:hover { color: var(--gold-300); }
+    .mobile-close { position: fixed; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--white); z-index: 1000; display: none; }
+    .mobile-dropdown { width: 100%; text-align: center; }
+    .mobile-dropdown-btn { width: 100%; background: none; border: none; font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: color var(--transition); }
+    .mobile-dropdown-btn:hover { color: var(--gold-300); }
+    .mobile-dropdown-arrow { font-size: 0.55em; transition: transform var(--transition); display: inline-block; }
+    .mobile-dropdown.open .mobile-dropdown-arrow { transform: rotate(180deg); }
+    .mobile-dropdown-list { display: none; flex-direction: column; align-items: center; gap: 2px; padding: 4px 0 12px; }
+    .mobile-dropdown.open .mobile-dropdown-list { display: flex; }
+    .mobile-dropdown-list a { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-400); padding: 6px 10px; transition: color var(--transition); }
+    .mobile-dropdown-list a:hover { color: var(--gold-300); }
+
+    .page-hero{position:relative;padding:calc(var(--nav-height) + 80px) 48px 80px;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;top:-120px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
+    .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
+    .hero-inner{max-width:1160px;margin:0 auto;position:relative;z-index:1;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:0.68rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;}
+    .hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold-400);}
+    .page-hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,5rem);font-weight:300;line-height:1.08;letter-spacing:-0.01em;color:var(--charcoal-800);margin-bottom:24px;}
+    .page-hero h1 em{font-style:italic;color:var(--gold-300);}
+    .hero-desc{max-width:700px;font-size:1rem;font-weight:300;color:var(--muted);line-height:1.85;}
+
+    .chapter-nav{background:var(--charcoal-900);border-bottom:1px solid var(--border);padding:0 48px;position:sticky;top:var(--nav-height);z-index:900;}
+    .chapter-nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
+    .chapter-nav-inner::-webkit-scrollbar{display:none;}
+    .ch-nav-btn{position:absolute;top:0;bottom:0;width:48px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;color:var(--muted);font-size:1rem;z-index:10;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+    .ch-nav-btn.left{left:0;background:linear-gradient(to right,var(--charcoal-900) 55%,transparent);}
+    .ch-nav-btn.right{right:0;background:linear-gradient(to left,var(--charcoal-900) 55%,transparent);}
+    .ch-nav-btn.visible{opacity:1;pointer-events:auto;}
+    .ch-nav-btn:hover{color:var(--charcoal-800);}
+    .chapter-nav-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);white-space:nowrap;padding-right:24px;border-right:1px solid var(--border);margin-right:24px;flex-shrink:0;}
+    .ch-link{font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:16px 16px;white-space:nowrap;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition);flex-shrink:0;}
+    .ch-link:hover{color:var(--charcoal-800);}
+    .ch-link.active{color:var(--gold-300);border-bottom-color:var(--gold-400);}
+
+    .section{position:relative;z-index:1;padding:96px 48px;}
+    .section-alt{background:var(--charcoal-900);}
+    .section-inner{max-width:1160px;margin:0 auto;}
+    .section-label{display:inline-flex;align-items:center;gap:12px;font-size:0.65rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:16px;}
+    .section-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold-400);}
+    .section-title{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:var(--white);letter-spacing:-0.01em;margin-bottom:56px;}
+    .section-title em{font-style:italic;color:var(--gold-300);}
+
+    .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+    .card{background:var(--charcoal-900);padding:40px 36px;position:relative;overflow:hidden;transition:background var(--transition);}
+    .card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));transition:width .5s ease;}
+    .card:hover{background:var(--charcoal-700);}
+    .card:hover::before{width:100%;}
+    .card-tag{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;}
+    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:12px;}
+    .card-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
+    .card-icon{width:36px;height:36px;color:var(--gold-400);margin-bottom:18px;opacity:0.85;}
+    .card-hook{font-size:0.78rem;font-style:italic;color:var(--gold-300);margin-bottom:10px;line-height:1.5;}
+
+    .outcomes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .outcome{background:var(--charcoal-900);padding:36px 40px;display:flex;gap:20px;align-items:flex-start;}
+    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(201, 168, 76, 0.855);line-height:1;flex-shrink:0;width:48px;}
+    .outcome-content{}
+    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-300);margin-bottom:8px;}
+    .outcome-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
+
+    .sector-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .sector-cell{background:var(--charcoal-900);padding:36px 40px;position:relative;}
+    .sector-cell::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));transition:width .5s ease;}
+    .sector-cell:hover::before{width:100%;}
+    .sector-label{font-size:0.62rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:8px;}
+    .sector-problem{font-size:0.82rem;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+    .sector-move-label{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-200);margin-bottom:6px;}
+    .sector-move{font-size:0.8rem;color:var(--white);line-height:1.8;}
+
+    .playbook-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .playbook-step{background:var(--charcoal-900);padding:32px 36px;display:flex;gap:20px;align-items:flex-start;}
+    .step-num{font-family:var(--font-display);font-size:2rem;font-weight:300;color:rgba(201, 168, 76, 0.858);line-height:1;flex-shrink:0;width:40px;}
+    .step-content{}
+    .step-title{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-300);margin-bottom:6px;}
+    .step-body{font-size:0.8rem;color:var(--muted);line-height:1.8;}
+
+    .stats-band{padding:72px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);}
+    .stat-cell{background:var(--charcoal-900);padding:40px 32px;text-align:center;}
+    .stat-number{font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:10px;}
+    .stat-label{font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);}
+
+    .cta-section{padding:96px 48px;text-align:center;position:relative;overflow:hidden;}
+    .cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:350px;background:radial-gradient(ellipse,rgba(201,168,76,0.05) 0%,transparent 70%);pointer-events:none;}
+    .cta-inner{max-width:640px;margin:0 auto;position:relative;z-index:1;}
+    .cta-inner h2{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.2;margin-bottom:20px;}
+    .cta-inner h2 em{font-style:italic;color:var(--gold-300);}
+    .cta-inner p{font-size:0.9rem;color:var(--muted);margin-bottom:40px;line-height:1.8;}
+    .btn-gold{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:transparent;border:1px solid var(--gold-400);color:var(--gold-300);font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background var(--transition),color var(--transition);}
+    .btn-gold:hover{background:var(--gold-400);color:var(--white);}
+    .btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--muted);font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:border-color var(--transition),color var(--transition);}
+    .btn-ghost:hover{border-color:var(--gold-400);color:var(--charcoal-800);}
+
+    footer{background:var(--white);border-top:1px solid var(--border);padding:48px;}
+    .footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+    .footer-logo{font-family:var(--font-display);font-size:1.2rem;font-weight:600;color:var(--gold-300);}
+    .footer-logo span{color:var(--charcoal-800);font-weight:300;}
+    .footer-links{display:flex;gap:28px;flex-wrap:wrap;}
+    .footer-links a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);}
+    .footer-links a:hover{color:var(--gold-300);}
+    .footer-copy{font-size:0.7rem;color:rgba(138,138,138,0.5);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:.1s;} .reveal-delay-2{transition-delay:.18s;}
+    .reveal-delay-3{transition-delay:.26s;} .reveal-delay-4{transition-delay:.34s;}
+
+    .hero-inner--split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+    .hero-video{position:relative;width:100%;border-radius:4px;overflow:hidden;aspect-ratio:16/9;}
+    .hero-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:4px;}
+
+    @media(max-width:1024px){.cards-grid{grid-template-columns:repeat(2,1fr);}.outcomes-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:repeat(2,1fr);}.sector-grid{grid-template-columns:1fr;}.playbook-steps{grid-template-columns:1fr;}}
+    @media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.page-hero{padding:calc(var(--nav-height) + 48px) 24px 56px;}.section{padding:64px 24px;}.chapter-nav{padding:0 24px;}.stats-band{padding:48px 24px;}.cta-section{padding:64px 24px;}footer{padding:32px 24px;}.footer-inner{flex-direction:column;align-items:flex-start;}.hero-inner--split{grid-template-columns:1fr;gap:40px;}}
+    @media(max-width:580px){.cards-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:1fr;}}
+
+    /* ===== MUTED ON DARK BACKGROUNDS ===== */
+    .dropdown-menu,
+    .mobile-menu,
+    .chapter-nav,
+    .section-alt,
+    .card,
+    .card:hover,
+    .outcome,
+    .sector-cell,
+    .playbook-step,
+    .stat-cell,
+    nav.scrolled { --muted: var(--white); }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7PZQCGHLR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q7PZQCGHLR');
+  </script>
+
+</head>
+<body>
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Energizing <span>Solutions</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a>Services <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="services-overview.html">Services Overview</a></li>
+          <li><a href="transformation-management-office.html">Transformation Management Office</a></li>
+          <li><a href="project-management.html">Project Management</a></li>
+          <li><a href="operational-devops.html">Operational DevOps</a></li>
+          <li><a href="digital-evolution.html">Digital Evolution</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a>Solutions <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="solutions-overview.html">Solutions Overview</a></li>
+          <li><a href="digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="experience-economy.html">Experience Economy</a></li>
+          <li><a href="digital-to-the-core.html">Digital to the Core</a></li>
+          <li><a href="devops-for-sap.html">DevOps for SAP</a></li>
+          <li><a href="intelligent-enterprise.html">Intelligent Enterprise</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a class="active">Products <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="applied-observability.html">Applied Observability</a></li>
+          <li><a href="system-understanding.html">System Understanding</a></li>
+          <li><a href="datadriven-decisionmaking.html">DataDriven DecisionMaking</a></li>
+          <li><a href="okr-kpi-management.html">OKR &amp; KPI Management</a></li>
+          <li><a href="capacity-plan-and-scaling.html">Capacity Plan &amp; Scaling</a></li>
+          <li><a href="improved-user-experience.html">Improved User Experience</a></li>
+          <li><a href="cost-optimization.html">Cost Optimization</a></li>
+          <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
+          <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+          <li><a href="support-for-continuous-deployment.html">Continuous Deployment</a></li>
+          <li><a href="better-collaboration-and-communication.html">Better Collaboration</a></li>
+          <li><a href="governance-compliance-security-readiness.html">Governance &amp; Compliance</a></li>
+        </ul>
+      </li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- Mobile Close -->
+  <span class="mobile-close" id="mobile-close">&#x2715;</span>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn">Services <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <div class="mobile-dropdown-list">
+        <a href="services-overview.html">Services Overview</a>
+        <a href="transformation-management-office.html">Transformation Mgmt Office</a>
+        <a href="project-management.html">Project Management</a>
+        <a href="operational-devops.html">Operational DevOps</a>
+        <a href="digital-evolution.html">Digital Evolution</a>
+      </div>
+    </div>
+
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn">Solutions <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <div class="mobile-dropdown-list">
+        <a href="solutions-overview.html">Solutions Overview</a>
+        <a href="digital-transformation.html">Digital Transformation</a>
+        <a href="experience-economy.html">Experience Economy</a>
+        <a href="digital-to-the-core.html">Digital to the Core</a>
+        <a href="devops-for-sap.html">DevOps for SAP</a>
+        <a href="intelligent-enterprise.html">Intelligent Enterprise</a>
+      </div>
+    </div>
+
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn">Products <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <div class="mobile-dropdown-list">
+        <a href="applied-observability.html">Applied Observability</a>
+        <a href="system-understanding.html">System Understanding</a>
+        <a href="datadriven-decisionmaking.html">DataDriven DecisionMaking</a>
+        <a href="okr-kpi-management.html">OKR &amp; KPI Management</a>
+        <a href="capacity-plan-and-scaling.html">Capacity Plan &amp; Scaling</a>
+        <a href="improved-user-experience.html">Improved User Experience</a>
+        <a href="cost-optimization.html">Cost Optimization</a>
+        <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
+        <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+        <a href="support-for-continuous-deployment.html">Continuous Deployment</a>
+        <a href="better-collaboration-and-communication.html">Better Collaboration</a>
+        <a href="governance-compliance-security-readiness.html">Governance &amp; Compliance</a>
+      </div>
+    </div>
+
+    <a href="portfolio.html">Portfolio</a>
+    <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
+  </div>
+
+  <div class="chapter-nav" style="position:relative;">
+    <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
+    <button class="ch-nav-btn right" id="ch-btn-right" aria-label="Scroll right">&#8594;</button>
+    <div class="chapter-nav-inner" id="ch-scroller">
+      <span class="chapter-nav-label">Applied Observability&#8482;</span>
+      <a href="applied-observability.html" class="ch-link">Overview</a>
+      <a href="system-understanding.html" class="ch-link">Ch.1 System Understanding</a>
+      <a href="datadriven-decisionmaking.html" class="ch-link">Ch.2 Data-Driven Decisions</a>
+      <a href="okr-kpi-management.html" class="ch-link">Ch.3 OKR &amp; KPI</a>
+      <a href="capacity-plan-and-scaling.html" class="ch-link">Ch.4 Capacity Planning</a>
+      <a href="improved-user-experience.html" class="ch-link">Ch.5 User Experience</a>
+      <a href="cost-optimization.html" class="ch-link">Ch.6 Cost Optimization</a>
+      <a href="its-telemetry-adoption.html" class="ch-link">Ch.7 Telemetry Adoption</a>
+      <a href="faster-troubleshooting-and-issue-resolution.html" class="ch-link">Ch.8 Faster Troubleshooting</a>
+      <a href="support-for-continuous-deployment.html" class="ch-link">Ch.9 Continuous Deployment</a>
+      <a href="better-collaboration-and-communication.html" class="ch-link">Ch.10 Better Collaboration</a>
+      <a href="governance-compliance-security-readiness.html" class="ch-link active">Ch.11 Governance &amp; Compliance</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-inner hero-inner--split">
+      <div class="hero-text">
+        <div class="hero-eyebrow reveal">Applied Observability&#8482; &#8212; Chapter 11</div>
+        <h1 class="reveal reveal-delay-1">Governance, Compliance<br>and <em>Security Readiness</em></h1>
+        <p class="hero-desc reveal reveal-delay-2">If your governance model is a PDF, a committee, and a prayer &#8212; you have liability theater, not governance. Applied Observability&#8482; treats governance, compliance, and security readiness as a continuously measured operating system: evidence flows in near-real time, accountability is provable at the control level, and leadership can see the risk before it becomes a headline.</p>
+      </div>
+      <div style="background:var(--charcoal-900);border:1px solid var(--border);padding:44px 40px;position:relative;" class="reveal reveal-delay-2">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));"></div>
+        <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;">The Four-Layer Governance Architecture</div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;">Governance Layer</div>
+            <div style="font-size:0.75rem;color:rgba(245,244,240,0.6);line-height:1.6;">Policy-as-Code &#8226; Safety Telemetry Dashboards &#8226; Compliance Signal Mapping</div>
+          </div>
+          <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;">Risk Layer</div>
+            <div style="font-size:0.75rem;color:rgba(245,244,240,0.6);line-height:1.6;">Quantum Lens Forecasting &#8226; System Drift Detection &#8226; Data Lineage Anomaly Mapping</div>
+          </div>
+          <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;">Compliance Layer</div>
+            <div style="font-size:0.75rem;color:rgba(245,244,240,0.6);line-height:1.6;">Automated Traceability &#8226; Continuous Compliance Pipelines &#8226; Audit-Grade Evidence</div>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;">Human-Centric Layer</div>
+            <div style="font-size:0.75rem;color:rgba(245,244,240,0.6);line-height:1.6;">Human Impact Metrics &#8226; Ethical UX Telemetry &#8226; AI Safety Observability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <div class="stats-band">
+    <div class="stats-inner">
+      <div class="stat-cell reveal">
+        <div class="stat-number">$4.88M</div>
+        <div class="stat-label">Average enterprise breach cost &#8212; IBM 2024</div>
+      </div>
+      <div class="stat-cell reveal reveal-delay-1">
+        <div class="stat-number">194</div>
+        <div class="stat-label">Days average breach goes undetected without mature telemetry</div>
+      </div>
+      <div class="stat-cell reveal reveal-delay-2">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Enterprises using AI for security compliance &#8212; Dynatrace 2025</div>
+      </div>
+      <div class="stat-cell reveal reveal-delay-3">
+        <div class="stat-number">66%</div>
+        <div class="stat-label">B2B customers check SOC2 compliance before signing contracts</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRODUCTION -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">The Problem</div>
+      <h2 class="section-title reveal reveal-delay-1">Governance Without Observability Is a Policy Intention.<br><em>Compliance Without Observability Is a Ceremony.</em></h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="reveal reveal-delay-2">
+        <div>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">Walk into the boardroom of almost any enterprise navigating a regulatory examination and you will see the same scene in a different city. The General Counsel is citing policies last updated before the cloud migration. The CISO is presenting a slide deck assembled from five different security tools that have never once shared a data model. The CFO is asking why the audit bill was three times the estimate. And somewhere three floors down, an analyst is exporting logs manually, formatting evidence into a spreadsheet that nobody designed to be an audit artifact, and wondering why this is still the job in 2026.</p>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">Five roles. Five truths. One regulatory clock. And the organization that built twelve products in the last two years apparently cannot produce a coherent control log on demand. The structural dysfunction is not that organizations lack policies. It is that the people responsible for executing policies and the people responsible for demonstrating compliance are operating from different data sources, different dashboards, and different definitions of what &#8220;compliant&#8221; means at any given moment.</p>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;">Applied Observability&#8482; breaks this apart by establishing a single telemetry substrate that security, compliance, legal, and engineering all read from the same source. Policy-as-Code replaces policy-as-document. Continuous compliance pipelines generate evidence as a byproduct of delivery, not assembled in a panic before an audit date. The governance silo collapses because the data substrate eliminates the information asymmetry that built the silo in the first place.</p>
+        </div>
+        <div style="background:var(--charcoal-700);border:1px solid var(--border);padding:36px;position:relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));"></div>
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;">What This Chapter Actually Solves</div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:6px;">Hours, not weeks</div>
+              <div style="font-size:0.75rem;color:var(--muted);">Time to answer a regulator&#8217;s question when governance is instrumented vs. assembled manually</div>
+            </div>
+            <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:6px;">$1.9M per incident</div>
+              <div style="font-size:0.75rem;color:var(--muted);">Gap between breach costs with vs. without active AI governance instrumentation &#8212; IBM 2024</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:6px;">7% of global turnover</div>
+              <div style="font-size:0.75rem;color:var(--muted);">Maximum EU AI Act penalty under Article 5 &#8212; the floor of what uninstrumented governance costs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAKEHOLDER VALUE -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">Strategic Business Value</div>
+      <h2 class="section-title reveal reveal-delay-1" style="color:var(--charcoal-800);">Outcomes by <em>Stakeholder</em></h2>
+      <div class="outcomes-grid">
+        <div class="outcome reveal reveal-delay-1">
+          <div class="outcome-num">Brd</div>
+          <div class="outcome-content">
+            <div class="outcome-title">For the Board &amp; C-Suite</div>
+            <p class="outcome-body">Real-time risk signals replace sanitized quarterly updates. The board that can see live control coverage, open policy violations by age, and evidence freshness by control is making decisions from a fundamentally different quality of information. Governance posture becomes a board-level KPI, not a legal department report. EU AI Act Article 5 penalties reach 7% of global annual turnover &#8212; that is a board-level number that belongs on a board-level dashboard.</p>
+          </div>
+        </div>
+        <div class="outcome reveal reveal-delay-2">
+          <div class="outcome-content" style="margin-left:68px;">
+            <div class="outcome-title">For CISOs &amp; Security Leaders</div>
+            <p class="outcome-body" style="margin-bottom:0;">Security telemetry converges with operational telemetry so the CISO and the SRE are looking at the same incident, in the same tool, at the same time, with the same context. IBM&#8217;s 2024 data shows the average breach goes undetected for 194 days without mature detection. The detection infrastructure that finds it on day one instead of day 194 is not a security budget line &#8212; it is a $81M financial hedge against operational impact alone.</p>
+          </div>
+        </div>
+        <div class="outcome reveal reveal-delay-3">
+          <div class="outcome-num">B2B</div>
+          <div class="outcome-content">
+            <div class="outcome-title">For Enterprise Customers &amp; Regulators</div>
+            <p class="outcome-body">The organization with a continuously instrumented, evidence-generating governance architecture answers a regulator&#8217;s question in hours instead of weeks. It provides B2B customers with real-time views of SLO performance in auditable portals. It demonstrates to enterprise procurement &#8212; 66% of whom check for SOC2 compliance before signing &#8212; that it is a more trusted counterparty than competitors presenting annual audit reports assembled from disconnected tools.</p>
+          </div>
+        </div>
+        <div class="outcome reveal reveal-delay-4">
+          <div class="outcome-content" style="margin-left:68px;">
+            <div class="outcome-title">For Compliance &amp; Legal Teams</div>
+            <p class="outcome-body" style="margin-bottom:0;">Continuous compliance pipelines eliminate the annual audit scramble. Evidence is a pipeline output, not an audit artifact. The compliance team shifts from evidence assembly to evidence interpretation &#8212; a qualitatively different and more strategic function. Organizations managing SOC2, ISO 27001, DORA, and EU AI Act as a single instrumentation layer with five evidence maps do at minimum three times less compliance work than those running five separate programs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 ENABLER CARDS -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">The 12 Enablers</div>
+      <h2 class="section-title reveal reveal-delay-1">The Full Governance Playbook</h2>
+      <div class="cards-grid">
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="card-tag">Enabler 11.1</div>
+          <div class="card-title">Policy-as-Code and Governance Architecture</div>
+          <p class="card-hook">If Governance Lives in a Word Document Nobody Reads, Governance Does Not Exist.</p>
+          <p class="card-body">Policy-as-code makes governance executable: the control either fires or it does not, and the firing is logged, timestamped, and queryable. When a security examiner asks whether access to a production database was restricted during a specific window, a governance document cannot answer. A policy-as-code log can. Open Policy Agent and its derivatives have emerged as the dominant pattern, extending into Kubernetes admission control, API gateway enforcement, and CI/CD pipeline gates.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div class="card-tag">Enabler 11.2</div>
+          <div class="card-title">Continuous Compliance Pipelines</div>
+          <p class="card-hook">Audit Readiness Is Not an Event You Schedule Once a Year. It Is an Output Your Delivery Pipeline Should Generate Every Day.</p>
+          <p class="card-body">Continuous compliance pipelines embed control verification and evidence collection directly into the CI/CD workflow. Every commit is scanned for vulnerabilities. Every infrastructure change is validated against policy-as-code specifications. Every deployment produces a signed artifact with an attestation chain. The evidence is not assembled for the audit &#8212; it is already there, generated continuously, queryable on demand. DevSecOps typically costs under $250K against an IBM-confirmed $4.88M average breach cost: an approximately 20:1 return.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <div class="card-tag">Enabler 11.3</div>
+          <div class="card-title">Audit-Grade Evidence and Traceability</div>
+          <p class="card-hook">The Auditor Does Not Care About Your Intentions. They Want Receipts That Cannot Be Forged, Backdated, or Recovered From Backup Three Days Before the Hearing.</p>
+          <p class="card-body">Audit-grade evidence has four properties: tamper-evident, consistently timestamped, complete, and traceable. The EU AI Act&#8217;s Article 12 &#8212; mandating automatic event logging for high-risk AI systems, retained for a minimum of six months &#8212; is a codification of these four properties into law. HIPAA mandates six years. SOX requires seven. Configure the evidence locker at the longest applicable retention requirement per data category, not the shortest.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          <div class="card-tag">Enabler 11.4</div>
+          <div class="card-title">Security Telemetry and Threat Detection</div>
+          <p class="card-hook">Your Security Team Needs to See Everything, in Real Time, in Context. Not in the Quarterly Risk Report. Now.</p>
+          <p class="card-body">Applied Observability&#8482; treats security telemetry as a first-class signal type in the unified telemetry pipeline. Network flows, identity events, API behavior, data access patterns, model inference anomalies, and configuration changes all feed the same pipeline with the same timestamp authority and correlation engine. The OWASP Top 10 for LLM Applications defines AI-specific threat categories &#8212; prompt injection, model inversion, training data poisoning &#8212; that require application-layer observability at the model endpoint, not just network-layer monitoring.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M16 11l2 2 4-4"/></svg>
+          <div class="card-tag">Enabler 11.5</div>
+          <div class="card-title">Identity and Access Observability</div>
+          <p class="card-hook">Who Did What, When, From Where, and to What? If You Cannot Answer That in Five Seconds, You Have an Identity Governance Problem Masquerading as a Technology Problem.</p>
+          <p class="card-body">Authentication telemetry, authorization telemetry, session telemetry, and ephemeral credential telemetry together constitute the identity observability layer that maps to audit-grade evidence and attribution. Zero-trust architecture &#8212; mandated for federal agencies by the January 2022 Executive Order and rapidly adopted in the private sector &#8212; is fundamentally an identity observability architecture. Zero-trust without observability is a policy. Zero-trust with observability is an operating state.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          <div class="card-tag">Enabler 11.6</div>
+          <div class="card-title">Data Lineage and Governance Observability</div>
+          <p class="card-hook">Where Did This Data Come From? Where Is It Going? Who Touched It? What Was Done to It? If You Cannot Answer Those Four Questions, You Are Not Governing Data. You Are Hoping Nobody Asks.</p>
+          <p class="card-body">Applied Observability&#8482; treats data lineage as a continuous telemetry stream, not a documentation project. Every dataset entering the organization has a provenance record. Every transformation has a transformation record. Every output, including AI model artifacts trained on the dataset, carries a lineage reference back to its source. A single GDPR enforcement action for inadequate data governance can reach 4% of global annual turnover. An uninstrumented AI training pipeline under EU AI Act Article 10 is not a documentation gap &#8212; it is a regulatory liability.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          <div class="card-tag">Enabler 11.7</div>
+          <div class="card-title">Regulatory Signal Mapping and Multi-Framework Compliance</div>
+          <p class="card-hook">When the EU AI Act, NIST AI RMF, DORA, SOC2, and ISO 27001 All Want Evidence From the Same System, the Answer Is Not Five Compliance Programs. It Is One Telemetry Layer and Five Evidence Maps.</p>
+          <p class="card-body">An organization managing these frameworks as five separate compliance programs does at minimum three times the work of one managing them as a single instrumentation layer with five evidence maps. The NIST AI RMF Govern function satisfies EU AI Act Article 9 risk management requirements. The Measure function addresses Article 15 accuracy monitoring. The Manage function fulfills Article 72 post-market monitoring. Map once. Satisfy across jurisdictions.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div class="card-tag">Enabler 11.8</div>
+          <div class="card-title">Incident Response and Forensic Readiness</div>
+          <p class="card-hook">The Breach Is Not the Disaster. Not Knowing What Happened After the Breach Is the Disaster. That Is Where the Regulatory Penalty, the Class Action, and the Board Crisis Live.</p>
+          <p class="card-body">Applied Observability&#8482; treats forensic readiness as a design constraint, not an incident response afterthought. EU DORA Article 17 requires documented, tested, and demonstrably effective incident response procedures. GDPR Article 33 requires breach notification within 72 hours. At $14,056 per minute enterprise downtime cost, a four-hour extension of incident scope due to forensic gaps costs $3.4 million in operational impact &#8212; before regulatory fines or remediation. Forensic readiness is a financial hedge, not an operational luxury.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          <div class="card-tag">Enabler 11.9</div>
+          <div class="card-title">AI Safety Telemetry and Ethical Oversight</div>
+          <p class="card-hook">If You Cannot Measure It, You Cannot Govern It. And Right Now, Most Organizations Are Deploying AI Systems They Cannot Measure in the Dimensions That Matter for Governance, Safety, and Accountability.</p>
+          <p class="card-body">Cloud Security Alliance research (2025) found only approximately one quarter of organizations have comprehensive AI security governance in place. AI safety telemetry closes that gap: inference-time telemetry that tracks model input and output patterns; safety budget telemetry that tracks the proportion of compute allocated to safety functions; and ethical UX telemetry that detects outputs systematically disadvantaging protected groups. EU AI Act Article 14 human oversight requirements are not satisfied by a one-time model evaluation at deployment &#8212; they require continuous, instrumented oversight.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M10 13a5 5 0 007.07 0l1.93-1.93a5 5 0 00-7.07-7.07L11 5"/><path d="M14 11a5 5 0 00-7.07 0L4.93 12.93a5 5 0 007.07 7.07L13 19"/></svg>
+          <div class="card-tag">Enabler 11.10</div>
+          <div class="card-title">Supply Chain Security and Third-Party Risk Observability</div>
+          <p class="card-hook">Your Governance Perimeter Ends at Your Own Firewall. The Attack Surface Does Not. Third-Party Risk Without Third-Party Observability Is a Contractual Fantasy.</p>
+          <p class="card-body">The SolarWinds breach entered through a trusted software update mechanism. The XZ Utils backdoor in 2024 embedded a malicious payload in a compression library used across the Linux ecosystem. Applied Observability&#8482; extends the governance perimeter: software composition analysis surfaces vulnerable dependencies before production, a Software Bill of Materials provides the inventory that makes analysis possible at scale, and runtime telemetry monitors third-party service behavior against established baselines. DORA explicitly mandates continuous monitoring of critical third-party ICT providers &#8212; this is a compliance requirement, not a discretionary investment.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          <div class="card-tag">Enabler 11.11</div>
+          <div class="card-title">Privacy and Consent Observability</div>
+          <p class="card-hook">GDPR Fines Are Real. CCPA Enforcement Is Accelerating. The Cost of Proving Consent Was Honored Is Real. Instrument All Three, or Pay All Three.</p>
+          <p class="card-body">Applied Observability&#8482; treats consent and privacy telemetry as a continuous stream alongside security and operational telemetry. Consent events are logged at the point of collection with the specific version of the agreement presented, the user&#8217;s response, and the timestamp. Data access patterns are monitored against consent scope continuously &#8212; access beyond the consent that authorized it generates an alert routed to privacy and legal within one hour, not a weekly report. Consent at the UI layer disconnected from enforcement at the data processing layer is the failure mode.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+          <div class="card-tag">Enabler 11.12</div>
+          <div class="card-title">Crypto-Agility and Post-Quantum Readiness</div>
+          <p class="card-hook">Harvest Now, Decrypt Later Is Not a Future Threat. It Is Happening in Your Network Today. Start Migrating Before the Adversary Wins That Bet.</p>
+          <p class="card-body">In August 2024, NIST finalized the first three post-quantum cryptography standards: FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), and FIPS 205 (SLH-DSA). NSA CNSA 2.0 requires quantum-safe algorithms for all new national security systems by January 2027, full application migration by 2030. Crypto-agility &#8212; the capability to change cryptographic algorithms without architectural rebuilds &#8212; is the governance precondition for post-quantum migration. Applied Observability&#8482; makes it measurable: the telemetry layer tracks which algorithms are in use across every system, providing a live inventory of quantum-vulnerable exposure.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTOR OBSERVATIONS -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">Sector Observations</div>
+      <h2 class="section-title reveal reveal-delay-1" style="color:var(--charcoal-800);">Where Governance Observability<br><em>Changes the Operating Reality</em></h2>
+      <div class="sector-grid">
+
+        <div class="sector-cell reveal reveal-delay-1">
+          <div class="sector-label">Financial Services</div>
+          <p class="sector-problem">DORA, MiFID II, GDPR, and national AI regulations apply simultaneously. A single-framework compliance program cannot address them efficiently. Manual evidence assembly for DORA audit preparation regularly consumes engineering and compliance resources at the scale of a full-quarter initiative.</p>
+          <div class="sector-move-label">Applied Observability&#8482; Move</div>
+          <p class="sector-move">Map every regulatory control once, assign it to its telemetry source, generate evidence satisfying all applicable frameworks from the same source. The most demanding evidence standard lifts all frameworks simultaneously. DORA compliance becomes operational rather than ceremonial because the enforcement and evidence requirements the Act imposes are already in the pipeline.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-2">
+          <div class="sector-label">Energy &amp; Utilities</div>
+          <p class="sector-problem">Critical infrastructure protection standards require demonstrable evidence of access control, change management, and configuration integrity at the operational technology layer. Policy-as-code is beginning to extend from IT into OT environments, with implications for grid security and pipeline control that will compound over the next decade.</p>
+          <div class="sector-move-label">Applied Observability&#8482; Move</div>
+          <p class="sector-move">Extend the governance telemetry substrate into OT environments using a unified security event model that bridges IT and OT signal types. Executive Intelligence Interface (EII) addresses exactly this IT/OT boundary challenge &#8212; where horizontal AI platforms cannot cross, EII&#8217;s vertical specialist positioning provides demonstrable, instrumentable governance across the full operational stack.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-3">
+          <div class="sector-label">SaaS &amp; Cloud-Native</div>
+          <p class="sector-problem">The average production environment depends on hundreds of third-party APIs, libraries, and services. Annual SOC2 preparation still consumes engineering teams for weeks. 66% of B2B enterprise customers check for SOC2 compliance before signing contracts &#8212; but the vendor providing an annual report assembled manually is not competing the same way as the vendor demonstrating continuous posture.</p>
+          <div class="sector-move-label">Applied Observability&#8482; Move</div>
+          <p class="sector-move">Continuous compliance pipelines make SOC2 a continuously running operating state rather than an annual audit ceremony. Evidence is queryable on demand. Enterprise customers can view their own SLO performance in auditable trust portals. The commercial differentiation is structural and recurring &#8212; the vendor who demonstrates continuous governance posture is in a different procurement category entirely.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-4">
+          <div class="sector-label">Healthcare</div>
+          <p class="sector-problem">HIPAA mandates six years for most records. AI-assisted diagnostic systems require continuous monitoring against clinical accuracy baselines. Patient data must be protected for decades, making it among the highest-risk data categories for harvest-now-decrypt-later attacks &#8212; a threat that is operational today, not theoretical.</p>
+          <div class="sector-move-label">Applied Observability&#8482; Move</div>
+          <p class="sector-move">The identity observability layer satisfies HIPAA access log requirements operationally rather than through periodic attestation. AI safety telemetry monitors diagnostic systems for model drift against validated performance ranges, where the patient safety obligation and the regulatory compliance obligation are satisfied by the same instrumentation. Post-quantum migration prioritizes patient records as the highest-sensitivity, longest-retention data category.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 90-DAY IMPLEMENTATION -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">Implementation Sequence</div>
+      <h2 class="section-title reveal reveal-delay-1">First 90 Days: <em>A Prioritized Governance Foundation</em></h2>
+      <div class="playbook-steps">
+
+        <div class="playbook-step reveal reveal-delay-1">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Governance Mandate (Week 1)</div>
+            <p class="step-body">The CISO, CIO, and General Counsel jointly produce a one-page governance mandate naming the control frameworks the organization must satisfy, assigning cross-functional ownership, and establishing the compliance gate override policy. This document is the organizational air cover for everything that follows &#8212; without it, instrumentation work will be deprioritized whenever it creates friction.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-2">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Cross-Framework Control Matrix (Week 2)</div>
+            <p class="step-body">Map every regulatory control to its telemetry source, evidence type, and retention requirement. Identify the three highest-risk gaps &#8212; controls required by regulation or contract that have no current telemetry source. These become the instrumentation priorities for Days 31&#8211;60. The matrix is the artifact that answers the regulator&#8217;s first question: &#8220;Show me how your controls are enforced and where the evidence lives.&#8221;</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-3">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Policy-as-Code for Top-Five Controls (Week 3)</div>
+            <p class="step-body">Write machine-readable policy specifications for the five highest-risk controls &#8212; beginning with access control, vulnerability scanning, and data retention, the controls most commonly cited in SOC2 and GDPR findings. Deploy in observation mode (log but do not block) to establish baselines before enforcement. The override policy and alert routing are in place from Day 1 before any gate goes live.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-4">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Cryptographic Inventory Baseline (Week 4)</div>
+            <p class="step-body">Deploy network telemetry to capture cryptographic algorithm identifiers from TLS handshakes across the production environment. The output is the first version of the cryptographic inventory &#8212; which algorithms are in use, where, and in what volume. This baseline is the starting point for the NIST IR 8547 gap analysis and the foundation of the post-quantum migration program.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-1">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <div class="step-title">Evidence Locker Deployment (Weeks 5&#8211;6)</div>
+            <p class="step-body">Deploy write-once, append-only log storage with cryptographic hashing for all audit-grade evidence. Configure per-data-category retention policies aligned with the control matrix. Migrate the top-five policy-as-code enforcement events from observation mode to active enforcement. Require named executive sign-off for every policy gate override, and generate an automatic governance incident ticket with a 24-hour closure SLA for every bypass.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-2">
+          <div class="step-num">06</div>
+          <div class="step-content">
+            <div class="step-title">CI/CD Compliance Pipeline Integration (Week 7)</div>
+            <p class="step-body">Integrate SAST, Software Composition Analysis, and dependency attestation into the CI/CD pipeline as compliance gate stages. Configure the pipeline to write signed evidence to the evidence locker on every successful build and deployment. Require two-person authorization for any compliance gate bypass &#8212; bypassing a compliance gate should feel like pulling a fire alarm, not clicking a checkbox.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-3">
+          <div class="step-num">07</div>
+          <div class="step-content">
+            <div class="step-title">Identity Telemetry Baseline (Week 8)</div>
+            <p class="step-body">Deploy identity telemetry at the authentication and authorization layers for all production systems. Configure behavioral baselines for service accounts, privileged human accounts, and cross-service API credentials. Replace point-in-time access certification with continuous behavioral telemetry reviews &#8212; behavioral baselines are more accurate than self-reported certifications and surface anomalies in real time rather than at the next quarterly cycle.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-4">
+          <div class="step-num">08</div>
+          <div class="step-content">
+            <div class="step-title">Executive Compliance Dashboard (Week 9)</div>
+            <p class="step-body">Build the executive compliance dashboard using the evidence locker as its sole data source: live control coverage percentage, open policy violations by age and owner, evidence freshness by control, and remediation SLA adherence. The CISO and compliance officer see the same dashboard as engineering &#8212; filtered for altitude, not filtered for content. If the executive view diverges from the operational reality, the executive view is wrong.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-1">
+          <div class="step-num">09</div>
+          <div class="step-content">
+            <div class="step-title">AI Safety Telemetry for Highest-Risk AI Systems (Week 10)</div>
+            <p class="step-body">Identify the three AI systems in production with the highest regulatory risk. Deploy inference-time telemetry: input distribution monitoring, output distribution monitoring, and refusal rate tracking. Establish baselines. Configure drift alerts. Define the safety budget ratio for leadership review. A model without a safety telemetry specification is not approved for production &#8212; the policy is the intention, the instrument is the evidence.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-2">
+          <div class="step-num">10</div>
+          <div class="step-content">
+            <div class="step-title">Forensic Readiness Exercise (Week 11)</div>
+            <p class="step-body">Simulate a realistic breach scenario that began 90 days ago. Test whether the available telemetry supports the forensic investigation, the GDPR 72-hour breach notification, and the board briefing. Document the gaps. Log retention configured for cost optimization rather than forensic requirements is the failure mode &#8212; the gap remediation items from this exercise are the instrumentation priorities for the next 90-day cycle.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-3">
+          <div class="step-num">11</div>
+          <div class="step-content">
+            <div class="step-title">Multi-Framework Evidence Mapping (Ongoing)</div>
+            <p class="step-body">Design the evidence locker to satisfy multiple regulatory frameworks simultaneously. Evidence generated for SOC2 maps to ISO 27001. Evidence generated for DORA maps to NIS2. Mandate that all new regulatory compliance requirements be implemented as additional mappings on the existing telemetry substrate rather than as new tooling purchases. Any compliance initiative requiring a new evidence pipeline is an architectural problem, not a regulatory one.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-4">
+          <div class="step-num">12</div>
+          <div class="step-content">
+            <div class="step-title">Stakeholder Review &amp; Next-Cycle Planning (Week 12)</div>
+            <p class="step-body">Present the governance posture dashboard to the board or audit committee. Brief the team on gaps identified in the forensic readiness exercise. Prioritize the remaining enablers for the second 90-day cycle. The first cycle proves the pattern. The second cycle expands coverage. The third reaches publication-ready governance maturity &#8212; defined as the organization that answers a Friday regulatory inquiry with a complete, cryptographically signed evidence package by Monday morning, without pulling a single engineer from the roadmap.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THE 5 PLAYS AT CHAPTER LEVEL -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">The Playmaker&#8217;s Five Plays</div>
+      <h2 class="section-title reveal reveal-delay-1" style="color:var(--charcoal-800);">Governance as a System, <em>Not a Document Stack</em></h2>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--border);margin-bottom:64px;" class="reveal reveal-delay-2">
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 1</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Align</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;">One cross-framework control matrix. Every regulatory obligation mapped to its telemetry source. SOC2, ISO 27001, EU AI Act, DORA, NIST AI RMF, and emerging post-quantum frameworks all draw from the same production telemetry. Instrument once. Satisfy across jurisdictions.</p>
+        </div>
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 2</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Instrument</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;">Evidence designed into the system before the need for it arises. Policy-as-code enforcement events, compliance pipeline attestations, identity access records, data lineage events, consent telemetry, AI safety metrics, and cryptographic algorithm identifiers all flow into the central telemetry pipeline as first-class signals.</p>
+        </div>
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 3</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Operationalize</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;">Continuous compliance dashboards replace annual audit preparation. Policy-as-code enforcement replaces manual control testing. Behavioral telemetry replaces periodic access certification. Forensic readiness exercises replace the assumption that evidence will be available. Governance that executes instead of certifies.</p>
+        </div>
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 4</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Monetize</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;">Trust portals where enterprise customers view their own SLO performance. SOC2 evidence packages shared on demand. AI governance transparency reports demonstrating continuous ethical oversight. Supply chain security attestations demonstrating active SBOM management. Governance done well is a revenue enablement mechanism.</p>
+        </div>
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 5</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Future-Proof</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;">Regulatory adaptability: new frameworks absorbed as additive control mappings. AI and quantum workload governance are present-day requirements with published timelines. Post-quantum readiness is not a ten-year horizon problem &#8212; harvest-now-decrypt-later attacks are operational today. The Playmaker&#8217;s Framework treats it as the wrong bet to defer.</p>
+        </div>
+      </div>
+
+      <div class="section-label reveal" style="margin-top:0;">Why Initiatives Fail</div>
+      <h3 style="font-family:var(--font-display);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:300;color:var(--charcoal-800);line-height:1.2;margin-bottom:40px;" class="reveal reveal-delay-1">Six Structural Failure Modes &#8212; <em>and How the Playmaker&#8217;s Framework Avoids Them</em></h3>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;" class="reveal reveal-delay-2">
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 1: The Governance Document That Replaces Governance Telemetry</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">The policy is approved, distributed, and then the systems it is supposed to govern continue operating exactly as before. No instrumentation, no enforcement, no evidence. The Playmaker&#8217;s Framework makes policy-as-code enforcement the mechanism through which governance exists operationally &#8212; not the document that describes it.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 2: Siloed Ownership Across Security, Compliance, Legal &amp; Engineering</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">Nobody owns the integration between the SIEM, the audit platform, the policy management system, and the lineage catalog because the integration crosses organizational boundaries nobody has authority to simplify. The Playmaker&#8217;s Framework establishes a single telemetry substrate owned at the CIO/CTO level, with role-appropriate views for every governance function.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 3: Vanity Dashboards That Show Green While Operations Show Red</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">The governance dashboard designed to reassure leadership rather than inform it is a liability, not an asset. The Playmaker&#8217;s Framework requires that executive governance dashboards and operational security dashboards derive from the same telemetry source. If the executive view diverges from operational reality, the executive view is wrong and the framework treats that as a governance incident.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 4: Logging Without Strategy</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">Ingesting everything and retaining everything without designing the evidence architecture for regulatory requirements produces a compliance liability at cloud storage scale. The Playmaker&#8217;s Framework maps every telemetry source to its governance purpose before the first log event is captured &#8212; retention policy is a risk management decision, not a storage cost decision.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 5: AI Safety Treated as a Public Relations Function</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">The responsible AI policy not backed by inference-time telemetry, safety budget tracking, and continuous model behavioral monitoring is a marketing document that will be used against the organization when the AI system produces the outcome it did not govern. EU AI Act Article 14 does not accept ethics documents as evidence of compliance.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 6: Deferring Post-Quantum Readiness Until the Deadline Is Visible</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">Harvest-now-decrypt-later attacks are a present threat to sensitive data that needs to remain confidential for more than five to ten years. Organizations that wait for the 2030 CNSA 2.0 deadline will discover that migration complexity and organizational change management cannot be completed in the time available. The Playmaker&#8217;s Framework treats post-quantum readiness as a current governance requirement with current instrumentation and current migration planning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="reveal">If Your Regulator Asked for Evidence Friday,<br>Could You Deliver It <em>Monday Morning?</em></h2>
+      <p class="reveal reveal-delay-1">Applied Observability&#8482;: The Playmaker&#8217;s Framework &#8212; Chapter 11 is one of twelve chapters across three volumes. Two decades of enterprise IT program leadership across aviation, defense, energy, and financial services. One governance operating system. Zero patience for the idea that compliance is a document you produce after the auditor arrives instead of evidence your pipeline generates every day, automatically, before anyone asks.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
+        <a href="https://lnkd.in/gEBacx-A" class="btn-gold">Schedule a Discovery Call</a>
+        <a href="applied-observability.html" class="btn-ghost">Back to Overview</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
+    <div class="section-inner">
+      <div style="max-width:640px;margin:0 auto;text-align:center;">
+        <div class="section-label reveal" style="justify-content:center;">Let&#8217;s Talk</div>
+        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:20px;"><em>Start a Conversation</em></h2>
+        <p style="font-size:0.9rem;color:var(--muted);margin-bottom:40px;line-height:1.8;" class="reveal reveal-delay-2">Whether you&#8217;re navigating a regulatory examination, building a governance architecture from scratch, or need an experienced operator to lead a complex compliance transformation &#8212; let&#8217;s find out if we&#8217;re a fit.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-4">
+          <a href="mailto:paul.esteves@energizing-solutions.com?subject=%5BWebsite%5D%20New%20Inquiry%20from%20Energizing%20Solutions&body=Hi%20Paul%2C%0A%0AI%20found%20you%20via%20your%20website.%0A%0AName%3A%20%0ACompany%3A%20%0AWhat%20I%20need%20help%20with%3A%20%0A%0A" class="btn-gold" onclick="gtag('event','contact_click',{method:'email'});">Get In Touch</a>
+          <a href="https://calendly.com/paesteves/30min" class="btn-gold" onclick="gtag('event','contact_click',{method:'calendly'});">Schedule a Call</a>
+          <a href="https://github.com/PauloE-droid" class="btn-gold" onclick="gtag('event','contact_click',{method:'github'});">View My Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Energizing <span>Solutions</span></div>
+    </div>
+    <p class="footer-copy">&copy; 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); document.getElementById('mobile-close').style.display = 'block'; });
+    document.getElementById('mobile-close').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('mobile-close').style.display = 'none'; });
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}), {threshold:0.07,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    (function(){
+      const sc = document.getElementById('ch-scroller');
+      const bL = document.getElementById('ch-btn-left');
+      const bR = document.getElementById('ch-btn-right');
+      if(!sc||!bL||!bR) return;
+      function upd(){
+        bL.classList.toggle('visible', sc.scrollLeft > 4);
+        bR.classList.toggle('visible', sc.scrollLeft < sc.scrollWidth - sc.clientWidth - 4);
+      }
+      sc.addEventListener('scroll', upd, {passive:true});
+      bL.addEventListener('click', () => sc.scrollBy({left:-200, behavior:'smooth'}));
+      bR.addEventListener('click', () => sc.scrollBy({left:200, behavior:'smooth'}));
+      upd();
+    })();
+    document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.parentElement;
+        const isOpen = parent.classList.contains('open');
+        document.querySelectorAll('.mobile-dropdown').forEach(d => d.classList.remove('open'));
+        if (!isOpen) parent.classList.add('open');
+      });
+    });
+    (function(){
+      const active = document.querySelector('.ch-link.active');
+      if(active){ active.scrollIntoView({block:'nearest',inline:'center'}); }
+    })();
+  </script>
+</body>
+</html>
