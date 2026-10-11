@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Chapter 12 – Proactive Issue Prevention – Energizing Solutions</title>
+  <meta name="description" content="Applied Observability™ Chapter 12: 12 interdependent enablers that turn prevention from a prayer into a continuously instrumented practice — the Playmaker's Framework for detecting and closing the gap between system behavior and business expectation before the customer ever notices."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --charcoal-900: #072A6C; --charcoal-800: #141414;
+      --charcoal-700: #1c1c1c; --charcoal-600: #242424;
+      --gold-400: #c9a84c;     --gold-300: #dfc06a;
+      --gold-200: #ecdfa0;     --white: #f5f4f0;
+      --muted:        #1c1c1c;        --border: rgba(201,168,76,0.18);
+      --nav-height: 72px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Montserrat', sans-serif;
+      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--white);color:var(--charcoal-800);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden;}
+    a{color:inherit;text-decoration:none;} ul{list-style:none;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+
+    section[id], div[id] { scroll-margin-top: calc(var(--nav-height) + 16px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background var(--transition), border-bottom var(--transition); }
+    nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-300); white-space: nowrap; }
+    .nav-logo span { color: var(--charcoal-800); font-weight: 300; transition: color var(--transition); }
+    nav.scrolled .nav-logo span { color: #ffffff; }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links > li > a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color var(--transition); position: relative; cursor: pointer; }
+    .nav-links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold-400); transition: width var(--transition); }
+    .nav-links > li > a:hover { color: var(--charcoal-800); }
+    .nav-links > li > a:hover::after { width: 100%; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 5px; }
+    .nav-dropdown > a svg { width: 10px; height: 10px; fill: currentColor; transition: transform var(--transition); }
+    .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+    .dropdown-menu { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-6px); min-width: 220px; background: var(--charcoal-700); border: 1px solid var(--border); border-radius: 4px; padding: 8px 0; opacity: 0; pointer-events: none; transition: opacity var(--transition), transform var(--transition); }
+    .dropdown-menu::before { content: ''; position: absolute; top: -20px; left: -10px; right: -10px; height: 20px; }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu a { display: block; padding: 10px 20px; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); transition: color var(--transition), background var(--transition); }
+    .dropdown-menu a:hover { color: var(--gold-300); background: rgba(201,168,76,0.06); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal-900); z-index: 999; flex-direction: column; align-items: center; justify-content: flex-start; overflow-y: auto; padding: 88px 24px 48px; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu > a { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 10px; transition: color var(--transition); }
+    .mobile-menu > a:hover { color: var(--gold-300); }
+    .mobile-close { position: fixed; top: 24px; right: 24px; font-size: 1.6rem; cursor: pointer; color: var(--white); z-index: 1000; display: none; }
+    .mobile-dropdown { width: 100%; text-align: center; }
+    .mobile-dropdown-btn { width: 100%; background: none; border: none; font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: color var(--transition); }
+    .mobile-dropdown-btn:hover { color: var(--gold-300); }
+    .mobile-dropdown-arrow { font-size: 0.55em; transition: transform var(--transition); display: inline-block; }
+    .mobile-dropdown.open .mobile-dropdown-arrow { transform: rotate(180deg); }
+    .mobile-dropdown-list { display: none; flex-direction: column; align-items: center; gap: 2px; padding: 4px 0 12px; }
+    .mobile-dropdown.open .mobile-dropdown-list { display: flex; }
+    .mobile-dropdown-list a { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-400); padding: 6px 10px; transition: color var(--transition); }
+    .mobile-dropdown-list a:hover { color: var(--gold-300); }
+
+    .page-hero{position:relative;padding:calc(var(--nav-height) + 80px) 48px 80px;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;top:-120px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
+    .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
+    .hero-inner{max-width:1160px;margin:0 auto;position:relative;z-index:1;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:0.68rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;}
+    .hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold-400);}
+    .page-hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,5rem);font-weight:300;line-height:1.08;letter-spacing:-0.01em;color:var(--charcoal-800);margin-bottom:24px;}
+    .page-hero h1 em{font-style:italic;color:var(--gold-300);}
+    .hero-desc{max-width:700px;font-size:1rem;font-weight:300;color:var(--muted);line-height:1.85;}
+
+    .chapter-nav{background:var(--charcoal-900);border-bottom:1px solid var(--border);padding:0 48px;position:sticky;top:var(--nav-height);z-index:900;}
+    .chapter-nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
+    .chapter-nav-inner::-webkit-scrollbar{display:none;}
+    .ch-nav-btn{position:absolute;top:0;bottom:0;width:48px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;color:var(--muted);font-size:1rem;z-index:10;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+    .ch-nav-btn.left{left:0;background:linear-gradient(to right,var(--charcoal-900) 55%,transparent);}
+    .ch-nav-btn.right{right:0;background:linear-gradient(to left,var(--charcoal-900) 55%,transparent);}
+    .ch-nav-btn.visible{opacity:1;pointer-events:auto;}
+    .ch-nav-btn:hover{color:var(--charcoal-800);}
+    .chapter-nav-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);white-space:nowrap;padding-right:24px;border-right:1px solid var(--border);margin-right:24px;flex-shrink:0;}
+    .ch-link{font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:16px 16px;white-space:nowrap;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition);flex-shrink:0;}
+    .ch-link:hover{color:var(--charcoal-800);}
+    .ch-link.active{color:var(--gold-300);border-bottom-color:var(--gold-400);}
+
+    .section{position:relative;z-index:1;padding:96px 48px;}
+    .section-alt{background:var(--charcoal-900);}
+    .section-inner{max-width:1160px;margin:0 auto;}
+    .section-label{display:inline-flex;align-items:center;gap:12px;font-size:0.65rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:16px;}
+    .section-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold-400);}
+    .section-title{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:var(--white);letter-spacing:-0.01em;margin-bottom:56px;}
+    .section-title em{font-style:italic;color:var(--gold-300);}
+
+    .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+    .card{background:var(--charcoal-900);padding:40px 36px;position:relative;overflow:hidden;transition:background var(--transition);}
+    .card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));transition:width .5s ease;}
+    .card:hover{background:var(--charcoal-700);}
+    .card:hover::before{width:100%;}
+    .card-tag{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;}
+    .card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:12px;}
+    .card-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
+    .card-icon{width:36px;height:36px;color:var(--gold-400);margin-bottom:18px;opacity:0.85;}
+    .card-hook{font-size:0.78rem;font-style:italic;color:var(--gold-300);margin-bottom:10px;line-height:1.5;}
+
+    .outcomes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .outcome{background:var(--charcoal-900);padding:36px 40px;display:flex;gap:20px;align-items:flex-start;}
+    .outcome-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;color:rgba(201, 168, 76, 0.855);line-height:1;flex-shrink:0;width:48px;}
+    .outcome-content{}
+    .outcome-title{font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-300);margin-bottom:8px;}
+    .outcome-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
+
+    .sector-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .sector-cell{background:var(--charcoal-900);padding:36px 40px;position:relative;}
+    .sector-cell::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));transition:width .5s ease;}
+    .sector-cell:hover::before{width:100%;}
+    .sector-label{font-size:0.62rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:8px;}
+    .sector-problem{font-size:0.82rem;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+    .sector-move-label{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-200);margin-bottom:6px;}
+    .sector-move{font-size:0.8rem;color:var(--white);line-height:1.8;}
+
+    .playbook-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .playbook-step{background:var(--charcoal-900);padding:32px 36px;display:flex;gap:20px;align-items:flex-start;}
+    .step-num{font-family:var(--font-display);font-size:2rem;font-weight:300;color:rgba(201, 168, 76, 0.858);line-height:1;flex-shrink:0;width:40px;}
+    .step-content{}
+    .step-title{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-300);margin-bottom:6px;}
+    .step-body{font-size:0.8rem;color:var(--muted);line-height:1.8;}
+
+    .stats-band{padding:72px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);}
+    .stat-cell{background:var(--charcoal-900);padding:40px 32px;text-align:center;}
+    .stat-number{font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:10px;}
+    .stat-label{font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);}
+
+    .cta-section{padding:96px 48px;text-align:center;position:relative;overflow:hidden;}
+    .cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:350px;background:radial-gradient(ellipse,rgba(201,168,76,0.05) 0%,transparent 70%);pointer-events:none;}
+    .cta-inner{max-width:640px;margin:0 auto;position:relative;z-index:1;}
+    .cta-inner h2{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.2;margin-bottom:20px;}
+    .cta-inner h2 em{font-style:italic;color:var(--gold-300);}
+    .cta-inner p{font-size:0.9rem;color:var(--muted);margin-bottom:40px;line-height:1.8;}
+    .btn-gold{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:transparent;border:1px solid var(--gold-400);color:var(--gold-300);font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background var(--transition),color var(--transition);}
+    .btn-gold:hover{background:var(--gold-400);color:var(--white);}
+    .btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--muted);font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:border-color var(--transition),color var(--transition);}
+    .btn-ghost:hover{border-color:var(--gold-400);color:var(--charcoal-800);}
+
+    footer{background:var(--white);border-top:1px solid var(--border);padding:48px;}
+    .footer-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+    .footer-logo{font-family:var(--font-display);font-size:1.2rem;font-weight:600;color:var(--gold-300);}
+    .footer-logo span{color:var(--charcoal-800);font-weight:300;}
+    .footer-links{display:flex;gap:28px;flex-wrap:wrap;}
+    .footer-links a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color var(--transition);}
+    .footer-links a:hover{color:var(--gold-300);}
+    .footer-copy{font-size:0.7rem;color:rgba(138,138,138,0.5);text-align:center;padding-top:24px;border-top:1px solid var(--border);max-width:1160px;margin:24px auto 0;}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:.1s;} .reveal-delay-2{transition-delay:.18s;}
+    .reveal-delay-3{transition-delay:.26s;} .reveal-delay-4{transition-delay:.34s;}
+
+    .hero-inner--split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+    .hero-video{position:relative;width:100%;border-radius:4px;overflow:hidden;aspect-ratio:16/9;}
+    .hero-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:4px;}
+
+    @media(max-width:1024px){.cards-grid{grid-template-columns:repeat(2,1fr);}.outcomes-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:repeat(2,1fr);}.sector-grid{grid-template-columns:1fr;}.playbook-steps{grid-template-columns:1fr;}}
+    @media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.page-hero{padding:calc(var(--nav-height) + 48px) 24px 56px;}.section{padding:64px 24px;}.chapter-nav{padding:0 24px;}.stats-band{padding:48px 24px;}.cta-section{padding:64px 24px;}footer{padding:32px 24px;}.footer-inner{flex-direction:column;align-items:flex-start;}.hero-inner--split{grid-template-columns:1fr;gap:40px;}}
+    @media(max-width:580px){.cards-grid{grid-template-columns:1fr;}.stats-inner{grid-template-columns:1fr;}}
+
+    /* ===== MUTED ON DARK BACKGROUNDS ===== */
+    .dropdown-menu,
+    .mobile-menu,
+    .chapter-nav,
+    .section-alt,
+    .card,
+    .card:hover,
+    .outcome,
+    .sector-cell,
+    .playbook-step,
+    .stat-cell,
+    nav.scrolled { --muted: var(--white); }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7PZQCGHLR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q7PZQCGHLR');
+  </script>
+
+</head>
+<body>
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Energizing <span>Solutions</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a>Services <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="services-overview.html">Services Overview</a></li>
+          <li><a href="transformation-management-office.html">Transformation Management Office</a></li>
+          <li><a href="project-management.html">Project Management</a></li>
+          <li><a href="operational-devops.html">Operational DevOps</a></li>
+          <li><a href="digital-evolution.html">Digital Evolution</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a>Solutions <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="solutions-overview.html">Solutions Overview</a></li>
+          <li><a href="digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="experience-economy.html">Experience Economy</a></li>
+          <li><a href="digital-to-the-core.html">Digital to the Core</a></li>
+          <li><a href="devops-for-sap.html">DevOps for SAP</a></li>
+          <li><a href="intelligent-enterprise.html">Intelligent Enterprise</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <a class="active">Products <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown-menu">
+          <li><a href="applied-observability.html">Applied Observability</a></li>
+          <li><a href="system-understanding.html">System Understanding</a></li>
+          <li><a href="datadriven-decisionmaking.html">DataDriven DecisionMaking</a></li>
+          <li><a href="okr-kpi-management.html">OKR &amp; KPI Management</a></li>
+          <li><a href="capacity-plan-and-scaling.html">Capacity Plan &amp; Scaling</a></li>
+          <li><a href="improved-user-experience.html">Improved User Experience</a></li>
+          <li><a href="cost-optimization.html">Cost Optimization</a></li>
+          <li><a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a></li>
+          <li><a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a></li>
+          <li><a href="support-for-continuous-deployment.html">Continuous Deployment</a></li>
+          <li><a href="better-collaboration-and-communication.html">Better Collaboration</a></li>
+          <li><a href="governance-compliance-security-readiness.html">Governance &amp; Compliance</a></li>
+          <li><a href="proactive-issue-prevention.html">Proactive Issue Prevention</a></li>
+        </ul>
+      </li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- Mobile Close -->
+  <span class="mobile-close" id="mobile-close">&#x2715;</span>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn">Services <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <div class="mobile-dropdown-list">
+        <a href="services-overview.html">Services Overview</a>
+        <a href="transformation-management-office.html">Transformation Mgmt Office</a>
+        <a href="project-management.html">Project Management</a>
+        <a href="operational-devops.html">Operational DevOps</a>
+        <a href="digital-evolution.html">Digital Evolution</a>
+      </div>
+    </div>
+
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn">Solutions <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <div class="mobile-dropdown-list">
+        <a href="solutions-overview.html">Solutions Overview</a>
+        <a href="digital-transformation.html">Digital Transformation</a>
+        <a href="experience-economy.html">Experience Economy</a>
+        <a href="digital-to-the-core.html">Digital to the Core</a>
+        <a href="devops-for-sap.html">DevOps for SAP</a>
+        <a href="intelligent-enterprise.html">Intelligent Enterprise</a>
+      </div>
+    </div>
+
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn">Products <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <div class="mobile-dropdown-list">
+        <a href="applied-observability.html">Applied Observability</a>
+        <a href="system-understanding.html">System Understanding</a>
+        <a href="datadriven-decisionmaking.html">DataDriven DecisionMaking</a>
+        <a href="okr-kpi-management.html">OKR &amp; KPI Management</a>
+        <a href="capacity-plan-and-scaling.html">Capacity Plan &amp; Scaling</a>
+        <a href="improved-user-experience.html">Improved User Experience</a>
+        <a href="cost-optimization.html">Cost Optimization</a>
+        <a href="its-telemetry-adoption.html">IT&amp;S Telemetry Adoption</a>
+        <a href="faster-troubleshooting-and-issue-resolution.html">Faster Troubleshooting</a>
+        <a href="support-for-continuous-deployment.html">Continuous Deployment</a>
+        <a href="better-collaboration-and-communication.html">Better Collaboration</a>
+        <a href="governance-compliance-security-readiness.html">Governance &amp; Compliance</a>
+        <a href="proactive-issue-prevention.html">Proactive Issue Prevention</a>
+      </div>
+    </div>
+
+    <a href="portfolio.html">Portfolio</a>
+    <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
+  </div>
+
+  <div class="chapter-nav" style="position:relative;">
+    <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
+    <button class="ch-nav-btn right" id="ch-btn-right" aria-label="Scroll right">&#8594;</button>
+    <div class="chapter-nav-inner" id="ch-scroller">
+      <span class="chapter-nav-label">Applied Observability&#8482;</span>
+      <a href="applied-observability.html" class="ch-link">Overview</a>
+      <a href="system-understanding.html" class="ch-link">Ch.1 System Understanding</a>
+      <a href="datadriven-decisionmaking.html" class="ch-link">Ch.2 Data-Driven Decisions</a>
+      <a href="okr-kpi-management.html" class="ch-link">Ch.3 OKR &amp; KPI</a>
+      <a href="capacity-plan-and-scaling.html" class="ch-link">Ch.4 Capacity Planning</a>
+      <a href="improved-user-experience.html" class="ch-link">Ch.5 User Experience</a>
+      <a href="cost-optimization.html" class="ch-link">Ch.6 Cost Optimization</a>
+      <a href="its-telemetry-adoption.html" class="ch-link">Ch.7 Telemetry Adoption</a>
+      <a href="faster-troubleshooting-and-issue-resolution.html" class="ch-link">Ch.8 Faster Troubleshooting</a>
+      <a href="support-for-continuous-deployment.html" class="ch-link">Ch.9 Continuous Deployment</a>
+      <a href="better-collaboration-and-communication.html" class="ch-link">Ch.10 Better Collaboration</a>
+      <a href="governance-compliance-security-readiness.html" class="ch-link">Ch.11 Governance &amp; Compliance</a>
+      <a href="proactive-issue-prevention.html" class="ch-link active">Ch.12 Proactive Prevention</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-inner hero-inner--split">
+      <div class="hero-text">
+        <div class="hero-eyebrow reveal">Applied Observability&#8482; &#8212; Chapter 12</div>
+        <h1 class="reveal reveal-delay-1">Proactive<br>Issue <em>Prevention</em></h1>
+        <p class="hero-desc reveal reveal-delay-2">The best incident is the one that never becomes an incident. Prevention is not a feature of your monitoring platform, a dashboard you built last quarter, or anomaly detection you turned on and forgot to tune. It is a discipline &#8212; an architecture of telemetry, thresholds, analytics, automation, and human behavior that surfaces degradation before it crosses the line into customer impact. This is the chapter all eleven before it were aimed at.</p>
+      </div>
+      <div style="background:var(--charcoal-900);border:1px solid var(--border);padding:44px 40px;position:relative;" class="reveal reveal-delay-2">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));"></div>
+        <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;">The Four-Layer Prevention Architecture</div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;">Detection Layer</div>
+            <div style="font-size:0.75rem;color:rgba(245,244,240,0.6);line-height:1.6;">Behavioral Baselining &#8226; SLO/SLI Architecture &#8226; Predictive Analytics &#8226; Change Risk Intelligence</div>
+          </div>
+          <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;">Response Layer</div>
+            <div style="font-size:0.75rem;color:rgba(245,244,240,0.6);line-height:1.6;">Automated Remediation &#8226; Shift-Left in CI/CD &#8226; Capacity Saturation Management</div>
+          </div>
+          <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;">Resilience Layer</div>
+            <div style="font-size:0.75rem;color:rgba(245,244,240,0.6);line-height:1.6;">Chaos Engineering &#8226; Dependency Monitoring &#8226; Security Threat Anticipation</div>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;">Sustainability Layer</div>
+            <div style="font-size:0.75rem;color:rgba(245,244,240,0.6);line-height:1.6;">OT/IT Convergence &#8226; Prevention Culture &amp; Governance &#8226; Continuous Improvement</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <div class="stats-band">
+    <div class="stats-inner">
+      <div class="stat-cell reveal">
+        <div class="stat-number">$14,056</div>
+        <div class="stat-label">Per minute &#8212; average enterprise downtime cost (BigPanda/EMA)</div>
+      </div>
+      <div class="stat-cell reveal reveal-delay-1">
+        <div class="stat-number">243%</div>
+        <div class="stat-label">Three-year observability ROI &#8212; Forrester Elastic TEI</div>
+      </div>
+      <div class="stat-cell reveal reveal-delay-2">
+        <div class="stat-number">68%</div>
+        <div class="stat-label">Reduction in system downtime with mature observability</div>
+      </div>
+      <div class="stat-cell reveal reveal-delay-3">
+        <div class="stat-number">85%</div>
+        <div class="stat-label">Reduction in SRE incident-resolution labor by Year 3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRODUCTION -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">The Problem</div>
+      <h2 class="section-title reveal reveal-delay-1">Everyone Has Monitoring and Calls It Observability.<br><em>Prevention Is Where the Pretending Stops.</em></h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="reveal reveal-delay-2">
+        <div>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">Here is a question for the C-suite: when was the last time a board meeting opened with a systems failure that nobody saw coming? Not the failure &#8212; the part where nobody saw it coming. That is the part that costs $14,056 per minute. That is the part where an SRE wakes at 3 a.m. to a PagerDuty alert, a Slack thread already forty-seven messages into mutual blame, and a support queue that has been quietly filling for thirty minutes because the system decided to express itself unexpectedly.</p>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;margin-bottom:20px;">Most organizations have monitoring and call it observability, have alerting and call it proactive prevention, and have a postmortem template and call it a prevention culture. None of those things are wrong. They are just not enough. Dynatrace&#8217;s 2025 research found that effectively every surveyed organization now uses AI somewhere in observability &#8212; yet only 28% use it to align observability data with business KPIs, and only 22% report it improves business agility. The infrastructure is there. The gap is closing the loop from signal to action before the customer notices.</p>
+          <p style="font-size:0.92rem;color:var(--muted);line-height:1.9;">We grew up watching systems fail in spectacular, preventable ways &#8212; watching organizations spend more money explaining why things broke than they ever spent making sure they would not. Postmortem theater replaced structural investment; &#8220;lessons learned&#8221; gathered digital dust until the same failure repeated eighteen months later. Applied Observability&#8482; exists to break that cycle. Chapter 12 is the architecture that makes prevention a practice, not a prayer.</p>
+        </div>
+        <div style="background:var(--charcoal-700);border:1px solid var(--border);padding:36px;position:relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-400),var(--gold-200));"></div>
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:20px;">What This Chapter Actually Solves</div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:6px;">Lead time, not 2 a.m.</div>
+              <div style="font-size:0.75rem;color:var(--muted);">An anomaly brief with hours of warning before projected customer impact vs. a page in the middle of the night</div>
+            </div>
+            <div style="padding-bottom:16px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:6px;">$5.8M avoided</div>
+              <div style="font-size:0.75rem;color:var(--muted);">Revenue loss and SRE labor savings from mature observability &#8212; Forrester Elastic TEI</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--gold-300);line-height:1;margin-bottom:6px;">30,000 hours</div>
+              <div style="font-size:0.75rem;color:var(--muted);">SRE time recovered per year by Year 3 through efficient issue identification and resolution</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAKEHOLDER VALUE -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">Strategic Business Value</div>
+      <h2 class="section-title reveal reveal-delay-1" style="color:var(--charcoal-800);">Outcomes by <em>Stakeholder</em></h2>
+      <div class="outcomes-grid">
+        <div class="outcome reveal reveal-delay-1">
+          <div class="outcome-num">Org</div>
+          <div class="outcome-content">
+            <div class="outcome-title">For Organizations</div>
+            <p class="outcome-body">Increased profitability, sustainable growth, and a structural competitive edge. The gap between the organization running proactive prevention and the one running reactive response is not a technology gap &#8212; it is a decision gap. Somebody chose to invest in the architecture before the incident, or they did not, and the incident made the choice visible. At $14,056 per minute, every prevented incident is documented margin.</p>
+          </div>
+        </div>
+        <div class="outcome reveal reveal-delay-2">
+          <div class="outcome-content" style="margin-left:68px;">
+            <div class="outcome-title">For Executives &amp; Leaders</div>
+            <p class="outcome-body" style="margin-bottom:0;">Strategic influence, operational control, and talent attraction. The executive who spends thirty minutes a quarter reviewing trend data that shows where the system is under pressure &#8212; and what is being done before it becomes an incident &#8212; is in a fundamentally different operational position than the one who spends three hours explaining why the team did not see it coming. Prevention is the shift from crisis management to operational governance.</p>
+          </div>
+        </div>
+        <div class="outcome reveal reveal-delay-3">
+          <div class="outcome-num">B2B</div>
+          <div class="outcome-content">
+            <div class="outcome-title">For B2B Customers</div>
+            <p class="outcome-body">Enhanced value, transparency, and trust. A supplier delivers service until it fails, then explains what happened. A partner detects degradation before it becomes a failure, communicates transparently, and delivers postmortems that demonstrate structural learning rather than PR management. The 66% of B2B buyers who check SOC 2 before signing are not checking the certificate &#8212; they are checking the operational discipline it represents.</p>
+          </div>
+        </div>
+        <div class="outcome reveal reveal-delay-4">
+          <div class="outcome-content" style="margin-left:68px;">
+            <div class="outcome-title">For Operations Teams <span style="color:var(--gold-400);font-weight:500;">(a conversation we are opening)</span></div>
+            <p class="outcome-body" style="margin-bottom:0;">This chapter is deliberately pitched at the executive altitude &#8212; but prevention lives or dies on the floor. The SRE, platform, and SecOps teams who own the baselines, the error budgets, and the chaos calendar are the practitioners this architecture is built to protect. Their deeper operational playbook &#8212; SLI catalogs, runbook-as-code patterns, and governance at mid-market scale &#8212; is the next tranche of research and documentation this framework will expand into.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 ENABLER CARDS -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">The 12 Enablers</div>
+      <h2 class="section-title reveal reveal-delay-1">The Full Prevention Playbook</h2>
+      <div class="cards-grid">
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div class="card-tag">Enabler 12.1</div>
+          <div class="card-title">Anomaly Detection &amp; Behavioral Baselining</div>
+          <p class="card-hook">A threshold is a line in the sand the ocean already knows about. An anomaly is the wave forming three miles offshore.</p>
+          <p class="card-body">Static thresholds fire every Tuesday when the batch job runs &#8212; and stay silent on the Wednesday that mattered, because the real failure looked nothing like what the threshold was calibrated to catch. Behavioral baselining learns what normal looks like across the full operational cycle, so AI-driven detection surfaces degradation before customer impact. At $14,056 per minute, a 30-minute head start is $421,680 in avoided impact per significant incident &#8212; the architecture pays for itself on the first one it prevents.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/><circle cx="12" cy="12" r="10" opacity="0.25"/></svg>
+          <div class="card-tag">Enabler 12.2</div>
+          <div class="card-title">SLO/SLI Architecture &amp; Error Budget Management</div>
+          <p class="card-hook">An SLO without an error budget is a wish. An error budget with no consequence for spending it is fiction. Together they are the only honest contract you have ever written about reliability.</p>
+          <p class="card-body">Before SLOs, deploying a risky change was a negotiation between engineering confidence and operations caution with no shared reference point. After SLOs, it is a decision: the error budget is either there to spend or it is not. The conversation becomes faster, less political, and far more likely to produce the right outcome &#8212; because reliability finally has a number attached to it that both sides agreed to in advance.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <div class="card-tag">Enabler 12.3</div>
+          <div class="card-title">Predictive Analytics &amp; Trend Forecasting</div>
+          <p class="card-hook">Reactive is what you call it when the data was there and nobody looked until after the customer noticed.</p>
+          <p class="card-body">This is the difference between planned maintenance and emergency response. A capacity constraint addressed two weeks early costs engineering hours and a deployment window; the same constraint hit during a production incident costs MTTR, customer impact, emergency change approvals, executive escalation, and a postmortem. One avoided one-hour incident saves $843,360 in direct downtime cost &#8212; before the downstream costs even begin.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <div class="card-tag">Enabler 12.4</div>
+          <div class="card-title">Automated Remediation &amp; Self-Healing Systems</div>
+          <p class="card-hook">If your only response to a known failure mode is waking a human at 3 a.m., you have not built a prevention system. You have built an alarm clock with consequences.</p>
+          <p class="card-body">Automated remediation collapses the 15-to-45 minutes of human response &#8212; page, acknowledge, diagnose, execute runbook &#8212; into seconds, for the failure modes you already understand. Forrester&#8217;s Elastic TEI documents an 85% reduction in monitoring and incident-resolution labor by Year 3 and 30,000 SRE hours recovered per year. The discipline is governing which responses run autonomously and which still route to a human in the loop.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg>
+          <div class="card-tag">Enabler 12.5</div>
+          <div class="card-title">Shift-Left Observability in CI/CD</div>
+          <p class="card-hook">A bug caught in production costs ten times what it costs in staging. A bug caught in staging costs ten times what it costs in development. Do the math.</p>
+          <p class="card-body">Shift-left embeds observability directly into the deployment pipeline, so defects surface before they reach production rather than after. A conservative 30% reduction in production incidents &#8212; grounded in Forrester&#8217;s 68% downtime reduction for mature deployments &#8212; is worth $843,360 in prevention value per incident avoided at a 60-minute, $14,056-per-minute baseline. Prevention moves upstream, where it is cheapest to act.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/><path d="M12 2l1.5 2L12 6"/></svg>
+          <div class="card-tag">Enabler 12.6</div>
+          <div class="card-title">Change Risk Intelligence &amp; Deployment Guards</div>
+          <p class="card-hook">Every production incident has a change in its ancestry. The question is whether you knew the risk before you pushed, or found out after the customer noticed.</p>
+          <p class="card-body">Change risk intelligence attacks the DORA change-failure-rate metric directly &#8212; the fraction of deployments that require a hotfix, rollback, or unplanned remediation. Cutting it from 15% to 5% across 100 deployments a month means ten fewer change-driven incidents every month. Deployment guards score the risk before the push goes live, not in the retrospective afterward.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <div class="card-tag">Enabler 12.7</div>
+          <div class="card-title">Capacity Pressure &amp; Resource Saturation Management</div>
+          <p class="card-hook">The capacity cliff is not a surprise. It is a line in your telemetry that you did not extrapolate far enough.</p>
+          <p class="card-body">This enabler connects two value pools in one architecture: avoided downtime at $14,056 per minute, which accrues to SRE and customer experience, and recovered cloud waste at Flexera&#8217;s 27% scale, which accrues to FinOps and the CFO. On $50 million of annual cloud spend, that waste is $13.5 million in recoverable value. The organizations that stop treating them as two separate problems capture both.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          <div class="card-tag">Enabler 12.8</div>
+          <div class="card-title">Security Threat Anticipation</div>
+          <p class="card-hook">The breach you prevent is the one that never becomes a headline. The breach you detect reactively becomes the one that defines your reputation for five years.</p>
+          <p class="card-body">IBM&#8217;s 2024 research puts the average breach at $4.88 million &#8212; an average that falls materially for organizations whose security observability detects threat precursors and compresses detection from the industry&#8217;s 200-plus days to hours or days. The fastest-detected and fastest-contained breaches carry the lowest total cost. Proactive security observability is the mechanism that makes containment possible at all.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M10 13a5 5 0 007.07 0l1.93-1.93a5 5 0 00-7.07-7.07L11 5"/><path d="M14 11a5 5 0 00-7.07 0L4.93 12.93a5 5 0 007.07 7.07L13 19"/></svg>
+          <div class="card-tag">Enabler 12.9</div>
+          <div class="card-title">Dependency &amp; Third-Party Risk Monitoring</div>
+          <p class="card-hook">Your SLA is only as strong as your weakest dependency. Your dependency is only as strong as your visibility into it.</p>
+          <p class="card-body">Third-party monitoring removes the blind spot that sits between your observability posture and the actual failure surface of your production system. Turning 40 minutes of &#8220;which dependency is degraded?&#8221; confusion into 20 minutes of direct engagement with the affected provider is $280,000 in avoided downtime per incident. The failure surface does not stop at your firewall, and neither should the telemetry.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><circle cx="12" cy="12" r="4"/></svg>
+          <div class="card-tag">Enabler 12.10</div>
+          <div class="card-title">Chaos Engineering &amp; Resilience Validation</div>
+          <p class="card-hook">If you have never broken your own system on purpose, you are trusting a hypothesis. If you have, you are trusting evidence.</p>
+          <p class="card-body">The risk of a properly governed chaos program is bounded, scheduled, SLO-gated, and reversible. The risk of the uncontrolled production incident that eventually discovers the same failure mode is unbounded, unscheduled, and frequently not reversible. Document every failure mode a chaos experiment surfaces, price the incident it would have caused, and aggregate the prevented impact &#8212; that is the business case written in the only language that funds the program.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 20h20"/><path d="M4 20V8l6-4v16"/><path d="M10 20V4l6 4v12"/><path d="M16 20v-6l4 2v4"/></svg>
+          <div class="card-tag">Enabler 12.11</div>
+          <div class="card-title">OT/IT Convergence &amp; Industrial Prevention</div>
+          <p class="card-hook">The factory floor that runs on instinct and experience is one retirement away from catastrophic. The floor that runs on telemetry survives the retirement.</p>
+          <p class="card-body">Predictive maintenance programs that instrument equipment-health signals and apply ML to failure-precursor patterns document 10:1 to 30:1 ROI against the cost of unplanned failures. A single avoided turbine failure in a power plant or line stoppage in an automotive plant justifies years of OT observability investment &#8212; and the $14,056-per-minute baseline is conservative for a pharmaceutical clean room or a semiconductor fab.</p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <div class="card-tag">Enabler 12.12</div>
+          <div class="card-title">Prevention Culture, Governance &amp; Continuous Improvement</div>
+          <p class="card-hook">The technology is the easy part. The culture is where prevention either becomes a practice or stays a project.</p>
+          <p class="card-body">Prevention is a practice, not a project with a completion date. Forrester&#8217;s 85% Year-3 labor reduction is an organizational outcome &#8212; better runbooks, calibrated anomaly models, a blameless postmortem culture &#8212; not a technology one. The governance that sustains it (a Prevention Architecture Review Board, a monthly SLO review, a quarterly chaos calendar, a weekly capacity review) is what converts prevention from a project into a capability that compounds.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTOR OBSERVATIONS -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">Sector Observations</div>
+      <h2 class="section-title reveal reveal-delay-1" style="color:var(--charcoal-800);">Where Prevention<br><em>Changes the Operating Reality</em></h2>
+      <div class="sector-grid">
+
+        <div class="sector-cell reveal reveal-delay-1">
+          <div class="sector-label">Energy &amp; Utilities</div>
+          <p class="sector-problem">Prevention here is a regulatory mandate with direct financial consequences. NERC CIP requires documented operational resilience, and grid operators managing renewable intermittency, distributed energy resources, and aging transmission face failure modes that SCADA-era monitoring cannot detect early enough to prevent. The utility that finds out a transformer was degrading when it fails during summer peak demand has contributed to a regulatory investigation.</p>
+          <div class="sector-move-label">Applied Observability&#8482; Move</div>
+          <p class="sector-move">Deploy predictive telemetry that correlates weather data, demand forecasts, equipment-health signals, and grid topology &#8212; so a transformer showing early degradation signatures is replaced on a planned window, not during the peak-demand event that would otherwise make it a headline and an inquiry.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-2">
+          <div class="sector-label">Manufacturing &amp; Supply Chain</div>
+          <p class="sector-problem">Prevention is measured in production-line uptime, yield rate, and supplier adherence. Overall Equipment Effectiveness is the standard metric, and a single line stoppage in automotive, semiconductor, or pharmaceutical manufacturing can cost multiples of the enterprise IT baseline. The manufacturers with the highest OEE are not running better machines &#8212; they are running better telemetry on the same machines.</p>
+          <div class="sector-move-label">Applied Observability&#8482; Move</div>
+          <p class="sector-move">Instrument every variable that feeds OEE &#8212; tool wear, coolant temperature, spindle-speed deviation, vibration signatures, statistical process control boundaries &#8212; and act on degradation signals before they become line stoppages, converting unplanned failure into scheduled maintenance.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-3">
+          <div class="sector-label">e-Commerce &amp; SaaS</div>
+          <p class="sector-problem">Prevention is the difference between a Black Friday that produces revenue records and one that produces a Wikipedia entry. The failure mode is predictable &#8212; traffic spikes, payment-gateway latency, inventory-service contention, CDN saturation, checkout-session expiry &#8212; and every one of them has observable precursors in telemetry before the customer feels impact.</p>
+          <div class="sector-move-label">Applied Observability&#8482; Move</div>
+          <p class="sector-move">The organizations that consistently deliver during traffic events are not the ones with the most capacity &#8212; they are the ones that monitored degradation patterns during previous events, built prevention playbooks from those patterns, and automated the responses before the next peak arrived.</p>
+        </div>
+
+        <div class="sector-cell reveal reveal-delay-4">
+          <div class="sector-label">FinOps &amp; Financial Services</div>
+          <p class="sector-problem">Prevention intersects regulatory obligation in ways that make the case straightforward for any CFO who has read the fine schedule for EU DORA violations. Effective January 2025, DORA requires not just operational resilience but documented evidence of proactive risk management and third-party ICT monitoring &#8212; evidence of continuous detection and response, not a dashboard that required a human to interpret and act.</p>
+          <div class="sector-move-label">Applied Observability&#8482; Move</div>
+          <p class="sector-move">Demonstrate a telemetry-driven prevention architecture in the audit itself. The institution that can show continuous, instrumented detection and automated response is in a materially different regulatory position than the one that can show a monitoring dashboard and a binder of good intentions.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PLAYMAKER'S FRAMEWORK: BUILD SEQUENCE -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label reveal">The Playmaker&#8217;s Framework</div>
+      <h2 class="section-title reveal reveal-delay-1">The Prioritized Build Sequence: <em>Detection First, Then Response, Resilience, Sustainability</em></h2>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.9;max-width:860px;margin:-32px 0 48px;" class="reveal reveal-delay-1">The twelve enablers are not a menu. Implement three and ignore the rest and you do not get 25% of the prevention capability &#8212; you get a fragmented architecture with a stronger-than-average argument at the next postmortem about which component you should have prioritized. Each layer enables the one above it. Build in order.</p>
+      <div class="playbook-steps">
+
+        <div class="playbook-step reveal reveal-delay-1">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Prevention Mandate &amp; Review Board (Week 1)</div>
+            <p class="step-body">The CIO, CTO, Head of SRE, and CISO jointly charter the prevention architecture as a standing capability owned at the executive level &#8212; naming production reliability as a competitive asset, not a cost center. This is the organizational air cover for everything that follows; without it, prevention work is the first thing deprioritized the moment it creates friction.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-2">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Behavioral Baselines Before Thresholds (Weeks 2&#8211;3)</div>
+            <p class="step-body">Establish what normal looks like across the full operational cycle &#8212; time of day, day of week, seasonal pattern, deployment cadence, business events. Retire static thresholds from the primary detection path to a technical-debt backlog. The baseline is the substrate every other layer reads from; get it right before building on it.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-3">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Explicit SLOs &amp; Error Budgets (Weeks 3&#8211;4)</div>
+            <p class="step-body">Every system with customers already has implicit SLOs &#8212; the level below which they complain, churn, or escalate. Make them explicit, measured, and governed, and attach a consequence to spending the error budget. The complexity of the system is an argument for more rigorous SLO architecture, not less.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-4">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Predictive &amp; Change-Risk Signals (Weeks 4&#8211;5)</div>
+            <p class="step-body">Add trend forecasting on saturation curves and risk scoring on every deployment, tied to the DORA change-failure-rate metric. The goal is to move the organization&#8217;s posture from &#8220;the data was there and nobody looked&#8221; to a capacity constraint addressed two weeks early and a risky change flagged before the push.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-1">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <div class="step-title">Signal-to-Action Contracts (Week 6)</div>
+            <p class="step-body">Every detection signal maps to either an automated response or a human decision workflow with a named owner and a defined response time. If a signal does not connect to an action, it does not belong in the prevention architecture &#8212; a dashboard nobody acts on is a very well-informed way to be surprised.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-2">
+          <div class="step-num">06</div>
+          <div class="step-content">
+            <div class="step-title">Automated Remediation for Known Failure Modes (Weeks 6&#8211;7)</div>
+            <p class="step-body">Turn runbooks for well-understood failure modes into code that executes autonomously in seconds instead of the 15-to-45 minutes human response requires. Establish the human-in-the-loop governance that decides which responses run unattended &#8212; automation of the wrong things is its own new failure mode.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-3">
+          <div class="step-num">07</div>
+          <div class="step-content">
+            <div class="step-title">Shift-Left &amp; Deployment Guards (Week 8)</div>
+            <p class="step-body">Embed observability into the CI/CD pipeline so defects surface in development and staging, where they cost an order of magnitude less than in production. Wire deployment guards and canary analysis to the SLOs and change-risk scores so a risky rollout is halted automatically before the blast radius expands.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-4">
+          <div class="step-num">08</div>
+          <div class="step-content">
+            <div class="step-title">Capacity Saturation Program (Week 9)</div>
+            <p class="step-body">Connect the two value pools under one owner: avoided downtime for SRE and customer experience, recovered cloud waste for FinOps and the CFO. Anomaly-driven rightsizing captures the Flexera 27% waste figure &#8212; $13.5 million on $50 million of annual cloud spend &#8212; while the same telemetry prevents the capacity-cliff incident.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-1">
+          <div class="step-num">09</div>
+          <div class="step-content">
+            <div class="step-title">Dependency &amp; Third-Party Risk Map (Week 10)</div>
+            <p class="step-body">Inventory the real failure surface &#8212; every third-party API, library, and service the production system depends on &#8212; and monitor each against established baselines. The objective is to collapse the &#8220;which dependency is degraded?&#8221; confusion window into direct, immediate engagement with the affected provider.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-2">
+          <div class="step-num">10</div>
+          <div class="step-content">
+            <div class="step-title">Security Threat Anticipation + Chaos Calendar (Week 11)</div>
+            <p class="step-body">Promote threat precursors to first-class signals in the unified pipeline, and stand up a scheduled, SLO-gated chaos engineering calendar. The resilience layer requires the detection and response layers to be mature first &#8212; chaos experiments and threat intelligence are only operationalizable once there is quality signal to act on.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-3">
+          <div class="step-num">11</div>
+          <div class="step-content">
+            <div class="step-title">OT/IT Convergence Where Applicable (Ongoing)</div>
+            <p class="step-body">For industrial organizations, extend the telemetry substrate into the OT environment with a unified event model that bridges IT and OT signal types. Predictive maintenance on equipment-health signals documents 10:1 to 30:1 ROI &#8212; and captures the institutional knowledge that currently walks out the door at every retirement.</p>
+          </div>
+        </div>
+
+        <div class="playbook-step reveal reveal-delay-4">
+          <div class="step-num">12</div>
+          <div class="step-content">
+            <div class="step-title">Prevention Culture &amp; Governance Cadence (Week 12)</div>
+            <p class="step-body">Institutionalize the blameless postmortem, track remediation commitments to completion, and run the governance cadence &#8212; Prevention Architecture Review Board, monthly SLO review, quarterly chaos calendar, weekly capacity review. Begin the crypto-agility and signal-extensibility inventory that keeps the architecture durable across the quantum transition. The first cycle proves the pattern; the second expands coverage; the third reaches a prevention maturity competitors cannot assemble in a quarter.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THE 5 PLAYS AT CHAPTER LEVEL -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">The Playmaker&#8217;s Five Plays</div>
+      <h2 class="section-title reveal reveal-delay-1" style="color:var(--charcoal-800);">Prevention as a System, <em>Not a Prayer</em></h2>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--border);margin-bottom:64px;" class="reveal reveal-delay-2">
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 1</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Align</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;">One four-layer architecture, owned at the executive level. SLOs become the shared reliability contract across engineering, operations, security, and the board. Reliability is named a competitive asset. The Prevention Architecture Review Board is the standing body that keeps it that way.</p>
+        </div>
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 2</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Instrument</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;">Behavioral baselines, SLO/SLI telemetry, predictive signals, change-risk scores, and security precursors all flow into the pipeline as first-class signals. Prevention is possible only when the telemetry is rich enough to answer questions you have not yet thought to ask.</p>
+        </div>
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 3</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Operationalize</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;">Every signal connects to an automated response or a named owner with a response-time SLA. Automated remediation replaces the 3 a.m. page; shift-left and deployment guards move prevention upstream; capacity management closes the loop from detection to action before impact.</p>
+        </div>
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 4</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Monetize</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;">Reliability becomes revenue. Avoided downtime, recovered cloud waste, and reduced breach cost are booked as value; DORA-grade evidence becomes a procurement advantage; and the partner who detects degradation before failure wins the B2B trust that suppliers who merely explain outages never will.</p>
+        </div>
+        <div style="background:#f0ede4;padding:32px 24px;border-top:2px solid var(--gold-400);">
+          <div style="font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:10px;">Play 5</div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--charcoal-800);margin-bottom:10px;">Future-Proof</div>
+          <p style="font-size:0.75rem;color:#444;line-height:1.75;"><strong>The Quantum Lens.</strong> Quantum workloads bring anomaly classes with no classical equivalent &#8212; decoherence events, gate-fidelity degradation, probabilistic correctness, quantum fidelity budgets. NIST finalized FIPS 203, 204, and 205 in August 2024. Build baselines, SLOs, and crypto-agility that absorb the quantum transition as a toolkit update, not a capabilities rebuild.</p>
+        </div>
+      </div>
+
+      <div class="section-label reveal" style="margin-top:0;">Why Initiatives Fail</div>
+      <h3 style="font-family:var(--font-display);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:300;color:var(--charcoal-800);line-height:1.2;margin-bottom:40px;" class="reveal reveal-delay-1">Six Structural Failure Modes &#8212; <em>and How the Playmaker&#8217;s Framework Avoids Them</em></h3>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;" class="reveal reveal-delay-2">
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 1: Detection Treated as a Dashboard, Not a Decision Input</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">Organizations instrument their systems, build dashboards, and believe they have a prevention capability. They do not &#8212; a dashboard nobody acts on proactively is a very well-informed way to be surprised. The Framework requires every detection signal to connect to an automated response or a human workflow with a defined owner and response time. No action, no place in the architecture.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 2: The Investment Case Is Expressed in Technology Terms</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">AIOps engines, chaos tooling, observability platforms &#8212; the technology language of prevention is invisible to the CFO and the board. The Framework requires every capability to be stated in business terms: incidents prevented, downtime avoided, cloud waste recovered, breach cost reduced, penalties prevented. The architecture that cannot speak that language does not get funded.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 3: Prevention Organized as a Project With a Completion Date</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">The project ships, is declared complete, and attention moves on. Within six months the anomaly detection is un-calibrated, the SLOs are unstaffed, and the chaos program is deferred indefinitely. Prevention is a practice, not a project &#8212; the governance cadence is what converts it, and the Framework is explicit about that cadence because its absence is the most common failure mode in enterprise observability.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 4: Culture Is Assumed Rather Than Built</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">The blameless postmortem culture prevention depends on does not exist by default. Assume it without building it and you get an architecture that surfaces signals and then suppresses them, because surfacing a signal is a career risk in a blame culture. The Framework is explicit about culture because it is the invisible prerequisite for every technical capability in the chapter.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 5: The Quantum Future Is Not Anticipated in the Architecture</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">Prevention architectures optimized for the current stack without designing for extensibility face the quantum transition as a capabilities rebuild rather than a toolkit update. The Quantum Lens sections are not futurism for its own sake &#8212; they are the architectural specifications that make today&#8217;s prevention investment durable across technology transitions already underway.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold-400);padding:0 0 0 24px;">
+          <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal-800);margin-bottom:8px;">Failure 6: False Positives Taken as Refutation, Not a Calibration Gap</div>
+          <p style="font-size:0.8rem;color:#444;line-height:1.8;">&#8220;Anomaly detection generates too many false positives to be useful&#8221; is a symptom, not a verdict. Splunk documents that mature programs reach 85% automated remediation of detected anomalies versus 16% for beginners &#8212; the gap is calibration and business-context tuning, not the technology. The Framework treats false positives as an investment target, not a reason to abandon detection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="reveal">If a Degradation Signal Fired Right Now,<br>Would It Reach a Decision &#8212; or Just a <em>Dashboard?</em></h2>
+      <p class="reveal reveal-delay-1">Applied Observability&#8482;: The Playmaker&#8217;s Framework &#8212; Chapter 12 is the final chapter of Volume 1, the destination all eleven before it were aimed at. Two decades of enterprise IT program leadership across aviation, defense, energy, and financial services. One prevention operating system. Zero patience for the idea that reliability is something you explain in a postmortem instead of something your telemetry protects before anyone has to.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
+        <a href="https://lnkd.in/gEBacx-A" class="btn-gold">Schedule a Discovery Call</a>
+        <a href="applied-observability.html" class="btn-ghost">Back to Overview</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
+    <div class="section-inner">
+      <div style="max-width:640px;margin:0 auto;text-align:center;">
+        <div class="section-label reveal" style="justify-content:center;">Let&#8217;s Talk</div>
+        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:20px;"><em>Start a Conversation</em></h2>
+        <p style="font-size:0.9rem;color:var(--muted);margin-bottom:40px;line-height:1.8;" class="reveal reveal-delay-2">Whether you&#8217;re tired of running production reactively, building a prevention architecture from scratch, or need an experienced operator to lead a complex reliability transformation &#8212; let&#8217;s find out if we&#8217;re a fit.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-4">
+          <a href="mailto:paul.esteves@energizing-solutions.com?subject=%5BWebsite%5D%20New%20Inquiry%20from%20Energizing%20Solutions&body=Hi%20Paul%2C%0A%0AI%20found%20you%20via%20your%20website.%0A%0AName%3A%20%0ACompany%3A%20%0AWhat%20I%20need%20help%20with%3A%20%0A%0A" class="btn-gold" onclick="gtag('event','contact_click',{method:'email'});">Get In Touch</a>
+          <a href="https://calendly.com/paesteves/30min" class="btn-gold" onclick="gtag('event','contact_click',{method:'calendly'});">Schedule a Call</a>
+          <a href="https://github.com/PauloE-droid" class="btn-gold" onclick="gtag('event','contact_click',{method:'github'});">View My Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Energizing <span>Solutions</span></div>
+    </div>
+    <p class="footer-copy">&copy; 2026 Energizing Solutions LLC. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobile-menu').classList.add('open'); document.getElementById('mobile-close').style.display = 'block'; });
+    document.getElementById('mobile-close').addEventListener('click', () => { document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('mobile-close').style.display = 'none'; });
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}), {threshold:0.07,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    (function(){
+      const sc = document.getElementById('ch-scroller');
+      const bL = document.getElementById('ch-btn-left');
+      const bR = document.getElementById('ch-btn-right');
+      if(!sc||!bL||!bR) return;
+      function upd(){
+        bL.classList.toggle('visible', sc.scrollLeft > 4);
+        bR.classList.toggle('visible', sc.scrollLeft < sc.scrollWidth - sc.clientWidth - 4);
+      }
+      sc.addEventListener('scroll', upd, {passive:true});
+      bL.addEventListener('click', () => sc.scrollBy({left:-200, behavior:'smooth'}));
+      bR.addEventListener('click', () => sc.scrollBy({left:200, behavior:'smooth'}));
+      upd();
+    })();
+    document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.parentElement;
+        const isOpen = parent.classList.contains('open');
+        document.querySelectorAll('.mobile-dropdown').forEach(d => d.classList.remove('open'));
+        if (!isOpen) parent.classList.add('open');
+      });
+    });
+    (function(){
+      const active = document.querySelector('.ch-link.active');
+      if(active){ active.scrollIntoView({block:'nearest',inline:'center'}); }
+    })();
+  </script>
+</body>
+</html>
