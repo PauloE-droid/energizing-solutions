@@ -266,7 +266,29 @@
     <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
     <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
   </div>
-  
+
+  <!-- Chapter Navigation -->
+  <div class="chapter-nav" style="position:relative;">
+    <button class="ch-nav-btn left" id="ch-btn-left" aria-label="Scroll left">&#8592;</button>
+    <button class="ch-nav-btn right" id="ch-btn-right" aria-label="Scroll right">&#8594;</button>
+    <div class="chapter-nav-inner" id="ch-scroller">
+      <span class="chapter-nav-label">Applied Observability&#8482;</span>
+      <a href="applied-observability.html" class="ch-link active">Overview</a>
+      <a href="system-understanding.html" class="ch-link">Ch.1 System Understanding</a>
+      <a href="datadriven-decisionmaking.html" class="ch-link">Ch.2 Data-Driven Decisions</a>
+      <a href="okr-kpi-management.html" class="ch-link">Ch.3 OKR &amp; KPI</a>
+      <a href="capacity-plan-and-scaling.html" class="ch-link">Ch.4 Capacity Planning</a>
+      <a href="improved-user-experience.html" class="ch-link">Ch.5 User Experience</a>
+      <a href="cost-optimization.html" class="ch-link">Ch.6 Cost Optimization</a>
+      <a href="its-telemetry-adoption.html" class="ch-link">Ch.7 Telemetry Adoption</a>
+      <a href="faster-troubleshooting-and-issue-resolution.html" class="ch-link">Ch.8 Faster Troubleshooting</a>
+      <a href="support-for-continuous-deployment.html" class="ch-link">Ch.9 Continuous Deployment</a>
+      <a href="better-collaboration-and-communication.html" class="ch-link">Ch.10 Better Collaboration</a>
+      <a href="governance-compliance-security-readiness.html" class="ch-link">Ch.11 Governance &amp; Compliance</a>
+      <a href="proactive-issue-prevention.html" class="ch-link">Ch.12 Proactive Prevention</a>
+    </div>
+  </div>
+
   <!-- HERO -->
   <section class="page-hero">
     <div class="hero-inner">
@@ -461,6 +483,10 @@
         if (!isOpen) parent.classList.add('open');
       });
     });
+    (function(){
+      const active = document.querySelector('.ch-link.active');
+      if(active){ active.scrollIntoView({block:'nearest',inline:'center'}); }
+    })();
     </script>
 </body>
 </html>
